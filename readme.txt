@@ -54,21 +54,13 @@ Once Get In Touch plug-in is installed and activated, users can see four sub-men
 Following is a brief description on how to get the best out of this plug-in
 
 1.	To add a new contact form, click on Add Form from sidebar. This opens up a form from which you can choose in the input fields that are required for your contact form. 
-
 2.	Choose the input fields you would require for the contact form along with the customizations for the input controls.
-
 3. You can customize the name of the input controls, color of the buttons from the same page.
-
 4.	Google map can also be customized in terms of color, height, width, and satellite or road vision for the map.
-
 5.	Once the input controls and map has been customized click on Create Form.
-
 6.	Click on View Form to see the form that is generated.
-
 7.	This would generate the form for you along with the short code which can be used in your website.
-
 8.	This plug-in also gives user a view of all the mails received at one place. Click on View Contact Mail to see all the mails received.
-
 9.	View Contact Mail also provides feature of sorting the mails received based on importance.
 
 

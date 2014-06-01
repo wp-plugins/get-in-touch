@@ -134,8 +134,11 @@
 		wp_enqueue_script( 'admin-ajax-request', plugins_url( 'get-in-touch/js/git.js' ), array( 'jquery' ) );
 		wp_localize_script( 'admin-ajax-request', 'AdminAjax', array( 'ajaxurl' => plugins_url( 'admin-ajax.php' ) ) );
 
-		wp_enqueue_script( 'user-ajax-request', plugins_url( 'get-in-touch/js/git-user.js' ), array( 'jquery' ) );
-		wp_localize_script( 'user-ajax-request', 'UserAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
+		if ( ! is_admin() ) 
+		{
+		 	wp_enqueue_script( 'user-ajax-request', plugins_url( 'get-in-touch/js/git-user.js' ), array( 'jquery' ) );
+			wp_localize_script( 'user-ajax-request', 'UserAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );  
+		}		
 
 		wp_enqueue_script( 'git-core',plugins_url( 'get-in-touch/js/git-core.js' ),array( 'jquery', 'thickbox', 'postbox' ),
 		GIT_VERSION, true );
@@ -144,11 +147,14 @@
 	add_action( 'init', 'git_include_script_user' );
 	function git_include_script_user()
 	{
-		wp_enqueue_script( 'user-ajax-request', plugins_url( 'get-in-touch/js/git-user.js' ), array( 'jquery' ) );
-		wp_localize_script( 'user-ajax-request', 'UserAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
+		if ( ! is_admin() ) 
+		{
+			wp_enqueue_script( 'user-ajax-request', plugins_url( 'get-in-touch/js/git-user.js' ), array( 'jquery' ) );
+			wp_localize_script( 'user-ajax-request', 'UserAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
 
-		wp_enqueue_script( 'git-core',plugins_url( 'get-in-touch/js/git-core.js' ),array( 'jquery', 'thickbox', 'postbox' ),
-		GIT_VERSION, true );
+			wp_enqueue_script( 'git-core',plugins_url( 'get-in-touch/js/git-core.js' ),array( 'jquery', 'thickbox', 'postbox' ),
+			GIT_VERSION, true );
+		}		
 	}
 
 	add_action( 'admin_init', 'git_include_style' );

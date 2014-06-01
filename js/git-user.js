@@ -98,7 +98,7 @@ function initialize()
 var urlpara = GetUrlValueUser('page');
 var checkIsDashboard = $('#IdDashboard').val();
 
-if(typeof(urlpara) === "undefined" && checkIsDashboard !== 'true')
+if(typeof(urlpara) === "undefined")
 {	
 	$(function(){
 		google.maps.event.addDomListener(window, 'load', initialize);

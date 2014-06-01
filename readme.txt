@@ -38,7 +38,7 @@ If you have a question or problem with the GET IN TOUCH plugin, post it on the s
 == Installation == 
 
 To begin with:
-1.Upload the get-in-touch.zip' file from the Plugins->Add New page in the WordPress administration panel.
+1.Upload the 'get-in-touch.zip' file from the Plugins->Add New page in the WordPress administration panel.
 
 2.Activate the plugin through the 'Plugins' menu in WordPress.
 

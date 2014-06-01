@@ -6,13 +6,8 @@
  */
 
 function git_pause()
-{
-	global $wpdb;
-	$table_prefix = $wpdb->prefix;
-	$git_session = $table_prefix.'git_session';	
-
-	$git_session = "TRUNCATE $git_session;";
-	$wpdb->query($git_session);	
+{	
+	return true;
 }	
 
 function git_remove()

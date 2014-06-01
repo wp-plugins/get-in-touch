@@ -1,4 +1,4 @@
-=== GET IN TOUCH ===
+=== Get In Touch ===
 Contributors: Think201, Vivek Pandey
 Donate link: http://example.com/
 Tags: get in touch, wordpress plugin, contact form, map, enquiry form, google map integration

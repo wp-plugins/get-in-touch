@@ -17,13 +17,12 @@ function git_home_function()
 	<div class="row">
 		<div class="col-md-12">
 			<div class="main_dashboard">				
-				<h4><a href="<?php echo admin_url(); ?>admin.php?page=add-form" class="plugin_name">Get In Touch</a>				
-					<div class="social-holder">
-						<a href="http://www.think201.com/contact-us" target="_blank" class="social">Say <i>Hello!</i></a>
-						<a href="http://www.twitter.com/think201" target="_blank"><span class="twitter"></span></a>				
-						<a href="http://www.facebook.com/think201" target="_blank"><span class="fb"></span></a>
-					</div>	
-				</h4>			
+				<h4><a href="<?php echo admin_url(); ?>admin.php?page=add-form" class="plugin_name">Get In Touch</a></h4>			
+				<div class="social-holder">
+					<a href="http://www.think201.com/contact-us" target="_blank" class="social">Say <i>Hello!</i></a>
+					<a href="http://www.twitter.com/think201" target="_blank"><span class="twitter"></span></a>				
+					<a href="http://www.facebook.com/think201" target="_blank"><span class="fb"></span></a>
+				</div>						
 			</div>
 		</div>
 	</div>
@@ -463,7 +462,7 @@ function get_all_forms_data_for_update($form_id)
 					      	</div>
 
 					      	<div class="form-group">
-				            	<label for="subject">I want to stor the contact form data of user who contacted me:</label>
+				            	<label for="subject">I want to store the contact form data of user who contacted me:</label>
 				            	<?php if($FormOptions['git_check_for_stor_contact_form_data'] === 'true')
 				            	{
 				            	?>

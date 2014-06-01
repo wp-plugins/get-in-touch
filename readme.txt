@@ -34,7 +34,6 @@ If you have a question or problem with the GET IN TOUCH plugin, post it on the s
 * PHP 5.2.6 or greater (5.3 recommended, with scandir)
 * MySQL 4.1.2 or greater (5.x recommended)
 
-Tags: get in touch, wordpress plugin, contact form, map, enquiry form, google map integration
 
 == Installation == 
 
@@ -96,7 +95,7 @@ http://developer.think201.com/plugins/get-in-touch-wordpress-contact-form-plugin
 
 = 1.0 =
 
-* Initial version of checkin.
+* Initial version of Get In Touch Plugin checkin.
 
 == Changelog ==
 

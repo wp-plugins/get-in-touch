@@ -2,9 +2,10 @@
 Contributors: Think201, Vivek Pandey
 Donate link: http://example.com/
 Tags: get in touch, wordpress plugin, contact form, responsive, map, enquiry form, google map integration
-Requires at least: 3.0.1
-Tested up to: 3.4
+Requires at least: 3.3.0
+Tested up to: 3.8.1
 Stable tag: 1.0.1
+Version: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 

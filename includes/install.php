@@ -121,27 +121,15 @@
 		'view-contact-mail', 'git_view_contact_form_submitted' ); 
 	}
 
-	if(substr($_SERVER['REQUEST_URI'], 0, 9) === '/wp-admin ')
-	{
-		echo '<input type="hidden" value="true" id="IdDashboard">';
-	}
-
 	// Function to Register Css And Script file	
 	add_action( 'admin_footer', 'git_include_script' );
 	function git_include_script() 
-	{		
-		//Custom Scripts
-		wp_enqueue_script( 'admin-ajax-request', plugins_url( 'get-in-touch/js/git.js' ), array( 'jquery' ) );
-		wp_localize_script( 'admin-ajax-request', 'AdminAjax', array( 'ajaxurl' => plugins_url( 'admin-ajax.php' ) ) );
-
-		if ( ! is_admin() ) 
+	{						
+		if ( is_admin() ) 
 		{
-		 	wp_enqueue_script( 'user-ajax-request', plugins_url( 'get-in-touch/js/git-user.js' ), array( 'jquery' ) );
-			wp_localize_script( 'user-ajax-request', 'UserAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );  
-		}		
-
-		wp_enqueue_script( 'git-core',plugins_url( 'get-in-touch/js/git-core.js' ),array( 'jquery', 'thickbox', 'postbox' ),
-		GIT_VERSION, true );
+		 	wp_enqueue_script( 'admin-ajax-request', plugins_url( 'get-in-touch/js/git.js' ), array( 'jquery' ) );
+			wp_localize_script( 'admin-ajax-request', 'AdminAjax', array( 'ajaxurl' => plugins_url( 'admin-ajax.php' ) ) );
+		}				
 	}	
 
 	add_action( 'init', 'git_include_script_user' );
@@ -150,35 +138,38 @@
 		if ( ! is_admin() ) 
 		{
 			wp_enqueue_script( 'user-ajax-request', plugins_url( 'get-in-touch/js/git-user.js' ), array( 'jquery' ) );
-			wp_localize_script( 'user-ajax-request', 'UserAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
-
-			wp_enqueue_script( 'git-core',plugins_url( 'get-in-touch/js/git-core.js' ),array( 'jquery', 'thickbox', 'postbox' ),
-			GIT_VERSION, true );
+			wp_localize_script( 'user-ajax-request', 'UserAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );		
 		}		
+	}
+
+	add_action( 'admin_enqueue_scripts', 'wptuts_add_color_picker' );
+	function wptuts_add_color_picker( $hook ) 
+	{
+    	if( is_admin() ) {        
+        	wp_enqueue_style( 'wp-color-picker' );             
+        	wp_enqueue_script( 'custom-script-handle', plugins_url( 'get-in-touch/js/colorpicker.js'), array( 'wp-color-picker' ), false, true );
+    	}
 	}
 
 	add_action( 'admin_init', 'git_include_style' );
 	function git_include_style()
 	{
-		wp_enqueue_style( 'git-css',
-			plugins_url( 'get-in-touch/css/git.css' ),
-			array( 'thickbox' ), GIT_VERSION, 'all' );
-
-		wp_enqueue_style( 'git-core',
-			plugins_url( 'get-in-touch/css/git-core.css' ),
-			array( 'thickbox' ), GIT_VERSION, 'all' );
-
+		if ( is_admin() ) 
+		{
+			wp_enqueue_style( 'git-css',
+				plugins_url( 'get-in-touch/css/git.css' ),
+				array( 'thickbox' ), GIT_VERSION, 'all' );
+		}
 	}
 
-	add_action( 'wp_head', 'git_include_style_user' );
+	add_action( 'init', 'git_include_style_user' );
 	function git_include_style_user()
 	{
-		wp_enqueue_style( 'git-css',
-			plugins_url( 'get-in-touch/css/git.css' ),
-			array( 'thickbox' ), GIT_VERSION, 'all' );
-
-		wp_enqueue_style( 'git-core',
-			plugins_url( 'get-in-touch/css/git-core.css' ),
-			array( 'thickbox' ), GIT_VERSION, 'all' );
+		if ( ! is_admin() ) 
+		{
+			wp_enqueue_style( 'git-user-css',
+				plugins_url( 'get-in-touch/css/git-user.css' ),
+				array( 'thickbox' ), GIT_VERSION, 'all' );
+		}
 	}
 ?>

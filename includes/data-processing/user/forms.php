@@ -16,13 +16,21 @@ function git_form($form_id)
   {
     return false;
   }     
-  $FormOptions = unserialize($FormDataById->Form_Options);  
+  $FormOptions = unserialize($FormDataById->Form_Options); 
 ?>    
-    <p style="display: none;" class="thanks-text"><?php echo $FormOptions['user_success_text']; ?></p>
-    <img class="loader" style="display: none;" src="<?php echo plugins_url( 'get-in-touch/img/loader.gif' ) ?>">
-    <input type="hidden" name="url_send_mail" id="url_send_mail" value="<?php echo plugins_url().'/get-in-touch/includes/data-processing/user/send_contact_form_data.php'; ?>" />
-    <input type="hidden" name="contact_form_formid" id="contact_form_formid" value="<?php echo $form_id; ?>" />   
-    <input type="hidden" value="<?php echo $FormOptions['git_check_for_stor_contact_form_data']; ?>" name="db_check" id="db_check" >    
+  <div id="git-user-container" style="max-width: <?php if(isset($FormOptions['form_width'])){echo $FormOptions['form_width'].'px';}else{echo '450px';}?>">
+    <p style="display: none;" class="git_thanks_text"><?php echo $FormOptions['user_success_text']; ?></p>
+<?php if($FormOptions['form_loader'] === 'yes')
+    {
+?>
+    <img class="git-loader" style="display: none;" src="<?php echo plugins_url( 'get-in-touch/img/loader.gif' ) ?>">
+<?php
+    }
+?>  
+    <input type="hidden" name="git_form_hide" id="git_form_hide" value="<?php echo $FormOptions['form_hide']; ?>" />
+    <input type="hidden" name="git_url_send_mail" id="git_url_send_mail" value="<?php echo plugins_url().'/get-in-touch/includes/data-processing/user/send_contact_form_data.php'; ?>" />
+    <input type="hidden" name="git_contact_form_formid" id="git_contact_form_formid" value="<?php echo $form_id; ?>" />   
+    <input type="hidden" value="<?php echo $FormOptions['git_check_for_stor_contact_form_data']; ?>" name="git_db_check" id="git_db_check" >    
     <form class="contact-form" name="git-ui-contact-form" id="git-ui-contact-form" action="" method="post">       
 <?php
     foreach($InputDataById as $InputData)
@@ -31,56 +39,59 @@ function git_form($form_id)
       if($InputData->Input_Type === 'text-field')
       {
 ?>
-      <div class="form-group">
-        <label for="name"><?php echo $UnserializedInputData[5];?><?php if($FormOptions['git_mail_form_required_fields_text'] === 'true' && $UnserializedInputData[6] === 'true'){echo '<span style="color: #e04545;"> (Required)</span>';}?></label>
-        <input type="text" class="<?php if($UnserializedInputData[6] === 'true'){echo 'required';}?> <?php echo $UnserializedInputData[2].' form-control'; ?>" 
+      <div class="git-fields-container">  
+        <label for="name"><?php echo $UnserializedInputData[5];?><?php if($FormOptions['git_mail_form_required_fields_text'] === 'true' && $UnserializedInputData[6] === 'true'){echo '<span style="color: #e04545;"> (*)</span>';}?></label>
+        <input type="text" class="git_textfield <?php if($UnserializedInputData[6] === 'true'){echo 'required';}?> <?php echo $UnserializedInputData[2]; ?>" 
         id="git_contact_form_defined_text <?php echo $UnserializedInputData[1]; ?>" name="<?php echo $UnserializedInputData[0]; ?>"
         size="<?php echo $UnserializedInputData[3]; ?>" maxlength="<?php echo $UnserializedInputData[4]; ?>">
+        <i><p style="display: none;" class="git_error_text"><?php echo $FormOptions['user_error_validation_text']; ?></p></i>
       </div>
 <?php
       }
       if($InputData->Input_Type === 'phone')
       {
 ?>
-      <div class="form-group" id="phone">
-        <label for="name"><?php echo $UnserializedInputData[5];?><?php if($FormOptions['git_mail_form_required_fields_text'] === 'true' && $UnserializedInputData[6] === 'true'){echo '<span style="color: #e04545;"> (Required)';}?></label>
-        <input type="text" class="phone <?php if($UnserializedInputData[6] === 'true'){echo 'required';}?> <?php echo $UnserializedInputData[2].' form-control'; ?>" 
+      <div class="git-fields-container" id="phone">
+        <label for="name"><?php echo $UnserializedInputData[5];?><?php if($FormOptions['git_mail_form_required_fields_text'] === 'true' && $UnserializedInputData[6] === 'true'){echo '<span style="color: #e04545;"> (*)';}?></label>
+        <input type="text" class="git_phone <?php if($UnserializedInputData[6] === 'true'){echo 'required';}?> <?php echo $UnserializedInputData[2]; ?>" 
         id="git_contact_form_defined_text <?php echo $UnserializedInputData[1]; ?>" name="<?php echo $UnserializedInputData[0]; ?>"
         size="<?php echo $UnserializedInputData[3]; ?>" maxlength="<?php echo $UnserializedInputData[4]; ?>">
+        <i><p style="display: none;" class="git_error_phone"><?php echo $FormOptions['user_error_validation_text']; ?></p></i>
       </div>
 <?php
       }
       if($InputData->Input_Type === 'email')
       {
 ?>
-      <div class="form-group">
-        <label for="name"><?php echo $UnserializedInputData[5];?><?php if($FormOptions['git_mail_form_required_fields_text'] === 'true' && $UnserializedInputData[6] === 'true'){echo '<span style="color: #e04545;"> (Required)';}?></label>
-        <input type="email" class="emailtest <?php if($UnserializedInputData[6] === 'true'){echo 'required';}?> <?php echo $UnserializedInputData[2].' form-control'; ?>" 
+      <div class="git-fields-container">  
+        <label for="name"><?php echo $UnserializedInputData[5];?><?php if($FormOptions['git_mail_form_required_fields_text'] === 'true' && $UnserializedInputData[6] === 'true'){echo '<span style="color: #e04545;"> (*)';}?></label>
+        <input type="email" class="git_emailtest <?php if($UnserializedInputData[6] === 'true'){echo 'required';}?> <?php echo $UnserializedInputData[2]; ?>" 
         id="git_contact_form_defined_text <?php echo $UnserializedInputData[1]; ?>" name="<?php echo $UnserializedInputData[0]; ?>"
         size="<?php echo $UnserializedInputData[3]; ?>" maxlength="<?php echo $UnserializedInputData[4]; ?>">
-        <p style="display: none;" class="mailerror-text"><?php echo $FormOptions['user_error_email_validation_text']; ?></p>
+        <i><p style="display: none;" class="git_error_mail"><?php echo $FormOptions['user_error_email_validation_text']; ?></p></i>
       </div>
 <?php
       }
       if($InputData->Input_Type === 'textarea')
       {        
 ?>
-      <div class="form-group">
-        <label for="name"><?php echo $UnserializedInputData[5];?><?php if($FormOptions['git_mail_form_required_fields_text'] === 'true' && $UnserializedInputData[6] === 'true'){echo '<span style="color: #e04545;"> (Required)';}?></label>
-        <textarea class="<?php if($UnserializedInputData[6] === 'true'){echo 'required';}?> <?php echo $UnserializedInputData[2].' form-control'; ?>" 
+      <div class="git-fields-container">  
+        <label for="name"><?php echo $UnserializedInputData[5];?><?php if($FormOptions['git_mail_form_required_fields_text'] === 'true' && $UnserializedInputData[6] === 'true'){echo '<span style="color: #e04545;"> (*)';}?></label>
+        <textarea class="git_textareatest <?php if($UnserializedInputData[6] === 'true'){echo 'required';}?> <?php echo $UnserializedInputData[2]; ?>" 
         id="git_contact_form_defined_text <?php echo $UnserializedInputData[1]; ?>" name="<?php echo $UnserializedInputData[0]; ?>"
-        cols="<?php echo $UnserializedInputData[3]; ?>" rows="<?php echo $UnserializedInputData[4]; ?>"> </textarea>
+        cols="<?php echo $UnserializedInputData[3]; ?>" rows="<?php echo $UnserializedInputData[4]; ?>"></textarea>
+        <i><p style="display: none;" class="git_error_textarea"><?php echo $FormOptions['user_error_validation_text']; ?></p></i>
       </div>
 <?php
       }
       if($InputData->Input_Type === 'captcha')
       {
 ?>
-      <div class="form-group">
+      <div class="git-fields-container">  
         <label for="name"><?php echo $UnserializedInputData[0];?></label>
         <input type="text" class="form-control" id="captchaText" name="captchaText" placeholder="Enter Captcha string">
         <img src="<?php echo 'http://think201.org'; ?>">                                                                                    
-        <span onClick="window.location.reload();" class="btn btn-default">Refresh</span>
+        <span onClick="window.location.reload();" class="git-btn">Refresh</span>
       </div>
 <?php        
       }
@@ -90,13 +101,13 @@ function git_form($form_id)
       if(!isset($_GET['page']))
       {
 ?>
-        <button style="background-color: <?php echo '#'.$FormOptions['button_color']; ?>" type="button" name="submit-contact-form" id="submit-contact-form" onClick="GITSubmitContactForm()" class="btn"><?php echo $FormOptions['button_text']; ?></button>                      
-        <p style="display: none;" class="error-text"><?php echo $FormOptions['user_error_validation_text']; ?></p>
+        <button style="background-color: <?php echo $FormOptions['button_color']; ?>" type="button" name="submit-contact-form" id="submit-contact-form" onClick="GITSubmitContactForm()" class="git-btn"><?php echo $FormOptions['button_text']; ?></button>                              
 <?php        
       }   
 ?>                 
       </div>   
-    </form>                     
+    </form>    
+  </div>                 
 <?php
 }
 
@@ -131,10 +142,10 @@ function git_map($form_id)
 function git_view_contact_form_submitted()
 {
   //Object of Get Data Class
-  $GetClass = new GetData();  
+  $GetClass = new GetData();     
   $ContactFormData = $GetClass->GetAllContactFormData();  
 ?>  
-  <div class="container">
+  <div class="git-container">
     <h1>Get In Touch</h1>  
 <?php 
     if(!empty($ContactFormData))
@@ -143,7 +154,7 @@ function git_view_contact_form_submitted()
 <?php
     }
 ?>  
-    <div class="row">
+    <div class="git-row">
       <div class="box">
         <div class="box-header well">
           <p style="color:#606060;">Get In Touch ><a id="add-form" onclick="" style="color:#606060;" href="#"> Contact Forms</a></p>                      
@@ -153,7 +164,7 @@ function git_view_contact_form_submitted()
           if(!empty($ContactFormData))
           {
 ?>  
-          <table class="table table-bordered">              
+          <table class="form-view-container" id="contact-mail-table">              
             <tr class="forms-view-head">
               <td>Select</td>
               <td>Before</td>
@@ -194,7 +205,7 @@ function git_view_contact_form_submitted()
                 }
 ?>                  
                 </td> 
-                <td><a id="delete" class="deleteformdata" onclick="DeleteFormData(<?php echo $ContactData->ContactForm_Id; ?>);" href="#">DELETE</a></td>               
+                <td><a class="deletedata" onclick="DeleteFormData(<?php echo $ContactData->ContactForm_Id; ?>);" href="#">DELETE</a></td>               
                 <td>
                   <select class="form-control data_inportance" id="<?php echo $ContactData->ContactForm_Id; ?>" name="data_inportance">                    
                     <option value="<?php echo $ContactData->Form_RatingData; ?>"><?php echo $ContactData->Form_RatingData; ?></option>
@@ -227,7 +238,7 @@ function git_view_contact_form_submitted()
               $i++;
             }
 ?>                        
-          </table>
+          </table>    
         </div>
       </div>
     </div>

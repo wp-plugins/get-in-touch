@@ -9,21 +9,15 @@ var process_input_fields_url 	= $("#git_text_hidden_url").val();
 var urlpara = GetUrlValue('page');
 if(urlpara === 'add-form')
 {
-	var form_id_counter = count_unique_form_id(process_input_fields_url);
-	$(function(){
-		$(".user_up_button_color").colorpicker();
-		$("#git_map_color").colorpicker();
-		$("#user_button_color").colorpicker();		
-	});	
+	var form_id_counter = count_unique_form_id(process_input_fields_url);		
 }
 
 $(function(){
-	$('#delete').on('click', function(){
-		var check_fordeletedata = confirm('Do you want to delete all form data?');
+	$('.git-container .deletedata').on('click', function(){
+		var check_fordeletedata = confirm('Do you want to delete?');
 		if(check_fordeletedata == true)
-		{
-			var DeleteFormUrl = $(this).attr('id');
-			window.location.href = DeleteFormUrl;
+		{			
+			return true
 		}
 		else
 		{
@@ -69,18 +63,18 @@ function Loader(Status)
 {
 	if(Status == 'show')
 	{
-		$('.loader').show();
+		$('.git-loader').show();
 	}
 	else if(Status == 'hide')
 	{
-		$('.loader').fadeOut();
+		$('.git-loader').fadeOut();
 	}
 }
 
 //Go to Top
 function GoToTop()
 {
-	$("html,body").animate({scrollTop:0}, 800);
+	$("html,body").animate({scrollTop:0}, 1500);
 }
 
 //Function to Get Parameter From URL
@@ -297,7 +291,7 @@ $(function(){
 			$('#git_map_width').attr('value', '400');
 			$('#git_map_title').attr('value', 'Title');
 			
-			$('.loader').fadeOut();	
+			$('.git-loader').fadeOut();	
 		}		
 
 		if(SelectedId === 'captcha')
@@ -317,7 +311,7 @@ $(function(){
 			
 			$('#git_captcha_title').attr('value', 'Captcha');
 			
-			$('.loader').fadeOut();	
+			$('.git-loader').fadeOut();	
 		}
 		QuickPanel.fadeIn();
 		QuickPanel.find('#selected-field').html('['+SelectedId+']');								
@@ -661,7 +655,7 @@ function SubmitInputField(type, action)
 
 	// Reset Fields
 	$('#content_form_text_fields')[0].reset();	
-	Loader(Hide);
+	Loader(Hide);	
 }
 
 //Get Value for Input Fields according to their type to show initial value in Quick Panel Form
@@ -711,7 +705,13 @@ function SubmitForm()
 	var mail_subject			= $('#mail-subject').val();
 	var mail_sender_name		= $('#mail-sender-name').val();
 	var mail_sender_email		= $('#mail-sender-mail').val();		
-	var ini_form_mail_message	= $('#ini_form_mail_message').val();		
+	var ini_form_mail_message	= $('#ini_form_mail_message').val();	
+
+	var user_form_width					= $('#user_form_width').val();
+	var user_form_loader				= $('#user_form_loader').val();
+	var user_form_hide					= $('#user_form_hide').val();
+	var contact_form_alignment			= $('#contact_form_alignment').val();
+
 	
 	var user_button_text					= $('#user_button_text').val();
 	var user_button_color					= $('#user_button_color').val();
@@ -735,6 +735,12 @@ function SubmitForm()
 					mail_sender_name: 		mail_sender_name, 
 					mail_sender_email: 		mail_sender_email, 
 					ini_form_mail_message: 	ini_form_mail_message, 
+
+					user_form_width:		user_form_width,	
+					user_form_loader:		user_form_loader,	
+					user_form_hide:			user_form_hide,	
+					contact_form_alignment: contact_form_alignment,
+
 					user_button_text:       user_button_text,
 					user_button_color:      user_button_color,
 					user_success_text:       			user_success_text,
@@ -799,6 +805,11 @@ function SubmitUpdatedForm(Form_Id_For_Updation)
 	var mail_copy_to_user_check = $('#update_mail_copy_to_user_check').is(':checked');
 	var mail_recipient 			= $('#update-mail-recipient').val();	
 
+	var user_form_width					= $('#user_form_width').val();
+	var user_form_loader				= $('#user_form_loader').val();
+	var user_form_hide					= $('#user_form_hide').val();
+	var contact_form_alignment			= $('#contact_form_alignment').val();
+
 	var user_button_text					= $('#user_button_text').val();
 	var user_button_color					= $('#user_button_color').val();
 	var user_success_text					= $('#user_success_text').val();
@@ -816,8 +827,12 @@ function SubmitUpdatedForm(Form_Id_For_Updation)
 							up_mail_sender_name: 		mail_sender_name, 
 							up_mail_sender_email: 		mail_sender_email, 
 							up_ini_form_mail_message: 	ini_form_mail_message, 
-							user_button_text:       user_button_text,
-							user_button_color:      user_button_color,
+							user_form_width:			user_form_width,	
+							user_form_loader:			user_form_loader,	
+							user_form_hide:				user_form_hide,	
+							contact_form_alignment: 	contact_form_alignment,
+							user_button_text:       	user_button_text,
+							user_button_color:      	user_button_color,
 							user_success_text:       			user_success_text,
 							user_error_validation_text:      	user_error_validation_text,
 							user_error_email_validation_text:   user_error_email_validation_text,
@@ -925,7 +940,9 @@ function post_input_data(data, process_input_fields_url, type)
 	var RetVal = CheckPostedData(data);	
 
 	if(RetVal === true)
-	{		
+	{	
+		$('.git-input-field-status').fadeIn();	
+		
 		$.ajax({
         url: AdminAjax.process_input_fields_url,
        	type: 'post',             		
@@ -933,6 +950,9 @@ function post_input_data(data, process_input_fields_url, type)
         success: function(data, status) {      
 
         		Loader(Hide);
+        		setTimeout(function(){
+					$('.git-input-field-status').fadeOut();
+				}, 2000);
         			      			
                  },
         error: function(){                	
@@ -1037,31 +1057,24 @@ function DeleteFormData(ID)
 	var url = $("#url_send_mail").val();
 	GoToTop();
 	Loader(Show);
-	var check_fordeletedata = confirm('Do you want to delete all form data?');
-	if(check_fordeletedata == true)
-	{
-		$.ajax({
-	        url: AdminAjax.url,
-	       	type: 'post',       	    
-	       	dataType: "json",	
-		    data: 
-			    {			    	
-			    	form_data_deletion_id :ID
-		    	},
-	        success: function(data, status) {        	                			        		        			
-	        		$('.loader').fadeOut();
-					//Redirect to Form View
-        			window.location.reload(true);      			
-        			Loader(Hide);
+	$.ajax({
+        url: AdminAjax.url,
+       	type: 'post',       	    
+       	dataType: "json",	
+	    data: 
+		    {			    	
+		    	form_data_deletion_id :ID
+	    	},
+        success: function(data, status) {        	                			        		        			
+        		$('.loader').fadeOut();
+        		
+				//Redirect to Form View
+    			window.location.reload(true);      			
+    			Loader(Hide);
 
-	                 },
-	        error: function(){ 
+                 },
+        error: function(){ 
 
-	           }	              				
-	    	});			
-	}	
-	else
-	{
-		return false;
-	}
+           }	              				
+    	});			
 }

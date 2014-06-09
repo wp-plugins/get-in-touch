@@ -18,11 +18,11 @@ function Loader(Status)
 {
 	if(Status == 'show')
 	{
-		$('.loader').fadeIn();
+		$('.git-loader').fadeIn();
 	}
 	if(Status == 'hide')
 	{
-		$('.loader').fadeOut();
+		$('.git-loader').fadeOut();
 	}
 }
 
@@ -133,75 +133,112 @@ function StatusInterval()
 function GITSubmitContactForm()
 {
 	window.$ = jQuery.noConflict();		
-	var url = $("#url_send_mail").val();
-	var formid = $("#contact_form_formid").val();	
+	var formhide = $('#git_form_hide').val();
+	var url = $("#git_url_send_mail").val();
+	var formid = $("#git_contact_form_formid").val();	
 	var i;
-	var ContactFormData = $('#git-ui-contact-form').serializeArray();    	    	
-	var KeyObj = {};
-	var DataObj = {}; 
-	var FormDataObj = {};       		
-	var hasError = false;
-	var emailReg = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-	var thanktext = $('.thanks-text');
-	var errtext = $('.error-text');
-	var mailerrtext = $('.mailerror-text');
-	var FormName = $('#git-ui-contact-form');
-	var DBCheck = $('#db_check').val();
+	var contactformdata = $('#git-ui-contact-form').serializeArray();    	    	
+	var keyobj = {};
+	var dataobj = {}; 
+	var formdataobj = {};       		
+	var haserror = false;
+	var emailreg = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	var textfield = $('.git_textfield');
+	var phone = $('.git_phone');
+	var mail = $('.git_emailtest');
+	var textarea = $('.git_textareatest');
+	var thanktext = $('.git_thanks_text');
+	var errtextfield = $('.git_error_text');
+	var errphone = $('.git_error_phone');
+	var errmail = $('.git_error_mail');
+	var errtextarea = $('.git_error_textarea');
+	var formname = $('#git-ui-contact-form');
+	var dbcheck = $('#git_db_check').val();
 	var j = 0;
-	var EmailVal = $('.emailtest').val();
-	var PhoneVal = $('.phone').val();
 
-	$(ContactFormData).each(function(i, field){			
-		FormDataObj[j] = field.value;	
-	  	DataObj = field.value;	
-	  	KeyObj = field.name;	    					 
+	if(formname.find(textfield).hasClass('required'))
+	{
+		if(formname.find(textfield).val() === '')
+		{
+			formname.find(errtextfield).fadeIn();
+			haserror = true;
+		}
+		else
+		{
+			formname.find(errtextfield).fadeOut();			
+		}
+	}
+	if(formname.find(phone).hasClass('required'))
+	{
+		if(formname.find(phone).val() === '')
+		{
+			formname.find(errphone).fadeIn();
+			haserror = true;
+		}
+		else
+		{
+			formname.find(errphone).fadeOut();			
+		}
+	}
+	if(formname.find(mail).hasClass('required'))
+	{
+		if(formname.find(mail).val() === '')
+		{
+			formname.find(errmail).fadeIn();
+			haserror = true;
+		}
+		else if(!emailreg.test(formname.find(mail).val()))
+		{
+			formname.find(errmail).fadeIn();
+			haserror = true;
+		}
+		else
+		{
+			formname.find(errmail).fadeOut();			
+		}
+	}
+	if(formname.find(textarea).hasClass('required'))
+	{
+		if(formname.find(textarea).val() === '')
+		{
+			formname.find(errtextarea).fadeIn();
+			haserror = true;
+		}
+		else
+		{
+			formname.find(errtextarea).fadeOut();			
+		}
+	}
+
+	$(contactformdata).each(function(i, field){			
+		formdataobj[j] = field.value;	
+	  	dataobj = field.value;	
+	  	keyobj = field.name;	    					 
 	  	++j;	  	
-
-	  	if(DataObj == '')
-	    {		 		    	
-	    	if(FormName.find('textarea').hasClass('required'))
-	    	{
-	    		errtext.fadeIn('slow');	        		    		
-				hasError = true;
-	    	}
-	    	else if(FormName.find('input').hasClass('required'))
-	    	{
-	    		errtext.fadeIn('slow');
-				hasError = true;
-	    	}	    		    		
-	    }
-	    else if(!emailReg.test(EmailVal))
-	    {	    	
-	    	mailerrtext.fadeIn('slow');	        	
-			hasError = true;
-	    }
 	    StatusInterval();
 	});		
 
-	if(hasError === false)
+	if(haserror === false)
     {
-    	Loader(Show);
-		errtext.hide();
-		mailerrtext.hide();			
+    	Loader(Show);		
 		$.ajax({
 	        url: UserAjax.url,
 	       	type: 'post',       	    
 		    data: 
 			    {
-			    	usermail:EmailVal,
-			    	DataObj :FormDataObj,
+			    	usermail:mail.val(),
+			    	dataobj :formdataobj,
 			    	form_id :formid,
-			    	db_check :DBCheck
+			    	db_check :dbcheck
 		    	},
 	        success: function(data, status) {        	                			        		        			
 
-	        			thanktext.fadeIn('slow');
-	        			$('#submit-contact-form').hide();
+	        			thanktext.fadeIn('slow');	        			
 	        			$('#git-ui-contact-form').hide();
 	        			$('#git-ui-contact-form')[0].reset();
 	                 },
 	        error: function(data, status){ 
-	        	alert(data, status);
+	        	
 	           }	              				
 	    	});	
 	        Loader(Hide);

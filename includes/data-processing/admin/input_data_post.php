@@ -68,15 +68,15 @@ if(isset($_POST["type"]))
 	else
 	{
 		//Get the value to insert
-		$name 		= $_POST['name'];
-		$id 		= $_POST['id'];
-		$class 		= $_POST['cls'];
-		$size 		= $_POST['size'];
-		$maxlen 	= $_POST['maxlen'];
-		$label 		= $_POST['label'];
-		$check 		= $_POST['check'];
-		$form_id 	= $_POST['form_id'];
-		$input_type	= $_POST['type'];
+		$name 			= $_POST['name'];
+		$id 			= $_POST['id'];
+		$class 			= $_POST['cls'];
+		$size 			= $_POST['size'];
+		$maxlen 		= $_POST['maxlen'];
+		$label 			= $_POST['label'];
+		$check 			= $_POST['check'];
+		$form_id 		= $_POST['form_id'];
+		$input_type		= $_POST['type'];
 		$inserted_Id	= $_POST['inserted_Id'];
 
 		$UnseriliazedData = array($name, $id, $class, $size, $maxlen, $label, $check);			
@@ -93,7 +93,8 @@ if(isset($_POST["type"]))
 
 if(isset($_POST['form_title']) && isset($_POST['form_data']) && isset($_POST['map_check']) && isset($_POST['mail_subject']) && 
 	isset($_POST['mail_sender_name']) && isset($_POST['mail_sender_email']) && isset($_POST['ini_form_mail_message']) && isset($_POST['mail_copy_to_user_check']) && 
-	isset($_POST['mail_recipient']) && isset($_POST['form_id_counter']) && isset($_POST['last_form_inserted_id']))
+	isset($_POST['mail_recipient']) && isset($_POST['form_id_counter']) && isset($_POST['last_form_inserted_id']) && isset($_POST['user_form_width']) && isset($_POST['user_form_loader'])
+	&& isset($_POST['user_form_hide']) && isset($_POST['contact_form_alignment']))
 {
 	// Post Form Data to DB	
 	$form_label 			= $_POST['form_label'];
@@ -109,6 +110,11 @@ if(isset($_POST['form_title']) && isset($_POST['form_data']) && isset($_POST['ma
 	$FormIDForInputFields   = $_POST['form_id_counter'];
 	$last_form_inserted_id  = $_POST['last_form_inserted_id'];
 
+	$user_form_width  		= $_POST['user_form_width'];
+	$user_form_loader  		= $_POST['user_form_loader'];
+	$user_form_hide  		= $_POST['user_form_hide'];	
+	$contact_form_alignment = $_POST['contact_form_alignment'];
+
 	$user_button_text  					= $_POST['user_button_text'];
 	$user_button_color  				= $_POST['user_button_color'];
 	$user_success_text  				= $_POST['user_success_text'];
@@ -118,6 +124,10 @@ if(isset($_POST['form_title']) && isset($_POST['form_data']) && isset($_POST['ma
 	$git_check_for_stor_contact_form_data = $_POST['git_check_for_stor_contact_form_data'];
 				
 	$FormMiscUnseriliazedData = array(
+									'form_width' 							=> $user_form_width,
+		 							'form_loader' 							=> $user_form_loader,
+		 							'form_hide' 							=> $user_form_hide,		 							
+		 							'form_alignment' 						=> $contact_form_alignment,
 									'button_text' 							=> $user_button_text,
 		 							'button_color' 							=> $user_button_color,
 		 							'user_success_text' 					=> $user_success_text,
@@ -139,7 +149,8 @@ if(isset($_POST['form_title']) && isset($_POST['form_data']) && isset($_POST['ma
 
 if(isset($_POST['up_form_title']) && isset($_POST['up_form_data']) && isset($_POST['up_mail_subject']) && isset($_POST['up_mail_sender_name']) && 
 	isset($_POST['up_mail_sender_email']) && isset($_POST['up_ini_form_mail_message']) && isset($_POST['up_mail_copy_to_user_check']) && 
-	isset($_POST['up_mail_recipient']) && isset($_POST['Form_Id_For_Updation']))
+	isset($_POST['up_mail_recipient']) && isset($_POST['Form_Id_For_Updation'])&& isset($_POST['user_form_width']) && isset($_POST['user_form_loader'])
+	&& isset($_POST['user_form_hide']) && isset($_POST['contact_form_alignment']))
 {
 	// Get the Update Data from Form to Update
 	$up_form_label 				= $_POST['up_form_label'];
@@ -153,6 +164,11 @@ if(isset($_POST['up_form_title']) && isset($_POST['up_form_data']) && isset($_PO
 	$up_mail_recipient 		    = $_POST['up_mail_recipient'];
 	$Form_Id_For_Updation       = $_POST['Form_Id_For_Updation'];
 
+	$user_form_width  		= $_POST['user_form_width'];
+	$user_form_loader  		= $_POST['user_form_loader'];
+	$user_form_hide  		= $_POST['user_form_hide'];	
+	$contact_form_alignment = $_POST['contact_form_alignment'];
+
 	$user_button_text  					= $_POST['user_button_text'];
 	$user_button_color  				= $_POST['user_button_color'];
 	$user_success_text  				= $_POST['user_success_text'];
@@ -162,6 +178,10 @@ if(isset($_POST['up_form_title']) && isset($_POST['up_form_data']) && isset($_PO
 	$git_check_for_stor_contact_form_data = $_POST['git_check_for_stor_contact_form_data'];
 
 	$FormMiscUpdateUnseriliazedData = array(
+									'form_width' 							=> $user_form_width,
+		 							'form_loader' 							=> $user_form_loader,
+		 							'form_hide' 							=> $user_form_hide,		 							
+		 							'form_alignment' 						=> $contact_form_alignment,
 									'button_text' 							=> $user_button_text,
 		 							'button_color' 							=> $user_button_color,
 		 							'user_success_text' 					=> $user_success_text,

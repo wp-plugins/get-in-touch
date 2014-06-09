@@ -3,9 +3,9 @@
  * @package Internals
  */
 
-if(isset($_POST['DataObj']) && isset($_POST['form_id']) && isset($_POST['usermail']))
+if(isset($_POST['dataobj']) && isset($_POST['form_id']) && isset($_POST['usermail']))
 {
-	$Data = $_POST['DataObj'];
+	$Data = $_POST['dataobj'];
 	$form_id = $_POST['form_id'];
 	$UsermailId = $_POST['usermail'];
 	$db_check = $_POST['db_check'];
@@ -80,6 +80,8 @@ function SendMail($Data, $form_id, $UsermailId)
 	$FormData = $wpdb->get_row($FormQuery);		
 	
 	$git_mail = new PHPMailer();
+
+	var_dump($FormData);
 		
 	$BodyAdmin = 'Below are the details of contact enquiry '.'<br/><br/>';
 	$DataLen = count($Data);
@@ -88,9 +90,9 @@ function SendMail($Data, $form_id, $UsermailId)
 		$BodyAdmin .= $Data[$i].'<br/><br/>';
 	}
 	$BodyAdmin .= 'Thanks<br/>';	
-	$BodyAdmin .= 'Get In Touch';	
+	$BodyAdmin .= $FormData->Mail_Sender_Name;	
 	
-	$subject = '[Get In Touch] New Enquiry Request';
+	$subject = $FormData->Mail_Subject;
 
 	$body = $BodyAdmin;		
 	
@@ -99,10 +101,11 @@ function SendMail($Data, $form_id, $UsermailId)
 		$header = 'Content-type: text/html; charset: utf8\r\n'.'MIME-Version: 1.0\r\n'.'From: Get In Touch <'.$FormData->Form_Recipient.'>'."\r\n".'Reply-To: '.$FormData->Form_Recipient."\r\n" .'X-Mailer: PHP/' . phpversion();
 
 		$BodyUser = $FormData->Form_MailData.'<br/><br/>';				
-		$BodyUser .= 'Thanks<br/>';			
+		$BodyUser .= 'Thanks<br/>';	
+		$BodyUser .= $FormData->Mail_Sender_Name;			
 		
 		//Admin Mail
-		@mail($UsermailId, '[Get In Touch] New Enquiry Request', $BodyUser, $header);
+		@mail($UsermailId, $subject, $BodyUser, $header);
 	}
 
 	$git_mail->AddAddress($FormData->Form_Recipient);
@@ -113,15 +116,13 @@ function SendMail($Data, $form_id, $UsermailId)
 
 	$git_mail->From = $FormData->Mail_Sender_Email;
 	
-	$git_mail->FromName = 'Get In Touch';
+	$git_mail->FromName = $FormData->Mail_Sender_Name;	
 
 	$git_mail->IsHTML(true);
 
 	$git_mail->Subject  =  $subject;
 
 	$git_mail->Body     =  $body;
-
-	$git_mail->Send();
 
 	if(!$git_mail->Send())
 	{

@@ -1,15 +1,15 @@
 === Get In Touch ===
-Contributors: Think201, Vivek Pandey
-Donate link: http://example.com/
-Tags: get in touch, wordpress plugin, contact form, responsive, map, enquiry form, google map integration
+Contributors: think201, vivekpandey
+Tags: get in touch, wordpress plugin, contact form, responsive, map, enquiry form, google map integration, touch, get, form, enquiry, map, google map, customized, free, no limit, input field
 Requires at least: 3.3.0
-Tested up to: 3.8.1
+Donate link: http://www.think201.com/
+Tested up to: 3.9.1
 Stable tag: 1.0.1
 Version: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Get In Touch allows you to create contact forms, save contact form requests, generate custom google maps, keep track of mails, sorting of requests.
+Get In Touch allows you to create fully customized and responsive contact forms, save contact form requests, generate custom google maps, keep track of mails, sorting of requests.
 
 == Description ==
 
@@ -20,9 +20,11 @@ Get In Touch plug-in allows you to generate responsive form by adding input cont
 
 - Responsive Contact Form.
 - Add any number of input controls to your form.
-- Include maps with your form.
-- Colour Customization of map used.
+- Include customized maps into your form
+- Customization of map in terms of color. map style, height and width
 - Track mails received through your form.
+- Fully customized contact form.
+- Sort mails according to the importance.
 
 
 = Plugin Support =
@@ -32,7 +34,7 @@ If you have a question or problem with the GET IN TOUCH plugin, post it on the s
 
 = Requirements =
 
-* WordPress 3.3.0 or greater
+* WordPress 3.5.2 or greater
 * PHP 5.2.6 or greater (5.3 recommended, with scandir)
 * MySQL 4.1.2 or greater (5.x recommended)
 

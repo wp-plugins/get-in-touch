@@ -3,7 +3,7 @@
 Plugin Name: Get In Touch
 Plugin URI: http://developer.think201.com/plugins/get-in-touch-wordpress-contact-form-plugin
 Description: Get In Touch plug-in allows you to generate form by adding input controls to it dynamically. This plug-in allows you to integrate map along with your form and have a track of mails received.
-Author: Think201
+Author: Think201, Vivek Pandey
 Version: 1.0.1
 Author URI: http://www.think201.com
 License: GPL v1

@@ -205,7 +205,7 @@ function git_view_contact_form_submitted()
                 }
 ?>                  
                 </td> 
-                <td><a class="deletedata" onclick="DeleteFormData(<?php echo $ContactData->ContactForm_Id; ?>);" href="#">DELETE</a></td>               
+                <td><a class="deletedata" id="<?php echo $ContactData->ContactForm_Id; ?>" href="#">DELETE</a></td>               
                 <td>
                   <select class="form-control data_inportance" id="<?php echo $ContactData->ContactForm_Id; ?>" name="data_inportance">                    
                     <option value="<?php echo $ContactData->Form_RatingData; ?>"><?php echo $ContactData->Form_RatingData; ?></option>

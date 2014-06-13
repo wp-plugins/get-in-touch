@@ -108,7 +108,7 @@ function git_add_form()
 						<li id="textarea">
 							<p>Textarea</p>
 						</li>
-<!-- 						<li id="captcha">
+						<!-- <li id="captcha">
 							<p>Captcha<p>
 						</li> -->											
 						<li id="map">

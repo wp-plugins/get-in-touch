@@ -16,7 +16,8 @@ $(function(){
 	$('.git-container .deletedata').on('click', function(){
 		var check_fordeletedata = confirm('Do you want to delete?');
 		if(check_fordeletedata == true)
-		{			
+		{		
+			DeleteFormData($(this).attr('id'));
 			return true
 		}
 		else
@@ -396,8 +397,7 @@ function SubmitInputField(type, action)
 		else
 		{			
 			Loader(Hide);
-			var StatusShow = $('.StatusShow').html('Please enter the value of fields.');	
-			StatusShow.dialog();
+			alert('Please enter the value of fields.');	
 		}
 	}
 
@@ -443,8 +443,7 @@ function SubmitInputField(type, action)
 		else
 		{
 			Loader(Hide);
-			var StatusShow = $('.StatusShow').html('Please enter the value of fields.');
-			StatusShow.dialog();
+			alert('Please enter the value of fields.');
 		}
 	}
 
@@ -537,8 +536,7 @@ function SubmitInputField(type, action)
 		else
 		{
 			Loader(Hide);
-			var StatusShow = $('.StatusShow').html('Please enter the value of fields.');
-			StatusShow.dialog();
+			alert('Please enter the value of fields.');			
 		}		
 	}			
 
@@ -548,7 +546,7 @@ function SubmitInputField(type, action)
 		if($('#map_check').val() === 'has')
 		{
 			Loader(Hide);
-			alert('You can add more then one map in single contact form.');			
+			alert('You can not add more then one map in single contact form.');			
 			return false;
 		}
 		else
@@ -595,8 +593,7 @@ function SubmitInputField(type, action)
 		else
 		{
 			Loader(Hide);
-			var StatusShow = $('.StatusShow').html('Please enter the value of fields.');
-			StatusShow.dialog();
+			alert('Please enter the value of fields.');
 		}		
 	}
 
@@ -606,7 +603,7 @@ function SubmitInputField(type, action)
 		if($('#captcha_check').val() === 'has')
 		{
 			Loader(Hide);
-			alert('You can add more then one captcha in single contact form.');			
+			alert('You can not add more then one captcha in form.');			
 			return false;
 		}
 		else
@@ -648,8 +645,7 @@ function SubmitInputField(type, action)
 		else
 		{
 			Loader(Hide);
-			var StatusShow = $('.StatusShow').html('Please enter the value of fields.');
-			StatusShow.dialog();
+			alert('Please enter the value of fields.');
 		}		
 	}
 
@@ -784,8 +780,7 @@ function SubmitForm()
 	else
 	{
 		Loader(Hide);
-		var StatusShow = $('.StatusShow').html('Please select input fields before submit form.');
-		StatusShow.dialog();
+		alert('Please select input fields before submit form.');
 	}			
 }
 

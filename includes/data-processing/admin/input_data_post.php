@@ -693,10 +693,10 @@ class PostData
 		if(!empty($FuncData['FormFunction']) && !empty($FuncData['MapFunction']))
 		{
 			$FormF = $FuncData['FormFunction'];		
-			$form_function = "if( function_exists (".' "'. " git_form " .'" '.") ) git_form(".' "'.$form_id.'" '.")";							
+			$form_function = "if( function_exists (".' "'. "git_form" .'" '.") ) git_form(".' "'.$form_id.'" '.")";							
 
 			$MapF = $FuncData['MapFunction'];
-			$map_function = "if( function_exists (".' "'. " git_map " .'" '.") ) git_map(".' "'.$form_id.'" '.")";
+			$map_function = "if( function_exists (".' "'. "git_map" .'" '.") ) git_map(".' "'.$form_id.'" '.")";
 
 			$FormF = str_replace($FormF, $FormF, $form_function);
 			$MapF = str_replace($MapF, $MapF, $map_function);
@@ -711,7 +711,7 @@ class PostData
 		else if(empty($FuncData['FormFunction']) && !empty($FuncData['MapFunction']))
 		{	
 			$MapF = $FuncData['MapFunction'];
-			$map_function = "if( function_exists (".' "'. " git_map " .'" '.") ) git_map(".' "'.$form_id.'" '.")";
+			$map_function = "if( function_exists (".' "'. "git_map" .'" '.") ) git_map(".' "'.$form_id.'" '.")";
 
 			$MapF = str_replace($MapF, $MapF, $map_function);
 
@@ -724,7 +724,7 @@ class PostData
 		else if(!empty($FuncData['FormFunction']) && empty($FuncData['MapFunction']))
 		{
 			$FormF = $FuncData['FormFunction'];		
-			$form_function = "if( function_exists (".' "'. " git_form " .'" '.") ) git_form(".' "'.$form_id.'" '.")";							
+			$form_function = "if( function_exists (".' "'. "git_form" .'" '.") ) git_form(".' "'.$form_id.'" '.")";							
 		
 			$FormF = str_replace($FormF, $FormF, $form_function);
 

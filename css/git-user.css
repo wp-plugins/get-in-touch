@@ -11,12 +11,19 @@
 	top: 45%;
 }
 
+#git-user-container .git-fields-container p 
+{
+    margin-bottom: 0 !important;
+}
+
 #git-user-container #submit-contact-form
 {
 	color: #FFFFFF;
     font-size: 18px;
-    font-weight: 600;
+    border: 1px solid #cccccc;
+    font-weight: 400;
     margin: 10px 0;
+    text-transform: none !important;
     padding: 5px;
 }
 

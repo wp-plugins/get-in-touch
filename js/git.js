@@ -109,7 +109,7 @@ $(function(){
 
 });
 
-// Validate FOrm
+// Validate Form
 function ValidateForm()
 {
 	var hasError = false;
@@ -169,6 +169,7 @@ $(function(){
 			var size 			= $('#git_text_size').attr('for');
 			var maxlen 			= $('#git_text_maxlen').attr('for');
 			var label 			= $('#git_text_label').attr('for');
+			var placeholder 	= $('#git_text_placeholder').attr('for');
 
 			//Calling the function to set initial value for field
 			var Value = InsertValueForEveryField(SelectedId);
@@ -179,6 +180,7 @@ $(function(){
 			$('#git_text_size').attr('value', 42);
 			$('#git_text_maxlen').attr('value', 50);			
 			$('#git_text_label').attr('value', 'Name');			
+			$('#git_text_placeholder').attr('value', 'Name');	
 		}
 
 		if(SelectedId === 'email')
@@ -197,6 +199,7 @@ $(function(){
 			var size 			= $('#git_email_size').attr('for');
 			var maxlen 			= $('#git_email_maxlen').attr('for');
 			var label 			= $('#git_email_label').attr('for');
+			var placeholder		= $('#git_email_placeholder').attr('for');
 
 			//Calling the function to set initial value for field
 			var Value = InsertValueForEveryField(SelectedId);
@@ -207,6 +210,7 @@ $(function(){
 			$('#git_email_size').attr('value', 42);
 			$('#git_email_maxlen').attr('value', 50);			
 			$('#git_email_label').attr('value', 'Email Address');	
+			$('#git_email_placeholder').attr('value', 'Email Address');
 		}
 
 		if(SelectedId === 'phone')
@@ -225,6 +229,7 @@ $(function(){
 			var size 			= $('#git_phone_size').attr('for');
 			var maxlen 			= $('#git_phone_maxlen').attr('for');
 			var label 			= $('#git_phone_label').attr('for');
+			var placeholder		= $('#git_phone_placeholder').attr('for');
 
 			//Calling the function to set initial value for field
 			var Value = InsertValueForEveryField(SelectedId);
@@ -235,6 +240,7 @@ $(function(){
 			$('#git_phone_size').attr('value', 42);
 			$('#git_phone_maxlen').attr('value', 50);			
 			$('#git_phone_label').attr('value', 'Contact Number');		
+			$('#git_phone_placeholder').attr('value', 'Contact Number');
 		}
 
 		if(SelectedId === 'textarea')
@@ -253,6 +259,7 @@ $(function(){
 			var cols 			= $('#git_textarea_cols').attr('for');
 			var rows 			= $('#git_textarea_rows').attr('for');
 			var label 			= $('#git_textarea_label').attr('for');
+			var placeholder		= $('#git_textarea_label').attr('for');
 
 			//Calling the function to set initial value for field
 			var Value = InsertValueForEveryField(SelectedId);
@@ -263,6 +270,7 @@ $(function(){
 			$('#git_textarea_cols').attr('value', 40);
 			$('#git_textarea_rows').attr('value', 5);		
 			$('#git_textarea_label').attr('value', 'Message');	
+			$('#git_textarea_placeholder').attr('value', 'Message');
 		}
 
 		if(SelectedId === 'map')
@@ -365,6 +373,7 @@ function SubmitInputField(type, action)
 		var size  		= $('#git_text_size').val();
 		var maxlen  	= $('#git_text_maxlen').val();		
 		var label  		= $('#git_text_label').val();
+		var placeholder	= $('#git_text_placeholder').val();
 		var check       = $('#git_text_check').is(':checked');
 		
 		var to_update_id= $('#action_val').val();
@@ -372,12 +381,12 @@ function SubmitInputField(type, action)
 		if(action === 'update')
 		{		
 			// Pass Data to Array
-			var data = new Array(name, id, cls, size, maxlen, label, check, to_update_id);
+			var data = new Array(name, id, cls, size, maxlen, label, check, to_update_id, placeholder);
 		}
 		else
 		{			
 		// Pass Data to Array
-		var data = new Array(name, id, cls, size, maxlen, label, check, form_id_counter);
+		var data = new Array(name, id, cls, size, maxlen, label, check, form_id_counter, placeholder);
 		}		
 		var RetVal = CheckPostedData(data);		
 
@@ -411,6 +420,7 @@ function SubmitInputField(type, action)
 		var size  		= $('#git_email_size').val();
 		var maxlen  	= $('#git_email_maxlen').val();		
 		var label  		= $('#git_email_label').val();
+		var placeholder = $('#git_email_placeholder').val();
 		var check       = $('#git_email_check').is(':checked');
 
 		var to_update_id= $('#action_val').val();
@@ -418,12 +428,12 @@ function SubmitInputField(type, action)
 		if(action === 'update')
 		{
 			// Pass Data to Array
-			var data = new Array(name, id, cls, size, maxlen, label, check, to_update_id);
+			var data = new Array(name, id, cls, size, maxlen, label, check, to_update_id, placeholder);
 		}
 		else
 		{
 		// Pass Data to Array
-		var data = new Array(name, id, cls, size, maxlen, label, check, form_id_counter);
+		var data = new Array(name, id, cls, size, maxlen, label, check, form_id_counter, placeholder);
 		}		
 		var RetVal = CheckPostedData(data);		
 		
@@ -457,6 +467,7 @@ function SubmitInputField(type, action)
 		var size  		= $('#git_phone_size').val();
 		var maxlen  	= $('#git_phone_maxlen').val();		
 		var label  		= $('#git_phone_label').val();
+		var placeholder	= $('#git_phone_placeholder').val();
 		var check       = $('#git_phone_check').is(':checked');
 
 		var to_update_id= $('#action_val').val();
@@ -464,12 +475,12 @@ function SubmitInputField(type, action)
 		if(action === 'update')
 		{
 			// Pass Data to Array
-			var data = new Array(name, id, cls, size, maxlen, label, check, to_update_id);
+			var data = new Array(name, id, cls, size, maxlen, label, check, to_update_id, placeholder);
 		}
 		else
 		{
-		// Pass Data to Array
-		var data = new Array(name, id, cls, size, maxlen, label, check, form_id_counter);
+			// Pass Data to Array
+			var data = new Array(name, id, cls, size, maxlen, label, check, form_id_counter, placeholder);
 		}		
 		var RetVal = CheckPostedData(data);		
 		
@@ -504,6 +515,7 @@ function SubmitInputField(type, action)
 		var cols 			= $('#git_textarea_cols').val();
 		var rows 			= $('#git_textarea_rows').val();		
 		var label 			= $('#git_textarea_label').val();
+		var placeholder		= $('#git_textarea_placeholder').val();
 		var check       	= $('#git_textarea_check').is(':checked');
 
 		var to_update_id= $('#action_val').val();
@@ -511,12 +523,12 @@ function SubmitInputField(type, action)
 		if(action === 'update')
 		{
 			// Pass Data to Array
-			var data = new Array(name, id, cls, cols, rows, label, check, to_update_id);
+			var data = new Array(name, id, cls, cols, rows, label, check, to_update_id, placeholder);
 		}
 		else
 		{
-		// Pass Data to Array
-		var data = new Array(name, id, cls, cols, rows, label, check, form_id_counter);
+			// Pass Data to Array
+			var data = new Array(name, id, cls, cols, rows, label, check, form_id_counter, placeholder);
 		}		
 		var RetVal = CheckPostedData(data);		
 		
@@ -707,6 +719,8 @@ function SubmitForm()
 	var user_form_loader				= $('#user_form_loader').val();
 	var user_form_hide					= $('#user_form_hide').val();
 	var contact_form_alignment			= $('#contact_form_alignment').val();
+	var user_form_lebels				= $('#user_form_lebels').val();
+	var user_form_placeholder			= $('#user_form_placeholder').val();
 
 	
 	var user_button_text					= $('#user_button_text').val();
@@ -736,7 +750,8 @@ function SubmitForm()
 					user_form_loader:		user_form_loader,	
 					user_form_hide:			user_form_hide,	
 					contact_form_alignment: contact_form_alignment,
-
+					user_form_lebels:       user_form_lebels,
+					user_form_placeholder:  user_form_placeholder,
 					user_button_text:       user_button_text,
 					user_button_color:      user_button_color,
 					user_success_text:       			user_success_text,
@@ -804,6 +819,8 @@ function SubmitUpdatedForm(Form_Id_For_Updation)
 	var user_form_loader				= $('#user_form_loader').val();
 	var user_form_hide					= $('#user_form_hide').val();
 	var contact_form_alignment			= $('#contact_form_alignment').val();
+	var user_form_lebels				= $('#user_form_lebels').val();
+	var user_form_placeholder			= $('#user_form_placeholder').val();
 
 	var user_button_text					= $('#user_button_text').val();
 	var user_button_color					= $('#user_button_color').val();
@@ -826,6 +843,8 @@ function SubmitUpdatedForm(Form_Id_For_Updation)
 							user_form_loader:			user_form_loader,	
 							user_form_hide:				user_form_hide,	
 							contact_form_alignment: 	contact_form_alignment,
+							user_form_lebels:           user_form_lebels,
+							user_form_placeholder:      user_form_placeholder,
 							user_button_text:       	user_button_text,
 							user_button_color:      	user_button_color,
 							user_success_text:       			user_success_text,
@@ -926,6 +945,7 @@ function post_input_data(data, process_input_fields_url, type)
 		    	label 		: data[5],
 		    	check  		: data[6],	    	
 		    	form_id    	: data[7],	    	    	
+		    	placeholder	: data[8],	    	  
 		    	type		: type,
 		    	inserted_Id	: $('#last-form-inserted-id').val()
 				    	};	

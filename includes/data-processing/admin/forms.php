@@ -174,8 +174,20 @@ function git_add_form()
 			            		<!-- <option value="horizontal">Horizontal</option> -->
 			            	</select>
 			            </div>
-
-
+			            <div class="git-fields-container">	
+			        	    <label for="subject">Show Contact Form Labels:</label><br/>  	    
+			            	<select id="user_form_lebels" name="user_form_lebels">
+			            		<option value="yes">Yes</option>
+			            		<option value="no">No</option>
+			            	</select>
+			            </div>
+			            <div class="git-fields-container">	
+			        	    <label for="subject">Show Placeholder:</label><br/>  	    
+			            	<select id="user_form_placeholder" name="user_form_placeholder">
+			            		<option value="yes">Yes</option>
+			            		<option value="no">No</option>
+			            	</select>
+			            </div>
 			            <div class="git-fields-container">	
 			        	    <label for="subject">Submit Button Text:</label><br/>  	    
 			            	<input value="Get In Touch" name="user_button_text" id="user_button_text">				            	
@@ -483,6 +495,49 @@ function get_all_forms_data_for_update($form_id)
 			            	</select>
 			            </div>
 
+			            <div class="git-fields-container">	
+			        	    <label for="subject">Show Contact Form Labels:</label><br/>  	    
+			            	<select id="user_form_lebels" name="user_form_lebels">
+<?php 
+			            		if($FormOptions['form_labels'] ==='yes')
+			            		{
+?>
+									<option value="yes">Yes</option>
+									<option value="no">No</option>
+<?php
+			            		}
+			            		else
+			            		{
+?>
+									<option value="no">No</option>
+									<option value="yes">Yes</option>
+<?php
+			            		}
+?>
+			            	</select>
+			            </div>
+
+			          	<div class="git-fields-container">	
+			        	    <label for="subject">Show Placeholder:</label><br/>  	    
+			            	<select id="user_form_placeholder" name="user_form_placeholder">
+<?php 
+			            		if($FormOptions['form_placeholder'] ==='yes')
+			            		{
+?>
+									<option value="yes">Yes</option>
+									<option value="no">No</option>
+<?php
+			            		}
+			            		else
+			            		{
+?>
+									<option value="no">No</option>
+									<option value="yes">Yes</option>
+<?php
+			            		}
+?>
+			            	</select>
+			            </div>
 
 				            <div class="git-fields-container">
 				        	    <label for="subject">Submit Button Text:</label><br/>  	    

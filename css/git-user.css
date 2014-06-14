@@ -39,10 +39,16 @@
 	color: red;
 }
 
+#git-user-container input, #git-user-container input
+{
+	border: 1px solid #cccccc;
+}
+
 #git-user-container input, #git-user-container textarea
 {
 	width: 100%;
 	padding: 10px;
+	border: 1px solid #cccccc;
 	resize: none;
 	color: #252525;
 }

@@ -102,12 +102,16 @@ function initialize()
 var urlpara = GetUrlValueUser('page');
 var checkIsDashboard = $('#IdDashboard').val();
 
-if(typeof(urlpara) === "undefined")
-{	
-	$(function(){
-		google.maps.event.addDomListener(window, 'load', initialize);
-	});	
-}
+$(function(){
+	google.maps.event.addDomListener(window, 'load', initialize);
+});	
+
+// if(typeof(urlpara) === "undefined" && urlpara === '')
+// {	alert(urlpara);
+// 	$(function(){
+// 		google.maps.event.addDomListener(window, 'load', initialize);
+// 	});	
+// }
 
 // Get URL parameter
 function GetUrlValueUser(Getvalue)

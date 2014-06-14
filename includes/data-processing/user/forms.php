@@ -178,8 +178,8 @@ function git_map($form_id)
   <input type="hidden" id="map_lat" value="<?php echo $UnserializedInputMap['lat'];?>">
   <input type="hidden" id="map_color" value="<?php echo $UnserializedInputMap['color'];?>">
   <input type="hidden" id="map_title" value="<?php echo $UnserializedInputMap['title'];?>">
-  <div style="background-color: #FFFFFF;border: 1px solid #CCCCCC;box-shadow: 0 0 10px -8px #888888; height: <?php echo $UnserializedInputMap['height'];?>px;padding: 5px; width: <?php echo $UnserializedInputMap['width'];?>px;" class="git-map-container">
-    <div style="margin: 0px; padding: 0px; height: <?php echo $UnserializedInputMap['height'];?>px; width: <?php echo $UnserializedInputMap['width'];?>px;" id="map_can">
+  <div style="background-color: #FFFFFF;border: 1px solid #CCCCCC;box-shadow: 0 0 10px -8px #888888; padding: 5px; width: <?php echo $UnserializedInputMap['width'];?>px;" class="git-map-container">
+    <div style="margin: 0px; padding: 0px; height: <?php echo $UnserializedInputMap['height'];?>px;" id="map_can">
     </div> 
   </div>
     <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>    

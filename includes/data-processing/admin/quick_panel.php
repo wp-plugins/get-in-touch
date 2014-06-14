@@ -40,7 +40,13 @@
 		        	    <input type="text" id="git_text_label" name="git_text_label" for="label" value="" placeholder="Label">
 	        	    </div>
 	            </div>
-	             <div class="git-fields-container">	
+	            <div class="git-fields-container">	
+	                <label for="name">Placeholder:</label>
+	                <div class="git-controls">
+		        	    <input type="text" id="git_text_placeholder" name="git_text_placeholder" for="placeholder" value="" placeholder="placeholder">
+	        	    </div>
+	            </div>
+	            <div class="git-fields-container">	
 	                <label for="name">Is Required Field:</label>
 	                <div class="git-controls">
 		        	    <input type="checkbox" checked id="git_text_check" name="git_text_check">
@@ -92,6 +98,12 @@
 	                <label for="name">Label:</label>
 	                <div class="git-controls">
 		        	    <input type="text" id="git_email_label" name="git_email_label" for="label" value="" placeholder="Label">
+	        	    </div>
+	            </div>
+	            <div class="git-fields-container">	
+	                <label for="name">Placeholder:</label>
+	                <div class="git-controls">
+		        	    <input type="text" id="git_email_placeholder" name="git_email_placeholder" for="placeholder" value="" placeholder="placeholder">
 	        	    </div>
 	            </div>
 	             <div class="git-fields-container">	
@@ -148,6 +160,12 @@
 		        	    <input type="text" id="git_phone_label" name="git_phone_label" for="label" value="" placeholder="Label">
 	        	    </div>
 	            </div>
+	            <div class="git-fields-container">	
+	                <label for="name">Placeholder:</label>
+	                <div class="git-controls">
+		        	    <input type="text" id="git_phone_placeholder" name="git_phone_placeholder" for="placeholder" value="" placeholder="placeholder">
+	        	    </div>
+	            </div>
 	             <div class="git-fields-container">	
 	                <label for="name">Is Required Field:</label>
 	                <div class="git-controls">
@@ -199,6 +217,12 @@
 	                <label for="name">Label:</label>
 	                <div class="git-controls">
 		        	    <input type="text" id="git_textarea_label" name="git_textarea_label" for="label" value="" placeholder="Label">
+	        	    </div>
+	            </div>
+	            <div class="git-fields-container">	
+	                <label for="name">Placeholder:</label>
+	                <div class="git-controls">
+		        	    <input type="text" id="git_textarea_placeholder" name="git_textarea_placeholder" for="placeholder" value="" placeholder="placeholder">
 	        	    </div>
 	            </div>
 	             <div class="git-fields-container">	

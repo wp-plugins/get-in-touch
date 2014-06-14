@@ -53,7 +53,14 @@ if(isset($_POST["type"]))
 		$input_type		= $_POST['type'];
 		$inserted_Id	= $_POST['inserted_Id'];
 
-		$UnseriliazedData = array($lang, $lat, $color, $height, $width, $title);			
+		$UnseriliazedData = array(
+			'lang' 			=> 	$lang,
+			'lat' 			=> 	$lat,
+			'color' 		=> 	$color,
+			'height' 		=> 	$height,
+			'width' 		=> 	$width,
+			'title' 		=> 	$title
+			);			
 	}
 	else if($_POST['type'] === 'captcha')
 	{
@@ -62,8 +69,10 @@ if(isset($_POST["type"]))
 		$form_id 		= $_POST['form_id'];
 		$input_type		= $_POST['type'];
 		$inserted_Id	= $_POST['inserted_Id'];
-
-		$UnseriliazedData = array($title);			
+				
+		$UnseriliazedData = array(
+			'title' 		=> 	$title
+			);			
 	}
 	else
 	{
@@ -75,14 +84,24 @@ if(isset($_POST["type"]))
 		$maxlen 		= $_POST['maxlen'];
 		$label 			= $_POST['label'];
 		$check 			= $_POST['check'];
+		$placeholder    = $_POST['placeholder'];
 		$form_id 		= $_POST['form_id'];
 		$input_type		= $_POST['type'];
 		$inserted_Id	= $_POST['inserted_Id'];
 
-		$UnseriliazedData = array($name, $id, $class, $size, $maxlen, $label, $check);			
+		$UnseriliazedData = array(
+			'name' 			=> 	$name,
+			'id' 			=> 	$id,
+			'class' 		=> 	$class,
+			'size' 			=> 	$size,
+			'maxlen' 		=> 	$maxlen,
+			'label' 		=> 	$label,
+			'check' 		=> 	$check,
+			'placeholder' 	=> 	$placeholder
+			);					
 	}
 
-	if(!is_null($UnseriliazedData[0]))
+	if(!empty($UnseriliazedData))
 	{						
 		$SeriliazedData = serialize($UnseriliazedData);	
 
@@ -94,7 +113,7 @@ if(isset($_POST["type"]))
 if(isset($_POST['form_title']) && isset($_POST['form_data']) && isset($_POST['map_check']) && isset($_POST['mail_subject']) && 
 	isset($_POST['mail_sender_name']) && isset($_POST['mail_sender_email']) && isset($_POST['ini_form_mail_message']) && isset($_POST['mail_copy_to_user_check']) && 
 	isset($_POST['mail_recipient']) && isset($_POST['form_id_counter']) && isset($_POST['last_form_inserted_id']) && isset($_POST['user_form_width']) && isset($_POST['user_form_loader'])
-	&& isset($_POST['user_form_hide']) && isset($_POST['contact_form_alignment']))
+	&& isset($_POST['user_form_hide']) && isset($_POST['contact_form_alignment']) && isset($_POST['user_form_lebels']) && isset($_POST['user_form_placeholder']))
 {
 	// Post Form Data to DB	
 	$form_label 			= $_POST['form_label'];
@@ -114,6 +133,9 @@ if(isset($_POST['form_title']) && isset($_POST['form_data']) && isset($_POST['ma
 	$user_form_loader  		= $_POST['user_form_loader'];
 	$user_form_hide  		= $_POST['user_form_hide'];	
 	$contact_form_alignment = $_POST['contact_form_alignment'];
+	$user_form_lebels 		= $_POST['user_form_lebels'];
+	$user_form_placeholder	= $_POST['user_form_placeholder'];
+	
 
 	$user_button_text  					= $_POST['user_button_text'];
 	$user_button_color  				= $_POST['user_button_color'];
@@ -128,6 +150,8 @@ if(isset($_POST['form_title']) && isset($_POST['form_data']) && isset($_POST['ma
 		 							'form_loader' 							=> $user_form_loader,
 		 							'form_hide' 							=> $user_form_hide,		 							
 		 							'form_alignment' 						=> $contact_form_alignment,
+		 							'form_labels' 							=> $user_form_lebels,
+		 							'form_placeholder' 						=> $user_form_placeholder,		 							
 									'button_text' 							=> $user_button_text,
 		 							'button_color' 							=> $user_button_color,
 		 							'user_success_text' 					=> $user_success_text,
@@ -150,7 +174,7 @@ if(isset($_POST['form_title']) && isset($_POST['form_data']) && isset($_POST['ma
 if(isset($_POST['up_form_title']) && isset($_POST['up_form_data']) && isset($_POST['up_mail_subject']) && isset($_POST['up_mail_sender_name']) && 
 	isset($_POST['up_mail_sender_email']) && isset($_POST['up_ini_form_mail_message']) && isset($_POST['up_mail_copy_to_user_check']) && 
 	isset($_POST['up_mail_recipient']) && isset($_POST['Form_Id_For_Updation'])&& isset($_POST['user_form_width']) && isset($_POST['user_form_loader'])
-	&& isset($_POST['user_form_hide']) && isset($_POST['contact_form_alignment']))
+	&& isset($_POST['user_form_hide']) && isset($_POST['contact_form_alignment']) && isset($_POST['user_form_lebels']) && isset($_POST['user_form_placeholder']))
 {
 	// Get the Update Data from Form to Update
 	$up_form_label 				= $_POST['up_form_label'];
@@ -168,6 +192,8 @@ if(isset($_POST['up_form_title']) && isset($_POST['up_form_data']) && isset($_PO
 	$user_form_loader  		= $_POST['user_form_loader'];
 	$user_form_hide  		= $_POST['user_form_hide'];	
 	$contact_form_alignment = $_POST['contact_form_alignment'];
+	$user_form_lebels 		= $_POST['user_form_lebels'];
+	$user_form_placeholder	= $_POST['user_form_placeholder'];
 
 	$user_button_text  					= $_POST['user_button_text'];
 	$user_button_color  				= $_POST['user_button_color'];
@@ -181,7 +207,9 @@ if(isset($_POST['up_form_title']) && isset($_POST['up_form_data']) && isset($_PO
 									'form_width' 							=> $user_form_width,
 		 							'form_loader' 							=> $user_form_loader,
 		 							'form_hide' 							=> $user_form_hide,		 							
-		 							'form_alignment' 						=> $contact_form_alignment,
+		 							'form_alignment' 						=> $contact_form_alignment,		 							
+		 							'form_labels' 							=> $user_form_lebels,
+		 							'form_placeholder' 						=> $user_form_placeholder,		 							
 									'button_text' 							=> $user_button_text,
 		 							'button_color' 							=> $user_button_color,
 		 							'user_success_text' 					=> $user_success_text,
@@ -193,7 +221,7 @@ if(isset($_POST['up_form_title']) && isset($_POST['up_form_data']) && isset($_PO
 
 	if(!is_null($up_form_data))
 	{						
-		$FormMiscUpdateSeriliazedData = serialize($FormMiscUpdateUnseriliazedData);	
+		$FormMiscUpdateSeriliazedData = serialize($FormMiscUpdateUnseriliazedData);			
 
 		//Calling Function Upadte Form Data
 		$PostClass->update_form_data_to_db($up_form_label, $up_form_title, $up_form_data, $FormMiscUpdateSeriliazedData, $up_mail_subject, $up_mail_sender_name,
@@ -312,8 +340,8 @@ class PostData
 			$SerializeSortcodeData = serialize($SortcodeData);
 
 			//Function Value Generation				
-			$form_function = "if( function_exists (".' "'." git_form ".'" '.") ) git_form(".' "'.$l_f_i_i.'" '.")";				
-			$map_function = "if( function_exists (".' "'." git_map ".'" '.") ) git_map(".' "'.$l_f_i_i.'" '.")";
+			$form_function = "if( function_exists (".' "'."git_form".'" '.") ) git_form(".' "'.$l_f_i_i.'" '.")";				
+			$map_function = "if( function_exists (".' "'."git_map".'" '.") ) git_map(".' "'.$l_f_i_i.'" '.")";
 
 			$FunctionData = array();		
 			if(strlen($f_data) > 6 && $map_check === 'has')
@@ -379,8 +407,8 @@ class PostData
 
 			$SerializeSortcodeData = serialize($SortcodeData);
 
-			$form_function = "if( function_exists (".' "'. " git_form " .'" '.") ) git_form(".' "'.$l_f_i_i.'" '.")";				
-			$map_function = "if( function_exists (".' "'." git_map ".'" '.") ) git_map(".' "'.$l_f_i_i.'" '.")";
+			$form_function = "if( function_exists (".' "'. "git_form" .'" '.") ) git_form(".' "'.$l_f_i_i.'" '.")";				
+			$map_function = "if( function_exists (".' "'."git_map".'" '.") ) git_map(".' "'.$l_f_i_i.'" '.")";
 
 			$FunctionData = array();		
 			if(strlen($f_data) > 6 && $map_check === 'has')
@@ -693,10 +721,10 @@ class PostData
 		if(!empty($FuncData['FormFunction']) && !empty($FuncData['MapFunction']))
 		{
 			$FormF = $FuncData['FormFunction'];		
-			$form_function = "if( function_exists (".' "'. " git_form " .'" '.") ) git_form(".' "'.$form_id.'" '.")";							
+			$form_function = "if( function_exists (".' "'. "git_form" .'" '.") ) git_form(".' "'.$form_id.'" '.")";							
 
 			$MapF = $FuncData['MapFunction'];
-			$map_function = "if( function_exists (".' "'. " git_map " .'" '.") ) git_map(".' "'.$form_id.'" '.")";
+			$map_function = "if( function_exists (".' "'. "git_map" .'" '.") ) git_map(".' "'.$form_id.'" '.")";
 
 			$FormF = str_replace($FormF, $FormF, $form_function);
 			$MapF = str_replace($MapF, $MapF, $map_function);
@@ -711,7 +739,7 @@ class PostData
 		else if(empty($FuncData['FormFunction']) && !empty($FuncData['MapFunction']))
 		{	
 			$MapF = $FuncData['MapFunction'];
-			$map_function = "if( function_exists (".' "'. " git_map " .'" '.") ) git_map(".' "'.$form_id.'" '.")";
+			$map_function = "if( function_exists (".' "'. "git_map" .'" '.") ) git_map(".' "'.$form_id.'" '.")";
 
 			$MapF = str_replace($MapF, $MapF, $map_function);
 
@@ -724,7 +752,7 @@ class PostData
 		else if(!empty($FuncData['FormFunction']) && empty($FuncData['MapFunction']))
 		{
 			$FormF = $FuncData['FormFunction'];		
-			$form_function = "if( function_exists (".' "'. " git_form " .'" '.") ) git_form(".' "'.$form_id.'" '.")";							
+			$form_function = "if( function_exists (".' "'. "git_form" .'" '.") ) git_form(".' "'.$form_id.'" '.")";							
 		
 			$FormF = str_replace($FormF, $FormF, $form_function);
 

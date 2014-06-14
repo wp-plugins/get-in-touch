@@ -11,6 +11,10 @@ $(function(){
 	$('#git-ui-contact-form #phone .required').on('input', function (event) { 
     	this.value = this.value.replace(/[^0-9]/g, '');
 	});
+
+	$('#git-user-container .git-fields-container p').on('click', function(){
+		$(this).fadeOut();
+	});
 });
 
 // Function to show and hide Loader
@@ -232,9 +236,11 @@ function GITSubmitContactForm()
 			    	db_check :dbcheck
 		    	},
 	        success: function(data, status) {        	                			        		        			
-
-	        			thanktext.fadeIn('slow');	        			
-	        			$('#git-ui-contact-form').hide();
+	        			if(git_form_hide === 'yes')
+	        			{
+	        				$('#git-ui-contact-form').hide();
+	        			}
+	        			thanktext.fadeIn('slow');	        				        			
 	        			$('#git-ui-contact-form')[0].reset();
 	                 },
 	        error: function(data, status){ 

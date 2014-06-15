@@ -32,10 +32,10 @@ function Loader(Status)
 
 function initialize() 
 {
-	var lang = $('#map_lang').val();
-	var lat = $('#map_lat').val();
-	var color = $('#map_color').val();
-	var title = $('#map_title').val();
+	var lang = $('#git_map_lang').val();
+	var lat = $('#git_map_lat').val();
+	var color = $('#git_map_color').val();
+	var title = $('#git_map_title').val();
   // Create an array of styles.
   var styles = [
     {
@@ -103,15 +103,12 @@ var urlpara = GetUrlValueUser('page');
 var checkIsDashboard = $('#IdDashboard').val();
 
 $(function(){
-	google.maps.event.addDomListener(window, 'load', initialize);
+	var git_map_check = $('#git_map_check').val();
+	if(git_map_check === 'true')
+	{
+		google.maps.event.addDomListener(window, 'load', initialize);
+	}	
 });	
-
-// if(typeof(urlpara) === "undefined" && urlpara === '')
-// {	alert(urlpara);
-// 	$(function(){
-// 		google.maps.event.addDomListener(window, 'load', initialize);
-// 	});	
-// }
 
 // Get URL parameter
 function GetUrlValueUser(Getvalue)

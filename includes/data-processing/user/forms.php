@@ -174,10 +174,11 @@ function git_map($form_id)
 
   $UnserializedInputMap = unserialize($InputMapById[0]->Input_Data);     
 ?>
-  <input type="hidden" id="map_lang" value="<?php echo $UnserializedInputMap['lang'];?>">
-  <input type="hidden" id="map_lat" value="<?php echo $UnserializedInputMap['lat'];?>">
-  <input type="hidden" id="map_color" value="<?php echo $UnserializedInputMap['color'];?>">
-  <input type="hidden" id="map_title" value="<?php echo $UnserializedInputMap['title'];?>">
+  <input type="hidden" id="git_map_check" value="true">
+  <input type="hidden" id="git_map_lang" value="<?php echo $UnserializedInputMap['lang'];?>">
+  <input type="hidden" id="git_map_lat" value="<?php echo $UnserializedInputMap['lat'];?>">
+  <input type="hidden" id="git_map_color" value="<?php echo $UnserializedInputMap['color'];?>">
+  <input type="hidden" id="git_map_title" value="<?php echo $UnserializedInputMap['title'];?>">
   <div style="background-color: #FFFFFF;border: 1px solid #CCCCCC;box-shadow: 0 0 10px -8px #888888; padding: 5px; width: <?php echo $UnserializedInputMap['width'];?>px;" class="git-map-container">
     <div style="margin: 0px; padding: 0px; height: <?php echo $UnserializedInputMap['height'];?>px;" id="map_can">
     </div> 

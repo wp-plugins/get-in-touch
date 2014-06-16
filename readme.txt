@@ -4,8 +4,8 @@ Tags: get in touch, wordpress plugin, contact form, responsive, map, enquiry for
 Requires at least: 3.5.2
 Donate link: http://www.think201.com/
 Tested up to: 3.9.1
-Stable tag: 1.0.1
-Version: 1.0.1
+Stable tag: 1.0.2
+Version: 1.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -27,6 +27,13 @@ Get In Touch plug-in allows you to generate responsive form by adding input cont
 - Track mails received through your form.
 - Fully customized contact form.
 - Sort mails according to the importance.
+- Made the UI/UX more intuitive.
+- Added form width in percentage.
+- Custom placeholder added.
+- Enable/Disable feature for form labels.
+- Enable/Disable feature for required field.
+- Enable/Disable feature for save user details in db.
+- Enable/Disable feature for mail templating & sending.
 
 
 = Plugin Support =
@@ -53,13 +60,13 @@ To begin with:
 Once Get In Touch plug-in is installed and activated, users can see four sub-menus namely 
 
 * Dashboard
-* Add Form 
-* View Form 
+* Create Form 
+* View Forms 
 * View Contact Mail 
 
 Following is a brief description on how to get the best out of Get In Touch plug-in
 
-1.	To add a new contact form, click on Add Form from sidebar. This opens up a form from which you can choose in the input fields that are required for your contact form. 
+1.	To add a new contact form, click on Create Form from sidebar. This opens up a form from which you can choose in the input fields that are required for your contact form. 
 2.	Choose the input fields you would require for the contact form along with the customizations for the input controls.
 3. You can customize the name of the input controls, color of the buttons from the same page.
 4.	Google map can also be customized in terms of color, height, width, and satellite or road vision for the map.
@@ -91,6 +98,8 @@ Following is a brief description on how to get the best out of Get In Touch plug
 
 = 1.0.1 =
 
+= 1.0.2 =
+
 * Initial version of Get In Touch Plugin checkin.
 
 == Changelog ==
@@ -99,6 +108,13 @@ Following is a brief description on how to get the best out of Get In Touch plug
 - First commit to the WP repository.
 
 = 1.0.1 =
-- UI Bug Fix in diffrent devices
+- UI bug fix in diffrent devices.
 
-
+= 1.0.2 =
+- Made the UI/UX more intuitive.
+- Added form width in percentage.
+- Custom placeholder added.
+- Enable/Disable feature for form labels.
+- Enable/Disable feature for required field.
+- Enable/Disable feature for save user details in db.
+- Enable/Disable feature for mail templating & sending.

@@ -99,8 +99,8 @@
 
 	function git_addform() 
 	{
-		add_submenu_page( 'get-in-touch', 'Add Forms', 'Add Form', 'manage_options',
-		'add-form', 'git_add_form' ); 
+		add_submenu_page( 'get-in-touch', 'Create Form', 'Create Form', 'manage_options',
+		'create-form', 'git_add_form' ); 
 	}
 
 	// Add Sub Menu View All Form

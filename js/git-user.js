@@ -33,74 +33,27 @@ function Loader(Status)
 function initialize() 
 {
 	var lang = $('#git_map_lang').val();
-	var lat = $('#git_map_lat').val();
-	var color = $('#git_map_color').val();
+	var lat = $('#git_map_lat').val();	
 	var title = $('#git_map_title').val();
-  // Create an array of styles.
-  var styles = [
-    {
-      stylers: [
-        { hue: "#cccccc" },
-        { saturation: -20 }
-      ]
-    },{
-      featureType: "road",
-      elementType: "geometry",
-      stylers: [
-        { lightness: 100 },
-        { visibility: "simplified" }
-      ]
-    },
-    {
-      featureType: "water",          
-      stylers: [
-        { color: "#"+color }           
-      ]
-    },{
-      featureType: "road",
-      elementType: "labels",
-      stylers: [
-        { visibility: "off" }
-      ]
-    }
-  ];
 
-  var myLatlng = new google.maps.LatLng(lang,lat);
+  	var myLatlng = new google.maps.LatLng(lang,lat);
+  	
+  	var map_can = document.getElementById('map_can');
+  	var mapOptions = {
+    	zoom: 12,
+    	draggable: true,        
+    	scrollwheel: false,        
+    	clickable: false, 
+    	center: myLatlng    	
+  	};
+  	var map = new google.maps.Map(map_can, mapOptions);
 
-  // Create a new StyledMapType object, passing it the array of styles,
-  // as well as the name to be displayed on the map type control.
-  var styledMap = new google.maps.StyledMapType(styles,{
-                                                          name: "Styled Map"
-                                                        });
-
-  // Create a map object, and include the MapTypeId to add
-  // to the map type control.
-  var map_can = document.getElementById('map_can');
-  var mapOptions = {
-    zoom: 12,
-    draggable: true,        
-    scrollwheel: false,        
-    clickable: false, 
-    center: myLatlng,
-    mapTypeControlOptions: {
-    mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
-    }
-  };
-  var map = new google.maps.Map(map_can, mapOptions);
-
-  var marker = new google.maps.Marker({
+  	var marker = new google.maps.Marker({
         position: myLatlng,
         map: map,
         title: 'Get In Touch'
     });
-
-  //Associate the styled map with the MapTypeId and set it to display.
-  map.mapTypes.set('map_style', styledMap);
-  map.setMapTypeId('map_style');
  }
-
-var urlpara = GetUrlValueUser('page');
-var checkIsDashboard = $('#IdDashboard').val();
 
 $(function(){
 	var git_map_check = $('#git_map_check').val();
@@ -158,7 +111,7 @@ function GITSubmitContactForm()
 	var errmail = $('.git_error_mail');
 	var errtextarea = $('.git_error_textarea');
 	var formname = $('#git-ui-contact-form');
-	var dbcheck = $('#git_db_check').val();
+	var dbcheck = $('#git_db_check').val();	
 	var j = 0;
 
 	if(formname.find(textfield).hasClass('required'))
@@ -237,7 +190,7 @@ function GITSubmitContactForm()
 			    	db_check :dbcheck
 		    	},
 	        success: function(data, status) {        	                			        		        			
-	        			if(git_form_hide === 'yes')
+	        			if(git_form_hide === 'true')
 	        			{
 	        				$('#git-ui-contact-form').hide();
 	        			}

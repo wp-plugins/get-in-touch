@@ -78,7 +78,11 @@
 
 .git-container h1
 {
-	padding: 0 20px;
+	margin-bottom: 25px;
+	margin-top: 0;
+	font-weight: normal;
+	padding: 20px 15px;
+	border-bottom: 1px solid #c2c2c2;
 }
 
 .git-container .git-loader
@@ -155,11 +159,25 @@
 
 .git-container .box-content
 {
-	margin-bottom: 20px;
-	min-height: 300px;
-	background-color: #ffffff;
-	box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2);
+	margin: 15px;
+	min-height: 300px;	
 }
+
+.git-container .git-form-box
+{
+	background-color: #ffffff;
+	padding: 20px 20px;
+	margin: 10px 0 30px;
+}
+
+.git-container .git-form-box h2
+{
+	margin-bottom: 25px;
+	margin-top: 0;
+	font-weight: normal;
+	padding-bottom: 15px;
+	border-bottom: 1px solid #f7f7f7;
+}	
 
 .git-container .box-header p
 {
@@ -167,12 +185,10 @@
 	font-size: 20px;
 }
 
-
 .git-container .box-header.well 
 {
-    background-color: #FFFFFF;
-    box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2);
-    margin-bottom: 10px;
+    background-color: #FFFFFF;    
+    margin: 15px;
     padding: 5px 15px;
 }
 
@@ -244,23 +260,18 @@
 
 .git-container #input-options li
 {	
-	padding: 0px 30px;
+	padding: 10px 30px;
 	float: left;
 	border-right: 1px dashed #cccccc;
 	color: #252525;
-	margin-top: 10px;
+	font-size: 18px;
+	margin: 15px 0;
 	cursor: pointer;	
 }
 
 .git-container #input-options li:last-child
 {
 	border-right: none;
-}
-
-.git-container #input-options li p
-{
-	font-size: 18px;	
-	color: #616161;
 }
 
 .git-container #input-options li p:hover
@@ -271,15 +282,17 @@
 .git-container #quick-panel
 {
 	background-color: #ffffff;
-	height: 220px;
+	height: auto;
 	width: 100%;
-	position: relative;
-	border-radius: 5px;
+	position: relative;	
 	display: none;
 	margin-bottom: 20px;
-	-webkit-box-shadow: 0 4px 8px 3px #6F6D6D;
-	-moz-box-shadow: 0 4px 8px 3px #6F6D6D;
-	box-shadow: 0 4px 8px 3px #6F6D6D;
+	padding: 20px 0;	
+}
+
+.git-container #quick-panel .input-fields-options
+{
+	display: table;
 }
 
 .git-container #quick-panel .git-fields-container
@@ -289,20 +302,23 @@
 	float: left;
 }
 
-.git-container #quick-panel .git-fields-container input[type="checkbox"] 
+.git-container #quick-panel td
 {
-	margin-top: 5px;
+	text-align: center;
+	font-size: 14px;	
+}
+
+.git-container #quick-panel button
+{
+	margin: 10px auto 0 !important;
+	display: block !important;
 }
 
 .git-container #quick-panel input
 {
-	color: #606060;
-	width: 90%;
-}
-
-.git-container #quick-panel .btn-style
-{
-	float: left;
+	height: 40px;
+    margin: 5px 30px;
+    width: 220px;
 }
 
 .git-container .wp-color-result
@@ -327,32 +343,34 @@
 	line-height: 35px !important;
 }
 
-.git-container #selected-field
+.git-container .selected-field
 {
 	font-size: 22px;
+	margin-top: 0;
+	text-align: center;
 	color: #858585;
+}
+
+.git-container #input-options
+{
+	background-color: #ffffff;
+	margin-bottom: 30px;
+	border-bottom: 1px solid #f7f7f7;
 }
 
 .git-container #close-quick-panel
 {
-	cursor: pointer;
-	float: right;
+	cursor: pointer;	
 	position: absolute;
-	top: 0;
-	right: 0;
-	background: url('../img/icon/close-panel.png') no-repeat left center transparent;
-	height: 20px;
-	width: 20px;
+	top: 5px;
+	right: 5px;	
+	font-size: 18px;	
+	font-weight: 600;
 }
 
 .git-container .btn-style
 {
 	margin-left: 80px;
-}
-
-.git-container #ini_form_content
-{
-	padding-bottom: 100px;
 }
 
 .git-container #form-submit-success
@@ -410,15 +428,22 @@
 	width: 190px;
 }
 
+.git-container #contact-mail-table td h4
+{
+	margin: 10px 0 !important;
+}
+
 .git-container .form-view-container input
 {
 	width: 100%;
+	height: 30px;	
 }
 
 .git-container .form-view-container
 {
 	padding: 10px 10px 50px 10px;
 	width: 100%;
+	background-color: #ffffff;
 }
 
 .git-container .form-view-container tr:first-child
@@ -490,7 +515,7 @@
 
 .git-container .dashboard-title
 {
-	box-shadow: 0 0 8px -3px rgba(0,0,0,0.40);
+	border: 1px solid #f7f7f7;
     height: 70px;
     padding: 10px 0 0 20px;
     width: auto;
@@ -579,9 +604,8 @@
 
 .git-container .plugin_section
 {
-	box-shadow: 0 0 8px -3px rgba(0,0,0,0.40); 	
-    height: 350px;
-    margin: 12px 12px 0px 0px;
+	border: 1px solid #f7f7f7;
+    margin: 0px 12px 12px 0px;
     padding: 20px;    
 }
 
@@ -619,7 +643,7 @@
 
 .git-container .extra_section .about_think201
 {
-	box-shadow: 0 0 8px -3px rgba(0,0,0,0.40);
+	border: 1px solid #f7f7f7;
     height: 110px;
     width: 100%;
 }
@@ -632,7 +656,7 @@
 
 .git-container .extra_section .about_developer
 {
-	box-shadow: 0 0 8px -3px rgba(0,0,0,0.40);
+	border: 1px solid #f7f7f7;
     height: 260px;
     margin-top: 15px;
     width: 100%;
@@ -642,9 +666,9 @@
 {
     background-color: #454545;
     border-radius: 0;
-    color: #FFFFFF;
-    float: right;
-    margin: 20px;
+    color: #FFFFFF;    
+    margin: 0px;
+    display: inline-block;
     height: auto; 
     padding: 10px;
     text-decoration: none;
@@ -663,6 +687,7 @@
 {
 	color: #444444;
 	outline: none;
+	font-size: 14px;
 }
 
 .git-container .about_developer a
@@ -676,10 +701,16 @@
 	padding: 0 15px;	
 }
 
+.git-container .git-fields-container:last-child
+{
+	margin-bottom: 0;
+}
+
 .git-container .git-fields-container label 
 {
-    font-size: 16px;
-    font-weight: 600;    
+    font-size: 18px;
+    margin-bottom: 10px;
+    display: block;    
 }
 
 .git-container .git-fields-container input
@@ -725,7 +756,7 @@
 
 .git-container .git-fields-container 
 {
-    padding: 10px 20px;
+    margin: 5px 0 20px 0;
 }
 
 .git-container .git-disable
@@ -736,7 +767,7 @@
 .git-container .git-input-field-status
 {
 	display: none;
-	background-color: #5FC25D;
+	background-color: #76d974;
     color: #FFFFFF;    
     font-weight: 600;
     left: 25%;

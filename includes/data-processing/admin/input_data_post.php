@@ -44,8 +44,7 @@ if(isset($_POST["type"]))
 	{
 		//Get the value to insert
 		$lang 			= $_POST['lang'];
-		$lat 			= $_POST['lat'];
-		$color 			= $_POST['color'];
+		$lat 			= $_POST['lat'];		
 		$height 		= $_POST['height'];
 		$width 			= $_POST['width'];
 		$title 			= $_POST['title'];
@@ -55,22 +54,9 @@ if(isset($_POST["type"]))
 
 		$UnseriliazedData = array(
 			'lang' 			=> 	$lang,
-			'lat' 			=> 	$lat,
-			'color' 		=> 	$color,
+			'lat' 			=> 	$lat,			
 			'height' 		=> 	$height,
 			'width' 		=> 	$width,
-			'title' 		=> 	$title
-			);			
-	}
-	else if($_POST['type'] === 'captcha')
-	{
-		//Get the value to insert
-		$title 			= $_POST['title'];
-		$form_id 		= $_POST['form_id'];
-		$input_type		= $_POST['type'];
-		$inserted_Id	= $_POST['inserted_Id'];
-				
-		$UnseriliazedData = array(
 			'title' 		=> 	$title
 			);			
 	}
@@ -113,7 +99,7 @@ if(isset($_POST["type"]))
 if(isset($_POST['form_title']) && isset($_POST['form_data']) && isset($_POST['map_check']) && isset($_POST['mail_subject']) && 
 	isset($_POST['mail_sender_name']) && isset($_POST['mail_sender_email']) && isset($_POST['ini_form_mail_message']) && isset($_POST['mail_copy_to_user_check']) && 
 	isset($_POST['mail_recipient']) && isset($_POST['form_id_counter']) && isset($_POST['last_form_inserted_id']) && isset($_POST['user_form_width']) && isset($_POST['user_form_loader'])
-	&& isset($_POST['user_form_hide']) && isset($_POST['contact_form_alignment']) && isset($_POST['user_form_lebels']) && isset($_POST['user_form_placeholder']))
+	&& isset($_POST['user_form_hide']) && isset($_POST['user_form_lebels']) && isset($_POST['user_form_placeholder']))
 {
 	// Post Form Data to DB	
 	$form_label 			= $_POST['form_label'];
@@ -131,8 +117,7 @@ if(isset($_POST['form_title']) && isset($_POST['form_data']) && isset($_POST['ma
 
 	$user_form_width  		= $_POST['user_form_width'];
 	$user_form_loader  		= $_POST['user_form_loader'];
-	$user_form_hide  		= $_POST['user_form_hide'];	
-	$contact_form_alignment = $_POST['contact_form_alignment'];
+	$user_form_hide  		= $_POST['user_form_hide'];		
 	$user_form_lebels 		= $_POST['user_form_lebels'];
 	$user_form_placeholder	= $_POST['user_form_placeholder'];
 	
@@ -148,8 +133,7 @@ if(isset($_POST['form_title']) && isset($_POST['form_data']) && isset($_POST['ma
 	$FormMiscUnseriliazedData = array(
 									'form_width' 							=> $user_form_width,
 		 							'form_loader' 							=> $user_form_loader,
-		 							'form_hide' 							=> $user_form_hide,		 							
-		 							'form_alignment' 						=> $contact_form_alignment,
+		 							'form_hide' 							=> $user_form_hide,		 									 							
 		 							'form_labels' 							=> $user_form_lebels,
 		 							'form_placeholder' 						=> $user_form_placeholder,		 							
 									'button_text' 							=> $user_button_text,
@@ -174,7 +158,7 @@ if(isset($_POST['form_title']) && isset($_POST['form_data']) && isset($_POST['ma
 if(isset($_POST['up_form_title']) && isset($_POST['up_form_data']) && isset($_POST['up_mail_subject']) && isset($_POST['up_mail_sender_name']) && 
 	isset($_POST['up_mail_sender_email']) && isset($_POST['up_ini_form_mail_message']) && isset($_POST['up_mail_copy_to_user_check']) && 
 	isset($_POST['up_mail_recipient']) && isset($_POST['Form_Id_For_Updation'])&& isset($_POST['user_form_width']) && isset($_POST['user_form_loader'])
-	&& isset($_POST['user_form_hide']) && isset($_POST['contact_form_alignment']) && isset($_POST['user_form_lebels']) && isset($_POST['user_form_placeholder']))
+	&& isset($_POST['user_form_hide']) && isset($_POST['user_form_lebels']) && isset($_POST['user_form_placeholder']))
 {
 	// Get the Update Data from Form to Update
 	$up_form_label 				= $_POST['up_form_label'];
@@ -190,8 +174,7 @@ if(isset($_POST['up_form_title']) && isset($_POST['up_form_data']) && isset($_PO
 
 	$user_form_width  		= $_POST['user_form_width'];
 	$user_form_loader  		= $_POST['user_form_loader'];
-	$user_form_hide  		= $_POST['user_form_hide'];	
-	$contact_form_alignment = $_POST['contact_form_alignment'];
+	$user_form_hide  		= $_POST['user_form_hide'];		
 	$user_form_lebels 		= $_POST['user_form_lebels'];
 	$user_form_placeholder	= $_POST['user_form_placeholder'];
 
@@ -206,8 +189,7 @@ if(isset($_POST['up_form_title']) && isset($_POST['up_form_data']) && isset($_PO
 	$FormMiscUpdateUnseriliazedData = array(
 									'form_width' 							=> $user_form_width,
 		 							'form_loader' 							=> $user_form_loader,
-		 							'form_hide' 							=> $user_form_hide,		 							
-		 							'form_alignment' 						=> $contact_form_alignment,		 							
+		 							'form_hide' 							=> $user_form_hide,		 									 							
 		 							'form_labels' 							=> $user_form_lebels,
 		 							'form_placeholder' 						=> $user_form_placeholder,		 							
 									'button_text' 							=> $user_button_text,
@@ -220,7 +202,7 @@ if(isset($_POST['up_form_title']) && isset($_POST['up_form_data']) && isset($_PO
 		 								);	
 
 	if(!is_null($up_form_data))
-	{						
+	{					
 		$FormMiscUpdateSeriliazedData = serialize($FormMiscUpdateUnseriliazedData);			
 
 		//Calling Function Upadte Form Data
@@ -465,7 +447,7 @@ class PostData
 
 	//Update Form Data
 	public function update_form_data_to_db($u_f_l, $u_f_t, $u_f_d, $f_m_u_s_d, $u_m_s, $u_m_s_n, $u_m_s_e, $u_i_f_m_m, $u_m_c_t_u_c, $u_m_r, $f_i_f_u)
-	{
+	{		
 		// Sanity Check
 		if(empty($u_f_d))
 		{
@@ -509,7 +491,7 @@ class PostData
 						'Form_Id'      	=> $f_i_f_u
 						),
 					$format = null, $where_format = null );	
-		die;
+		die;		
 	}
 
 	// Insert Input Data to DB
@@ -692,8 +674,8 @@ class PostData
 					'Form_MailData'     => $formdata->Form_MailData,
 					'Mail_Copy_To_User' => $formdata->Mail_Copy_To_User,
 					'Form_Recipient'    => $formdata->Form_Recipient,
-					'Function_Name'    	=> '',
-					'Shortcode_Name'    => '',
+					'Function_Name'    	=> 'test',
+					'Shortcode_Name'    => 'test',
 					'Form_Status'     	=> $formdata->Form_Status
 					),
 				array('%s', '%s', '%s',	'%s', '%s',	'%s', '%s',	'%s', '%s',	'%s', '%s',	'%s', '%s', '%s', '%s', '%s', '%s' )  

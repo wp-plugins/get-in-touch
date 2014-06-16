@@ -4,11 +4,11 @@
  */
 
 if(isset($_POST['dataobj']) && isset($_POST['form_id']) && isset($_POST['usermail']))
-{
+{	
 	$Data = $_POST['dataobj'];
 	$form_id = $_POST['form_id'];
 	$UsermailId = $_POST['usermail'];
-	$db_check = $_POST['db_check'];
+	$db_check = $_POST['db_check'];	
 	if(!empty($Data))
 	{	
 		$StorKey = array();
@@ -75,25 +75,36 @@ function SendMail($Data, $form_id, $UsermailId)
 {
 	global $wpdb;
 	$table_prefix = $wpdb->prefix;
-	$git_form_data = $table_prefix.'git_formdata';		
-	$FormQuery = "SELECT * FROM $git_form_data WHERE " . "Form_Id = ".$form_id;
-	$FormData = $wpdb->get_row($FormQuery);		
-	
-	$git_mail = new PHPMailer();
+	$git_form_data = $table_prefix.'git_formdata';	
+	$git_input_data = $table_prefix.'git_inputdata';	
 
-	var_dump($FormData);
+	$active = 'active';	
+
+	$QueryforFormData = $wpdb->prepare( "SELECT * FROM $git_form_data WHERE Form_Id = %d AND Form_Status = %s", $form_id, $active);	
+	$FormData = $wpdb->get_row($QueryforFormData);		
+
+	$QueryforInputData = $wpdb->prepare( "SELECT * FROM $git_input_data WHERE Form_Id = %d AND Input_Status = %s", $form_id, $active);	
+	$InputData = $wpdb->get_results($QueryforInputData);		
+	
+	$git_mail = new PHPMailer();	
 		
 	$BodyAdmin = 'Below are the details of contact enquiry '.'<br/><br/>';
-	$DataLen = count($Data);
-	for($i = 0; $i<= $DataLen; $i++)
+	$DataLen = count($Data);	
+	
+	$i = 0;
+	foreach($InputData as $input)
 	{
-		$BodyAdmin .= $Data[$i].'<br/><br/>';
+		$UnserializedVal = unserialize($input->Input_Data);		
+		if(isset($UnserializedVal['label']))
+		{
+			$BodyAdmin .= $UnserializedVal['label'].': '.$Data[$i].'<br/><br/>';
+			$i++;
+		}				
 	}
 	$BodyAdmin .= 'Thanks<br/>';	
 	$BodyAdmin .= $FormData->Mail_Sender_Name;	
 	
 	$subject = $FormData->Mail_Subject;
-
 	$body = $BodyAdmin;		
 	
 	if($FormData->Mail_Copy_To_User === 'true')
@@ -136,7 +147,9 @@ function SendMail($Data, $form_id, $UsermailId)
 function insert_contactform_data_to_db($Data, $form_id)
 {	
 	global $wpdb;	
+	
 	$git_contact_form_data = $wpdb->prefix.'git_contact_form_data';
+
 	$SerializeContactFormData = serialize($Data);
 	
 	$wpdb->insert($git_contact_form_data,

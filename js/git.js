@@ -7,7 +7,7 @@ var Show = 'show';
 var Hide = 'hide';
 var process_input_fields_url 	= $("#git_text_hidden_url").val();
 var urlpara = GetUrlValue('page');
-if(urlpara === 'add-form')
+if(urlpara === 'create-form')
 {
 	var form_id_counter = count_unique_form_id(process_input_fields_url);		
 }
@@ -32,9 +32,7 @@ $(function(){
 });
 
 // Initially Input Fields will be hide
-$("#input-options ul").hide();
-
-//$('.rating-holder input.wow').rating();
+//$("#input-options ul").hide();
 
 /*
 if(form_id_counter === '0')
@@ -88,6 +86,17 @@ function GetURLParameters(param)
 }
 
 $(function(){	
+
+	PostInitialFormData(form_id_counter);			
+	
+	$('#ini_form_content').fadeIn(1000);	
+	$("#input-options").find('ul').fadeIn(1000);	
+
+	//Add Dynaminc Text Box for Form Title	
+	$('#from-title').after().html('<input type="hidden" name="form_title' + form_id_counter + 
+  	'" id="form_title' + form_id_counter + '" class="contact-form-title form-control" value="GIT Form' + form_id_counter + '" readonly="readonly">');
+
+
 	var url_parameter = GetURLParameters("action");	
 	if (url_parameter.indexOf("edit") >= 0)
 	{		
@@ -96,27 +105,13 @@ $(function(){
 	}
 });
 
-//Hide Complete Panel
-$(function(){
-
-	$('#git-heading').click(function(){
-		GoToTop();
-		Loader(Show);
-		$('#quick-panel').fadeOut(1000);
-		$('#ini_form_content').fadeOut(1000);
-		Loader(Hide);
-	});
-
-});
-
 // Validate Form
 function ValidateForm()
 {
 	var hasError = false;
 	if($('#update_form_label').val() === '')
 	{
-		var StatusShow = $('.StatusShow').html('Please enter form title.');	
-		StatusShow.dialog();		
+		alert('Please enter form title.');			
 		hasError = true;
 	}
 	else
@@ -124,23 +119,6 @@ function ValidateForm()
 		SubmitForm();
 	}
 	return false;
-}
-
-//Iitial Create Form
-function CreateForm()
-{
-	GoToTop();
-	Loader(Show);	
-	PostInitialFormData(form_id_counter);			
-	
-	$('#ini_form_content').fadeIn(1000);	
-	$("#input-options").find('ul').fadeIn(1000);	
-
-	//Add Dynamin Text Box for Form Title	
-	$('#from-title').after().html('<input type="hidden" name="form_title' + form_id_counter + 
-  	'" id="form_title' + form_id_counter + '" class="contact-form-title form-control" value="GIT Form' + form_id_counter + '" readonly="readonly">');
-
-  	Loader(Hide);
 }
 
 // Call Quick Panel for Input Fields
@@ -154,22 +132,15 @@ $(function(){
 		Loader(Show);	
 
 		if(SelectedId === 'text-field')
-		{			
-			QuickPanel.find('#text-field-container').fadeIn(1000);
-			QuickPanel.find('#email-container').hide();						
-			QuickPanel.find('#phone-container').hide();
-			QuickPanel.find('#textarea-container').hide();	
-			QuickPanel.find('#map-container').hide();				
-			QuickPanel.find('#captcha-container').hide();	
-
+		{										
 			// Getting to default val for every field
-			var name 			= $('#git_text_name').attr('for');
-			var id 				= $('#git_text_id').attr('for');
-			var cls 			= $('#git_text_class').attr('for');
-			var size 			= $('#git_text_size').attr('for');
-			var maxlen 			= $('#git_text_maxlen').attr('for');
-			var label 			= $('#git_text_label').attr('for');
-			var placeholder 	= $('#git_text_placeholder').attr('for');
+			var name 			= $('#git_text_name').data('for');
+			var id 				= $('#git_text_id').data('for');
+			var cls 			= $('#git_text_class').data('for');
+			var size 			= $('#git_text_size').data('for');
+			var maxlen 			= $('#git_text_maxlen').data('for');
+			var label 			= $('#git_text_label').data('for');
+			var placeholder 	= $('#git_text_placeholder').data('for');
 
 			//Calling the function to set initial value for field
 			var Value = InsertValueForEveryField(SelectedId);
@@ -181,25 +152,24 @@ $(function(){
 			$('#git_text_maxlen').attr('value', 50);			
 			$('#git_text_label').attr('value', 'Name');			
 			$('#git_text_placeholder').attr('value', 'Name');	
+
+			QuickPanel.find('.email-container').hide();						
+			QuickPanel.find('.phone-container').hide();
+			QuickPanel.find('.textarea-container').hide();	
+			QuickPanel.find('.map-container').hide();	
+			QuickPanel.find('.text-field-container').slideDown(1000);
 		}
 
 		if(SelectedId === 'email')
-		{			
-			QuickPanel.find('#email-container').fadeIn(1000);
-			QuickPanel.find('#text-field-container').hide();
-			QuickPanel.find('#map-container').hide();													
-			QuickPanel.find('#phone-container').hide();
-			QuickPanel.find('#textarea-container').hide();		
-			QuickPanel.find('#captcha-container').hide();	
-
+		{						
 			// Getting to default val for every field
-			var name 			= $('#git_email_name').attr('for');
-			var id 				= $('#git_email_id').attr('for');
-			var cls 			= $('#git_email_class').attr('for');
-			var size 			= $('#git_email_size').attr('for');
-			var maxlen 			= $('#git_email_maxlen').attr('for');
-			var label 			= $('#git_email_label').attr('for');
-			var placeholder		= $('#git_email_placeholder').attr('for');
+			var name 			= $('#git_email_name').data('for');
+			var id 				= $('#git_email_id').data('for');
+			var cls 			= $('#git_email_class').data('for');
+			var size 			= $('#git_email_size').data('for');
+			var maxlen 			= $('#git_email_maxlen').data('for');
+			var label 			= $('#git_email_label').data('for');
+			var placeholder		= $('#git_email_placeholder').data('for');
 
 			//Calling the function to set initial value for field
 			var Value = InsertValueForEveryField(SelectedId);
@@ -211,25 +181,24 @@ $(function(){
 			$('#git_email_maxlen').attr('value', 50);			
 			$('#git_email_label').attr('value', 'Email Address');	
 			$('#git_email_placeholder').attr('value', 'Email Address');
+
+			QuickPanel.find('.text-field-container').hide();
+			QuickPanel.find('.map-container').hide();													
+			QuickPanel.find('.phone-container').hide();
+			QuickPanel.find('.textarea-container').hide();					
+			QuickPanel.find('.email-container').slideDown(1000);
 		}
 
 		if(SelectedId === 'phone')
-		{								
-			QuickPanel.find('#phone-container').fadeIn(1000);
-			QuickPanel.find('#text-field-container').hide();
-			QuickPanel.find('#email-container').hide();			
-			QuickPanel.find('#map-container').hide();										
-			QuickPanel.find('#textarea-container').hide();	
-			QuickPanel.find('#captcha-container').hide();	
-
+		{											
 			// Getting to default val for every field
-			var name 			= $('#git_phone_name').attr('for');
-			var id 				= $('#git_phone_id').attr('for');
-			var cls 			= $('#git_phone_class').attr('for');
-			var size 			= $('#git_phone_size').attr('for');
-			var maxlen 			= $('#git_phone_maxlen').attr('for');
-			var label 			= $('#git_phone_label').attr('for');
-			var placeholder		= $('#git_phone_placeholder').attr('for');
+			var name 			= $('#git_phone_name').data('for');
+			var id 				= $('#git_phone_id').data('for');
+			var cls 			= $('#git_phone_class').data('for');
+			var size 			= $('#git_phone_size').data('for');
+			var maxlen 			= $('#git_phone_maxlen').data('for');
+			var label 			= $('#git_phone_label').data('for');
+			var placeholder		= $('#git_phone_placeholder').data('for');
 
 			//Calling the function to set initial value for field
 			var Value = InsertValueForEveryField(SelectedId);
@@ -241,25 +210,24 @@ $(function(){
 			$('#git_phone_maxlen').attr('value', 50);			
 			$('#git_phone_label').attr('value', 'Contact Number');		
 			$('#git_phone_placeholder').attr('value', 'Contact Number');
+
+			QuickPanel.find('.text-field-container').hide();
+			QuickPanel.find('.email-container').hide();			
+			QuickPanel.find('.map-container').hide();										
+			QuickPanel.find('.textarea-container').hide();			
+			QuickPanel.find('.phone-container').slideDown(1000);
 		}
 
 		if(SelectedId === 'textarea')
-		{			
-			QuickPanel.find('#textarea-container').fadeIn(1000);
-			QuickPanel.find('#text-field-container').hide();
-			QuickPanel.find('#email-container').hide();						
-			QuickPanel.find('#phone-container').hide();							
-			QuickPanel.find('#map-container').hide();		
-			QuickPanel.find('#captcha-container').hide();			
-
+		{						
 			// Getting to default val for every field
-			var name 			= $('#git_textarea_name').attr('for');
-			var id 				= $('#git_textarea_id').attr('for');
-			var cls 			= $('#git_textarea_class').attr('for');
-			var cols 			= $('#git_textarea_cols').attr('for');
-			var rows 			= $('#git_textarea_rows').attr('for');
-			var label 			= $('#git_textarea_label').attr('for');
-			var placeholder		= $('#git_textarea_label').attr('for');
+			var name 			= $('#git_textarea_name').data('for');
+			var id 				= $('#git_textarea_id').data('for');
+			var cls 			= $('#git_textarea_class').data('for');
+			var cols 			= $('#git_textarea_cols').data('for');
+			var rows 			= $('#git_textarea_rows').data('for');
+			var label 			= $('#git_textarea_label').data('for');
+			var placeholder		= $('#git_textarea_label').data('for');
 
 			//Calling the function to set initial value for field
 			var Value = InsertValueForEveryField(SelectedId);
@@ -271,66 +239,48 @@ $(function(){
 			$('#git_textarea_rows').attr('value', 5);		
 			$('#git_textarea_label').attr('value', 'Message');	
 			$('#git_textarea_placeholder').attr('value', 'Message');
+
+			QuickPanel.find('.text-field-container').hide();
+			QuickPanel.find('.email-container').hide();						
+			QuickPanel.find('.phone-container').hide();							
+			QuickPanel.find('.map-container').hide();						
+			QuickPanel.find('.textarea-container').slideDown(1000);
 		}
 
 		if(SelectedId === 'map')
-		{			
-			QuickPanel.find('#map-container').fadeIn(1000);
-			QuickPanel.find('#text-field-container').hide();
-			QuickPanel.find('#email-container').hide();						
-			QuickPanel.find('#phone-container').hide();							
-			QuickPanel.find('#textarea-container').hide();	
-			QuickPanel.find('#captcha-container').hide();	
-
+		{						
 			// Getting to default val for every field
-			var lang 			= $('#git_map_lang').attr('for');
-			var lat 			= $('#git_map_lat').attr('for');
-			var color 			= $('#git_map_color').attr('for');
-			var height 			= $('#git_map_height').attr('for');
-			var width 			= $('#git_map_width').attr('for');
-			var title 			= $('#git_map_title').attr('for');
+			var lang 			= $('#git_map_lang').data('for');
+			var lat 			= $('#git_map_lat').data('for');			
+			var height 			= $('#git_map_height').data('for');
+			var width 			= $('#git_map_width').data('for');
+			var title 			= $('#git_map_title').data('for');
 			
 			//Calling the function to set initial value for field
 			var Value = InsertValueForEveryField(SelectedId);
 			
 			$('#git_map_lang').attr('value', '12.9120');
-			$('#git_map_lat').attr('value', '77.5930');
-			$('#git_map_color').attr('value', '475f54');
+			$('#git_map_lat').attr('value', '77.5930');			
 			$('#git_map_height').attr('value', '300');
 			$('#git_map_width').attr('value', '400');
 			$('#git_map_title').attr('value', 'Title');
-			
-			$('.git-loader').fadeOut();	
+
+			QuickPanel.find('.text-field-container').hide();
+			QuickPanel.find('.email-container').hide();						
+			QuickPanel.find('.phone-container').hide();							
+			QuickPanel.find('.textarea-container').hide();				
+			QuickPanel.find('.map-container').slideDown(1000);			
 		}		
 
-		if(SelectedId === 'captcha')
-		{			
-			QuickPanel.find('#captcha-container').fadeIn(1000);
-			QuickPanel.find('#map-container').hide(1000);
-			QuickPanel.find('#text-field-container').hide();
-			QuickPanel.find('#email-container').hide();						
-			QuickPanel.find('#phone-container').hide();							
-			QuickPanel.find('#textarea-container').hide();	
-
-			// Getting to default val for every field
-			var title 			= $('#git_captcha_title').attr('for');
-			
-			//Calling the function to set initial value for field
-			var Value = InsertValueForEveryField(SelectedId);
-			
-			$('#git_captcha_title').attr('value', 'Captcha');
-			
-			$('.git-loader').fadeOut();	
-		}
 		QuickPanel.fadeIn();
-		QuickPanel.find('#selected-field').html('['+SelectedId+']');								
+		QuickPanel.find('.selected-field').html('['+SelectedId+']');								
 		Loader(Hide);
 	});
 
-	$('#close-quick-panel').click(function(){						
+	$('.git-container #close-quick-panel').click(function(){						
 		GoToTop();
 		Loader(Show);
-		$('#quick-panel').fadeOut();				
+		$('#quick-panel').slideUp();				
 		Loader(Hide);
 	});
 
@@ -568,8 +518,7 @@ function SubmitInputField(type, action)
 
 		// Get All Data Attribute for Text Area
 		var lang 			= $('#git_map_lang').val();
-		var lat 			= $('#git_map_lat').val();
-		var color 			= $('#git_map_color').val();
+		var lat 			= $('#git_map_lat').val();		
 		var height 			= $('#git_map_height').val();
 		var width 			= $('#git_map_width').val();
 		var title 			= $('#git_map_title').val();
@@ -580,64 +529,12 @@ function SubmitInputField(type, action)
 		if(action === 'update')
 		{
 			// Pass Data to Array
-			var data = new Array(lang, lat, color, height, width, title, to_update_id);
+			var data = new Array(lang, lat, height, width, title, to_update_id);
 		}
 		else
 		{
 			// Pass Data to Array			
-			var data = new Array(lang, lat, color, height, width, title, form_id_counter);
-		}		
-		var RetVal = CheckPostedData(data);		
-		
-		if(RetVal === true)
-		{	
-			//Count All Input Fields to Assign Input-fields
-			var map_counter = count_all_input_fields(process_input_fields_url, type);        			
-			map_counter += 1;
-
-			//Call Function to Post Data 						
-			post_input_data(data, process_input_fields_url, type);												
-			
-			//Add Dynamically Input Fields						
-			var newTextBoxDiv = '['+type+']'+'\n';
-	 		document.ini_form_content_form.ini_form_content_area.value += newTextBoxDiv;					
-		}	
-		else
-		{
-			Loader(Hide);
-			alert('Please enter the value of fields.');
-		}		
-	}
-
-	// Captcha Data
-	if(type === 'captcha')
-	{		
-		if($('#captcha_check').val() === 'has')
-		{
-			Loader(Hide);
-			alert('You can not add more then one captcha in form.');			
-			return false;
-		}
-		else
-		{
-			$('#captcha_check').attr('value', 'has');	
-		}		
-
-		// Get All Data Attribute for Text Area
-		var title 			= $('#git_captcha_title').val();
-
-
-		var to_update_id= $('#action_val').val();
-
-		if(action === 'update')
-		{
-			// Pass Data to Array
-			var data = new Array(title, to_update_id);
-		}
-		else
-		{
-			// Pass Data to Array			
-			var data = new Array(title, form_id_counter);
+			var data = new Array(lang, lat, height, width, title, form_id_counter);
 		}		
 		var RetVal = CheckPostedData(data);		
 		
@@ -716,13 +613,11 @@ function SubmitForm()
 	var ini_form_mail_message	= $('#ini_form_mail_message').val();	
 
 	var user_form_width					= $('#user_form_width').val();
-	var user_form_loader				= $('#user_form_loader').val();
-	var user_form_hide					= $('#user_form_hide').val();
-	var contact_form_alignment			= $('#contact_form_alignment').val();
-	var user_form_lebels				= $('#user_form_lebels').val();
-	var user_form_placeholder			= $('#user_form_placeholder').val();
+	var user_form_loader				= $('#user_form_loader').is(':checked');
+	var user_form_hide					= $('#user_form_hide').is(':checked');	
+	var user_form_lebels				= $('#user_form_lebels').is(':checked');
+	var user_form_placeholder			= $('#user_form_placeholder').is(':checked');
 
-	
 	var user_button_text					= $('#user_button_text').val();
 	var user_button_color					= $('#user_button_color').val();
 	var user_success_text					= $('#user_success_text').val();
@@ -748,8 +643,7 @@ function SubmitForm()
 
 					user_form_width:		user_form_width,	
 					user_form_loader:		user_form_loader,	
-					user_form_hide:			user_form_hide,	
-					contact_form_alignment: contact_form_alignment,
+					user_form_hide:			user_form_hide,						
 					user_form_lebels:       user_form_lebels,
 					user_form_placeholder:  user_form_placeholder,
 					user_button_text:       user_button_text,
@@ -816,11 +710,10 @@ function SubmitUpdatedForm(Form_Id_For_Updation)
 	var mail_recipient 			= $('#update-mail-recipient').val();	
 
 	var user_form_width					= $('#user_form_width').val();
-	var user_form_loader				= $('#user_form_loader').val();
-	var user_form_hide					= $('#user_form_hide').val();
-	var contact_form_alignment			= $('#contact_form_alignment').val();
-	var user_form_lebels				= $('#user_form_lebels').val();
-	var user_form_placeholder			= $('#user_form_placeholder').val();
+	var user_form_loader				= $('#user_form_loader').is(':checked');
+	var user_form_hide					= $('#user_form_hide').is(':checked');	
+	var user_form_lebels				= $('#user_form_lebels').is(':checked');
+	var user_form_placeholder			= $('#user_form_placeholder').is(':checked');
 
 	var user_button_text					= $('#user_button_text').val();
 	var user_button_color					= $('#user_button_color').val();
@@ -841,32 +734,30 @@ function SubmitUpdatedForm(Form_Id_For_Updation)
 							up_ini_form_mail_message: 	ini_form_mail_message, 
 							user_form_width:			user_form_width,	
 							user_form_loader:			user_form_loader,	
-							user_form_hide:				user_form_hide,	
-							contact_form_alignment: 	contact_form_alignment,
+							user_form_hide:				user_form_hide,								
 							user_form_lebels:           user_form_lebels,
 							user_form_placeholder:      user_form_placeholder,
 							user_button_text:       	user_button_text,
 							user_button_color:      	user_button_color,
-							user_success_text:       			user_success_text,
-							user_error_validation_text:      	user_error_validation_text,
-							user_error_email_validation_text:   user_error_email_validation_text,
-							git_mail_form_required_fields_text: git_mail_form_required_fields_text,
-							git_check_for_stor_contact_form_data: git_check_for_stor_contact_form_data,
-							up_mail_recipient: 		mail_recipient,
-							up_mail_copy_to_user_check:mail_copy_to_user_check,
-							Form_Id_For_Updation: 	Form_Id_For_Updation
+							user_success_text:       				user_success_text,
+							user_error_validation_text:      		user_error_validation_text,
+							user_error_email_validation_text:   	user_error_email_validation_text,
+							git_mail_form_required_fields_text: 	git_mail_form_required_fields_text,
+							git_check_for_stor_contact_form_data: 	git_check_for_stor_contact_form_data,
+							up_mail_recipient: 						mail_recipient,
+							up_mail_copy_to_user_check: 			mail_copy_to_user_check,
+							Form_Id_For_Updation: 					Form_Id_For_Updation
 						};	
 
-	var RetVal = CheckPostedData(UpdatedFormData);	
-	
+	var RetVal = CheckPostedData(UpdatedFormData);		
 	if(form_data.length !== 0)
-	{
+	{	 
 		$.ajax({
         url: AdminAjax.process_input_fields_url,
        	type: 'post',            
        	dataType: "json",	 	
 	    data: UpdatedFormData,
-        success: function(data, status) {              	
+        success: function(data, status) {                
 					//Redirect to Form View
 					Loader(Hide);
         			window.location.href = "admin.php?page=view-forms";
@@ -913,22 +804,11 @@ function post_input_data(data, process_input_fields_url, type)
 		// Assign Data to Object
 		var InputData = {
 		    	lang 	  	: data[0],
-		    	lat    		: data[1],
-		    	color  		: data[2],	    
-		    	height  	: data[3],	
-		    	width  		: data[4],	
-		    	title  		: data[5],		
-		    	form_id    	: data[6],	    	    	
-		    	type		: type,
-		    	inserted_Id	: $('#last-form-inserted-id').val()
-				    	};	
-	}
-	else if(type === 'captcha')
-	{
-		// Assign Data to Object
-		var InputData = {
-		    	title  		: data[0],		
-		    	form_id    	: data[1],	    	    	
+		    	lat    		: data[1],		    	  
+		    	height  	: data[2],	
+		    	width  		: data[3],	
+		    	title  		: data[4],		
+		    	form_id    	: data[5],	    	    	
 		    	type		: type,
 		    	inserted_Id	: $('#last-form-inserted-id').val()
 				    	};	

@@ -1,0 +1,54 @@
+#git-user-container
+{
+	position: relative;
+	height: auto;	
+}
+
+#git-user-container .git-loader
+{
+	position: absolute;
+	left: 45%;
+	top: 45%;
+}
+
+#git-user-container p 
+{
+    margin-bottom: 0 !important;
+}
+
+#git-user-container #submit-contact-form
+{
+	color: #FFFFFF;
+    font-size: 18px;
+    border: 1px solid #cccccc;
+    font-weight: 400;
+    margin: 10px 0;
+    text-transform: none !important;
+    padding: 5px;
+}
+
+#git-user-container .git_thanks_text 
+{
+    color: #008000;
+    font-size: 20px;
+    text-align: left;
+}
+
+#git-user-container i
+{
+	color: red;
+}
+
+#git-user-container input, #git-user-container input
+{
+	border: 1px solid #cccccc;
+}
+
+#git-user-container input, #git-user-container textarea
+{
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #cccccc;
+	resize: none;
+	color: #252525;
+}

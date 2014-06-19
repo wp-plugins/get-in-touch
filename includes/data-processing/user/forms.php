@@ -18,6 +18,7 @@ function git_form($form_id)
     return false;
   }     
   $FormOptions = unserialize($FormDataById->Form_Options);   
+  ob_start();
 ?>    
   <div id="git-user-container" style="max-width: <?php if(isset($FormOptions['form_width'])){echo $FormOptions['form_width'];}else{echo '450px';}?>">
     <p style="display: none;" class="git_thanks_text"><?php echo $FormOptions['user_success_text']; ?></p>
@@ -141,6 +142,7 @@ function git_form($form_id)
     </form>    
   </div>                 
 <?php
+return ob_get_clean();
 }
 
 
@@ -173,7 +175,8 @@ function git_map($form_id)
     return false;
   }
 
-  $UnserializedInputMap = unserialize($InputMapById[0]->Input_Data);     
+  $UnserializedInputMap = unserialize($InputMapById[0]->Input_Data);  
+    ob_start();   
 ?>
   <input type="hidden" id="git_map_check" value="true">
   <input type="hidden" id="git_map_lang" value="<?php echo $UnserializedInputMap['lang'];?>">
@@ -185,6 +188,7 @@ function git_map($form_id)
   </div>
     <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>    
 <?php
+return ob_get_clean();
 }
 
 function git_view_contact_form_submitted()

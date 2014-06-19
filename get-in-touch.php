@@ -23,6 +23,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /**
  * @package Main
  */
+
+//strat session
+if (session_id() == '') {
+	session_start();
+	//check
+}
+
 if ( !defined( 'DB_NAME' ) ) {
 	header( 'HTTP/1.0 403 Forbidden' );
 	die;

@@ -190,7 +190,7 @@ function GITSubmitContactForm()
 			    	db_check :dbcheck
 		    	},
 	        success: function(data, status) {        	                			        		        			
-	        			if(git_form_hide === 'true')
+	        			if(formhide === 'true')
 	        			{
 	        				$('#git-ui-contact-form').hide();
 	        			}

@@ -126,3 +126,4 @@ Following is a brief description on how to get the best out of Get In Touch plug
 
 = 1.0.3 =
 - Enabled shortcode insertion anywhere in the page.
+- Minor UI Bug fixes.

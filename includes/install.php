@@ -87,7 +87,7 @@
 	function wp_git() 
 	{
 		add_menu_page('Get In Touch', 'Get In Touch', 'manage_options', 'get-in-touch',
-		'git_home_function', plugins_url( 'get-in-touch/img/git.png' ), 5);
+		'git_home_function', plugins_url( 'get-in-touch/img/git.png' ));
 
 		add_submenu_page( 'get-in-touch', 'Dashboard', 'Dashboard', 'manage_options',
 		'get-in-touch', 'git_home_function' );

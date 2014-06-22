@@ -18,7 +18,7 @@ function git_formshortcode( $atts)
 		$_SESSION['git_token'] = $git_token;
 	}
 	
-	return git_form($id);		
+	return git_form_shortcode($id);		
 }
 
 function git_mapshortcode( $atts)	
@@ -33,7 +33,7 @@ function git_mapshortcode( $atts)
 		$git_token = md5(time() * rand(1000,9999));
 		$_SESSION['git_token'] = $git_token;
 	}
-	return git_map($id);		
+	return git_map_shortcode($id);		
 }
 
 

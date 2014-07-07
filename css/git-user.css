@@ -4,11 +4,22 @@
 	height: auto;	
 }
 
+a,img,button
+{
+	outline: none !important;
+}
+
 #git-user-container .git-loader
 {
 	position: absolute;
 	left: 45%;
 	top: 45%;
+}
+
+.git-error
+{
+	border: 1px solid #ac5330 !important;
+	color: #cccccc;
 }
 
 #git-user-container p 
@@ -23,8 +34,19 @@
     border: 1px solid #cccccc;
     font-weight: 400;
     margin: 10px 0;
+    border-radius: 5px;
     text-transform: none !important;
-    padding: 5px;
+    padding: 5px 15px;
+    transition-duration:1s;
+	-webkit-transition-duration:1s;
+    opacity: 1;
+}
+
+#git-user-container #submit-contact-form:hover
+{
+	opacity: 0.5;
+	transition-duration:1s;
+	-webkit-transition-duration:1s;
 }
 
 #git-user-container .git_thanks_text 
@@ -39,9 +61,22 @@
 	color: red;
 }
 
+.git-fields-container i p
+{
+	font-size: 13px;
+	background: url('../img/cancel.png') no-repeat left center;
+	padding-left: 15px;
+}
+
 #git-user-container input, #git-user-container input
 {
 	border: 1px solid #cccccc;
+}
+
+#git-user-container input:focus, #git-user-container textarea:focus
+{
+	border-color: #66afe9;
+    outline: 0 none;
 }
 
 #git-user-container input, #git-user-container textarea
@@ -51,4 +86,9 @@
 	border: 1px solid #cccccc;
 	resize: none;
 	color: #252525;
+}
+
+#recaptcha_area, #recaptcha_table
+{
+	width: 100% !important;
 }

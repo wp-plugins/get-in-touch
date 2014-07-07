@@ -5,6 +5,34 @@
 
 if(isset($_POST['dataobj']) && isset($_POST['form_id']) && isset($_POST['usermail']))
 {	
+	if(isset($_POST['captchadata']))
+	{
+		$captchadata = $_POST['captchadata'];
+		$CaptchaData = array();
+
+		foreach($captchadata as $captchadetail)
+		{
+			if($captchadetail['name'] === 'recaptcha_challenge_field')
+			{
+				$CaptchaData['recaptcha_challenge_field'] = $captchadetail['value'];
+			}
+			if($captchadetail['name'] === 'recaptcha_response_field')
+			{
+				$CaptchaData['recaptcha_response_field'] = $captchadetail['value'];
+			}
+			if($captchadetail['name'] === 'git_captcha_privatekey')
+			{
+				$CaptchaData['git_captcha_privatekey'] = $captchadetail['value'];
+			}
+		}				
+		$Res = ValidateCaptcha($CaptchaData);
+		if($Res != true)
+		{			
+			return false;
+			die;
+		}
+	}
+
 	$Data = $_POST['dataobj'];
 	$form_id = $_POST['form_id'];
 	$UsermailId = $_POST['usermail'];
@@ -70,6 +98,36 @@ if(isset($_POST['form_data_important_id']) && isset($_POST['value']))
 	}
 }
 
+// Validate Captcha
+function ValidateCaptcha($CaptchaData)
+{	
+	require_once('recaptchalib.php');  
+
+	$resp = null;
+	$error = null;
+	
+	if ($CaptchaData["recaptcha_response_field"]) 
+	{
+        $resp = recaptcha_check_answer ($CaptchaData["git_captcha_privatekey"],
+                                        $_SERVER["REMOTE_ADDR"],
+                                        $CaptchaData["recaptcha_challenge_field"],
+                                        $CaptchaData["recaptcha_response_field"]);
+
+        if ($resp->is_valid) 
+        {
+            return true;
+            die;
+        } 
+        else 
+        {            
+            $error = $resp->error;
+            echo $error;
+            die;
+        }
+	}
+
+}
+
 // Function to Send Mail
 function SendMail($Data, $form_id, $UsermailId)
 {
@@ -109,7 +167,13 @@ function SendMail($Data, $form_id, $UsermailId)
 	
 	if($FormData->Mail_Copy_To_User === 'true')
 	{
-		$header = 'Content-type: text/html; charset: utf8\r\n'.'MIME-Version: 1.0\r\n'.'From: Get In Touch <'.$FormData->Form_Recipient.'>'."\r\n".'Reply-To: '.$FormData->Form_Recipient."\r\n" .'X-Mailer: PHP/' . phpversion();
+		//$header = 'Content-type: text/html; charset: utf8\r\n'.'MIME-Version: 1.0\r\n'.'From: Get In Touch <'.$FormData->Form_Recipient.'>'."\r\n".'Reply-To: '.$FormData->Form_Recipient."\r\n" .'X-Mailer: PHP/' . phpversion();
+		$header  = 'MIME-Version: 1.0' . "\r\n";
+		$header .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+
+		// Additional header
+		$header .= 'To: <'.$UsermailId.'> '."\r\n";
+		$header .= 'From: '.$FormData->Mail_Sender_Name.' <'.$FormData->Mail_Sender_Email.'>' . "\r\n";
 
 		$BodyUser = $FormData->Form_MailData.'<br/><br/>';				
 		$BodyUser .= 'Thanks<br/>';	
@@ -146,11 +210,36 @@ function SendMail($Data, $form_id, $UsermailId)
 // Insert Contact Form Data to DB
 function insert_contactform_data_to_db($Data, $form_id)
 {	
-	global $wpdb;	
 	
+	global $wpdb;
+	$table_prefix = $wpdb->prefix;
+	$git_form_data = $table_prefix.'git_formdata';	
+	$git_input_data = $table_prefix.'git_inputdata';	
 	$git_contact_form_data = $wpdb->prefix.'git_contact_form_data';
+	$FinalData = '';
 
-	$SerializeContactFormData = serialize($Data);
+	$active = 'active';	
+
+	$QueryforFormData = $wpdb->prepare( "SELECT * FROM $git_form_data WHERE Form_Id = %d AND Form_Status = %s", $form_id, $active);	
+	$FormData = $wpdb->get_row($QueryforFormData);		
+
+	$QueryforInputData = $wpdb->prepare( "SELECT * FROM $git_input_data WHERE Form_Id = %d AND Input_Status = %s", $form_id, $active);	
+	$InputData = $wpdb->get_results($QueryforInputData);
+
+	$DataLen = count($Data);	
+	
+	$i = 0;
+	foreach($InputData as $input)
+	{
+		$UnserializedVal = unserialize($input->Input_Data);		
+		if(isset($UnserializedVal['label']))
+		{
+			$FinalData .= $UnserializedVal['label'].'  :     '.$Data[$i].'<br/>';
+			$i++;
+		}				
+	}
+
+	$SerializeContactFormData = serialize($FinalData);
 	
 	$wpdb->insert($git_contact_form_data,
 				array(

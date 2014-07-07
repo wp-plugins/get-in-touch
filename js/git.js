@@ -157,6 +157,7 @@ $(function(){
 			QuickPanel.find('.phone-container').hide();
 			QuickPanel.find('.textarea-container').hide();	
 			QuickPanel.find('.map-container').hide();	
+			QuickPanel.find('.captcha-container').hide();
 			QuickPanel.find('.text-field-container').slideDown(1000);
 		}
 
@@ -185,7 +186,8 @@ $(function(){
 			QuickPanel.find('.text-field-container').hide();
 			QuickPanel.find('.map-container').hide();													
 			QuickPanel.find('.phone-container').hide();
-			QuickPanel.find('.textarea-container').hide();					
+			QuickPanel.find('.textarea-container').hide();	
+			QuickPanel.find('.captcha-container').hide();				
 			QuickPanel.find('.email-container').slideDown(1000);
 		}
 
@@ -214,7 +216,8 @@ $(function(){
 			QuickPanel.find('.text-field-container').hide();
 			QuickPanel.find('.email-container').hide();			
 			QuickPanel.find('.map-container').hide();										
-			QuickPanel.find('.textarea-container').hide();			
+			QuickPanel.find('.textarea-container').hide();	
+			QuickPanel.find('.captcha-container').hide();		
 			QuickPanel.find('.phone-container').slideDown(1000);
 		}
 
@@ -243,7 +246,8 @@ $(function(){
 			QuickPanel.find('.text-field-container').hide();
 			QuickPanel.find('.email-container').hide();						
 			QuickPanel.find('.phone-container').hide();							
-			QuickPanel.find('.map-container').hide();						
+			QuickPanel.find('.map-container').hide();				
+			QuickPanel.find('.captcha-container').hide();			
 			QuickPanel.find('.textarea-container').slideDown(1000);
 		}
 
@@ -268,8 +272,28 @@ $(function(){
 			QuickPanel.find('.text-field-container').hide();
 			QuickPanel.find('.email-container').hide();						
 			QuickPanel.find('.phone-container').hide();							
-			QuickPanel.find('.textarea-container').hide();				
+			QuickPanel.find('.textarea-container').hide();
+			QuickPanel.find('.captcha-container').hide();				
 			QuickPanel.find('.map-container').slideDown(1000);			
+		}		
+
+		if(SelectedId === 'captcha')
+		{						
+			// Getting to default val for every field
+			var publickey 			= $('#git_captcha_public_key').data('for');
+			var privatekey 			= $('#git_captcha_private_key').data('for');			
+			var theme 				= $('#git_captcha_theme').data('for');
+			var language 			= $('#git_captcha_language').data('for');
+			
+			//Calling the function to set initial value for field
+			var Value = InsertValueForEveryField(SelectedId);									
+
+			QuickPanel.find('.text-field-container').hide();
+			QuickPanel.find('.email-container').hide();						
+			QuickPanel.find('.phone-container').hide();							
+			QuickPanel.find('.textarea-container').hide();				
+			QuickPanel.find('.map-container').hide();			
+			QuickPanel.find('.captcha-container').slideDown(1000);			
 		}		
 
 		QuickPanel.fadeIn();
@@ -305,6 +329,11 @@ $(function(){
 	});
 
 	$('#content_form_map').submit(function(){
+		Loader(Show);
+		Loader(Hide);
+	});
+
+	$('#content_form_captcha').submit(function(){
 		Loader(Show);
 		Loader(Hide);
 	});
@@ -558,6 +587,61 @@ function SubmitInputField(type, action)
 		}		
 	}
 
+	// Captcah Data
+	if(type === 'captcha')
+	{		
+		if($('#captcha_check').val() === 'has')
+		{
+			Loader(Hide);
+			alert('You can not add more then one captcha in single contact form.');			
+			return false;
+		}
+		else
+		{
+			$('#captcha_check').attr('value', 'has');	
+		}		
+
+		// Get All Data Attribute for Text Area
+		var publickey 			= $('#git_captcha_public_key').val();
+		var privatekey 			= $('#git_captcha_private_key').val();		
+		var theme 				= $('#git_captcha_theme').val();
+		var language 			= $('#git_captcha_language').val();		
+
+
+		var to_update_id= $('#action_val').val();
+
+		if(action === 'update')
+		{
+			// Pass Data to Array
+			var data = new Array(publickey, privatekey, theme, language, to_update_id);
+		}
+		else
+		{
+			// Pass Data to Array			
+			var data = new Array(publickey, privatekey, theme, language, form_id_counter);			
+		}		
+		var RetVal = CheckPostedData(data);		
+		
+		if(RetVal === true)
+		{	
+			//Count All Input Fields to Assign Input-fields
+			var map_counter = count_all_input_fields(process_input_fields_url, type);        			
+			map_counter += 1;
+
+			//Call Function to Post Data 						
+			post_input_data(data, process_input_fields_url, type);												
+			
+			//Add Dynamically Input Fields						
+			var newTextBoxDiv = '['+type+']'+'\n';
+	 		document.ini_form_content_form.ini_form_content_area.value += newTextBoxDiv;					
+		}	
+		else
+		{
+			Loader(Hide);
+			alert('Please enter the value of fields.');
+		}		
+	}
+
 	// Reset Fields
 	$('#content_form_text_fields')[0].reset();	
 	Loader(Hide);	
@@ -617,6 +701,7 @@ function SubmitForm()
 	var user_form_hide					= $('#user_form_hide').is(':checked');	
 	var user_form_lebels				= $('#user_form_lebels').is(':checked');
 	var user_form_placeholder			= $('#user_form_placeholder').is(':checked');
+	var user_form_captcha				= $('#user_form_captcha').is(':checked');
 
 	var user_button_text					= $('#user_button_text').val();
 	var user_button_color					= $('#user_button_color').val();
@@ -646,6 +731,7 @@ function SubmitForm()
 					user_form_hide:			user_form_hide,						
 					user_form_lebels:       user_form_lebels,
 					user_form_placeholder:  user_form_placeholder,
+					user_form_captcha:  	user_form_captcha,
 					user_button_text:       user_button_text,
 					user_button_color:      user_button_color,
 					user_success_text:       			user_success_text,
@@ -690,6 +776,7 @@ function SubmitForm()
 	{
 		Loader(Hide);
 		alert('Please select input fields before submit form.');
+		return false;
 	}			
 }
 
@@ -714,7 +801,8 @@ function SubmitUpdatedForm(Form_Id_For_Updation)
 	var user_form_hide					= $('#user_form_hide').is(':checked');	
 	var user_form_lebels				= $('#user_form_lebels').is(':checked');
 	var user_form_placeholder			= $('#user_form_placeholder').is(':checked');
-
+	var user_form_captcha				= $('#user_form_captcha').is(':checked');
+	
 	var user_button_text					= $('#user_button_text').val();
 	var user_button_color					= $('#user_button_color').val();
 	var user_success_text					= $('#user_success_text').val();
@@ -737,6 +825,7 @@ function SubmitUpdatedForm(Form_Id_For_Updation)
 							user_form_hide:				user_form_hide,								
 							user_form_lebels:           user_form_lebels,
 							user_form_placeholder:      user_form_placeholder,
+							user_form_captcha:      	user_form_captcha,
 							user_button_text:       	user_button_text,
 							user_button_color:      	user_button_color,
 							user_success_text:       				user_success_text,
@@ -811,6 +900,19 @@ function post_input_data(data, process_input_fields_url, type)
 		    	form_id    	: data[5],	    	    	
 		    	type		: type,
 		    	inserted_Id	: $('#last-form-inserted-id').val()
+				    	};	
+	}
+	else if(type === 'captcha')
+	{
+		// Assign Data to Object
+		var InputData = {
+		    	publickey 	  	: data[0],
+		    	privatekey    	: data[1],		    	  
+		    	theme  			: data[2],	
+		    	language  		: data[3],			    	
+		    	form_id  		: data[4],	
+		    	type			: type,
+		    	inserted_Id		: $('#last-form-inserted-id').val()
 				    	};	
 	}
 	else

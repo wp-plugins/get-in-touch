@@ -475,7 +475,7 @@
 {
 	border-bottom: 1px solid #CCCCCC;
     border-right: 1px solid #CCCCCC;
-    font-size: 16px;
+    font-size: 14px;
     padding: 0 10px;
 }
 
@@ -783,4 +783,17 @@
 .git-container #update_form_content
 {
 	padding-bottom: 100px;
+}
+
+.captcha-container select
+{
+	height: 40px;    
+    padding: 8px !important;    
+    width: 260px;
+}  	
+
+.git-mail-data
+{
+	line-height: 25px;
+	padding: 0 5px !important;
 }

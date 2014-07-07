@@ -109,9 +109,9 @@ function git_add_form()
 						<li id="textarea">
 							Textarea
 						</li>
-						<!-- <li id="captcha">
-							<p>Captcha<p>
-						</li> -->											
+						<li id="captcha">
+							Captcha
+						</li>											
 						<li id="map">
 							Map
 						</li>						
@@ -163,7 +163,7 @@ function git_add_form()
 				        	    Contact Form Loader			            	
 				            </div>
 				            <div class="git-fields-container">	
-				            	<input type="checkbox" checked id="user_form_hide" name="user_form_hide">
+				            	<input type="checkbox" id="user_form_hide" name="user_form_hide">
 				        	    Contact Form Hide After Success				            	
 				            </div>				            
 				            <div class="git-fields-container">	
@@ -175,12 +175,16 @@ function git_add_form()
 				        	    Show Placeholder
 				            </div>
 				            <div class="git-fields-container">	
+				            	<input type="checkbox" checked id="user_form_captcha" name="user_form_captcha">
+				        	    Enable Google Captcha
+				            </div>
+				            <div class="git-fields-container">	
 				        	    <label for="user_button_text">Submit Button Text:</label> 	    
 				            	<input value="Get In Touch" name="user_button_text" id="user_button_text">				            	
 				            </div>	
 				            <div class="git-fields-container">	
 				        	    <label for="user_button_color">Submit Button Color:</label> 	    				            	
-				            	<input type="hidden" value="#5bb75b" name="user_button_color" id="user_button_color">
+				            	<input type="hidden" value="#ffffff" name="user_button_color" id="user_button_color">
 				            </div>	
 				            <div class="git-fields-container">	
 				        	    <label for="user_success_text">Contact Form Success Message:</label> 	    
@@ -204,7 +208,7 @@ function git_add_form()
 					      	</div>
 					      	<div class="git-fields-container">					            	
 				            	<input type="checkbox" checked id="git_check_for_stor_contact_form_data" name="git_check_for_stor_contact_form_data">
-				            	I want to stor the contact form data of user who contacted me
+				            	I want to store the contact form data of user who contacted me
 					      	</div>
 				            <div class="git-fields-container">	
 				            	<label for="mail-recipient">Recipient MailId:</label>
@@ -503,7 +507,23 @@ function get_all_forms_data_for_update($form_id)
 ?>
 			            		Show Placeholder
 			            	</div>
-
+			            	<div class="git-fields-container">				        	    			            		
+<?php 
+			            		if($FormOptions['form_captcha'] ==='true')
+			            		{
+?>
+									<input type="checkbox" checked id="user_form_captcha" name="user_form_captcha">
+<?php
+			            		}
+			            		else
+			            		{
+?>
+									<input type="checkbox" id="user_form_captcha" name="user_form_captcha">
+<?php
+			            		}
+?>
+			            		Enable Google Captcha
+			            	</div>
 					            <div class="git-fields-container">
 					        	    <label for="user_button_text">Submit Button Text:</label> 	    
 					            	<input type="text" value="<?php echo $FormOptions['button_text']; ?>" name="user_button_text" id="user_button_text">				            	

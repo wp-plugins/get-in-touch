@@ -1,11 +1,11 @@
 === Get In Touch ===
 Contributors: think201, vivekpandey
-Tags: get in touch, wordpress plugin, contact form, responsive, map, enquiry form, google map integration, touch, get, form, enquiry, map, google map, customized, free, no limit, input field, plugin, wp
+Tags: get in touch, wordpress plugin, contact form, responsive, map, enquiry form, google map integration, touch, get, form, enquiry, map, google map, customized, free, no limit, input field, plugin, wp, captcha, language options in captcha, recaptcha, google captcha
 Requires at least: 3.5.2
 Donate link: http://www.think201.com/
 Tested up to: 3.9.1
-Stable tag: 1.0.3
-Version: 1.0.3
+Stable tag: 1.0.4
+Version: 1.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -35,6 +35,9 @@ Get In Touch plug-in allows you to generate responsive form by adding input cont
 - Enable/Disable feature for save user details in db.
 - Enable/Disable feature for mail templating & sending.
 - Enabled shortcode insertion anywhere in the page.
+- Google Captcha Integration.
+- Custom Theme and Language support for captcha.
+- Enabling/Disabling Captcha from Contact Form.
 
 
 = Plugin Support =
@@ -85,6 +88,7 @@ Following is a brief description on how to get the best out of Get In Touch plug
 3.	This plug-in also gives user a view of all the mails received at one place. Click on View Contact Mail to see all the mails received.
 4. The view of final form created.
 5. The view of final map customized.
+6. Google reCaptcha Integration.
 
 
 == Frequently Asked Questions ==
@@ -93,6 +97,9 @@ Following is a brief description on how to get the best out of Get In Touch plug
 * First try deactivating and reactivating the plugin
 * If that doesn't fix the problem, try deleting and reinstalling the plugin
 * If that doesn't work, you should file a bug report.
+
+= If Google reCaptcha is not working = 
+* Make sure the public and private key is correct which is provided by google.
 
 
 == Upgrade Notice ==
@@ -104,6 +111,8 @@ Following is a brief description on how to get the best out of Get In Touch plug
 = 1.0.2 =
 
 = 1.0.3 =
+
+= 1.0.4 =
 
 * Initial version of Get In Touch Plugin checkin.
 
@@ -127,3 +136,9 @@ Following is a brief description on how to get the best out of Get In Touch plug
 = 1.0.3 =
 - Enabled shortcode insertion anywhere in the page.
 - Minor UI Bug fixes.
+
+= 1.0.4 =
+- Minor UI Bug Fixes.
+- Google Captcha Integration.
+- Custom Theme and Language support for captcha.
+- Enabling/Disabling Captcha from Contact Form.

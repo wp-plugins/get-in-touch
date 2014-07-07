@@ -9,15 +9,29 @@ function git_form($form_id)
   if(empty($form_id)){
     return false;
   }
+  require_once('recaptchalib.php');  
   $GetClass = new GetData();  
 
   $InputDataById = $GetClass->get_input_details_by_id($form_id);
+  $InputCaptcha = $GetClass->get_captcha_details_by_id($form_id);
   $FormDataById = $GetClass->get_form_details_by_id($form_id);  
 
   if(empty($InputDataById) && empty($FormDataById))
   {
     return false;
-  }     
+  }  
+  if(!empty($InputCaptcha))
+  {
+    $CaptchaData = unserialize($InputCaptcha->Input_Data);
+?>    
+        <script type="text/javascript">
+         var RecaptchaOptions = {
+            theme : <?php echo '"'.$CaptchaData['theme'].'"'; ?>,
+            lang : <?php echo '"'.$CaptchaData['language'].'"'; ?>
+         };
+        </script>
+<?php
+  }
   $FormOptions = unserialize($FormDataById->Form_Options);   
 
 ?>    
@@ -38,8 +52,7 @@ function git_form($form_id)
 <?php
     foreach($InputDataById as $InputData)
     {           
-      $UnserializedInputData = unserialize($InputData->Input_Data);        
-      
+      $UnserializedInputData = unserialize($InputData->Input_Data);              
       if($InputData->Input_Type === 'text-field')
       {
 ?>
@@ -51,7 +64,7 @@ function git_form($form_id)
 <?php
 }       
 ?>        
-        <input placeholder="<?php echo $UnserializedInputData['placeholder']; ?>" style="<?php if($FormOptions['form_labels'] !== 'true'){echo 'margin: 10px 0';} ?>" type="text" class="git_textfield <?php if($UnserializedInputData['check'] === 'true'){echo 'required';}?> <?php echo $UnserializedInputData['class']; ?>" 
+        <input placeholder="<?php echo $UnserializedInputData['placeholder']; ?>" style="<?php if($FormOptions['form_labels'] !== 'true'){echo 'margin: 10px 0';}else echo 'margin-bottom: 10px'; ?>" type="text" class="git_textfield <?php if($UnserializedInputData['check'] === 'true'){echo 'required';}?> <?php echo $UnserializedInputData['class']; ?>" 
         id="git_contact_form_defined_text <?php echo $UnserializedInputData['id']; ?>" name="<?php echo $UnserializedInputData['name']; ?>"
         size="<?php echo $UnserializedInputData['size']; ?>" maxlength="<?php echo $UnserializedInputData['maxlen']; ?>">
         <i><p style="display: none;" class="git_error_text"><?php echo $FormOptions['user_error_validation_text']; ?></p></i>
@@ -70,7 +83,7 @@ function git_form($form_id)
 <?php
 }       
 ?>        
-        <input placeholder="<?php echo $UnserializedInputData['placeholder']; ?>" type="text" style="<?php if($FormOptions['form_labels'] !== 'true'){echo 'margin: 10px 0';} ?>" class="git_phone <?php if($UnserializedInputData['check'] === 'true'){echo 'required';}?> <?php echo $UnserializedInputData['class']; ?>" 
+        <input placeholder="<?php echo $UnserializedInputData['placeholder']; ?>" type="text" style="<?php if($FormOptions['form_labels'] !== 'true'){echo 'margin: 10px 0';}else echo 'margin-bottom: 10px'; ?>" class="git_phone <?php if($UnserializedInputData['check'] === 'true'){echo 'required';}?> <?php echo $UnserializedInputData['class']; ?>" 
         id="git_contact_form_defined_text <?php echo $UnserializedInputData['id']; ?>" name="<?php echo $UnserializedInputData['name']; ?>"
         size="<?php echo $UnserializedInputData['size']; ?>" maxlength="<?php echo $UnserializedInputData['maxlen']; ?>">
         <i><p style="display: none;" class="git_error_phone"><?php echo $FormOptions['user_error_validation_text']; ?></p></i>
@@ -89,7 +102,7 @@ function git_form($form_id)
 <?php
 }       
 ?>                
-        <input placeholder="<?php echo $UnserializedInputData['placeholder']; ?>" type="email" style="<?php if($FormOptions['form_labels'] !== 'true'){echo 'margin: 10px 0';} ?>" class="git_emailtest <?php if($UnserializedInputData['check'] === 'true'){echo 'required';}?> <?php echo $UnserializedInputData['class']; ?>" 
+        <input placeholder="<?php echo $UnserializedInputData['placeholder']; ?>" type="email" style="<?php if($FormOptions['form_labels'] !== 'true'){echo 'margin: 10px 0';}else echo 'margin-bottom: 10px'; ?>" class="git_emailtest <?php if($UnserializedInputData['check'] === 'true'){echo 'required';}?> <?php echo $UnserializedInputData['class']; ?>" 
         id="git_contact_form_defined_text <?php echo $UnserializedInputData['id']; ?>" name="<?php echo $UnserializedInputData['name']; ?>"
         size="<?php echo $UnserializedInputData['size']; ?>" maxlength="<?php echo $UnserializedInputData['maxlen']; ?>">
         <i><p style="display: none;" class="git_error_mail"><?php echo $FormOptions['user_error_email_validation_text']; ?></p></i>
@@ -108,23 +121,28 @@ function git_form($form_id)
 <?php
 }       
 ?>                
-        <textarea placeholder="<?php echo $UnserializedInputData['placeholder']; ?>" style="<?php if($FormOptions['form_labels'] !== 'true'){echo 'margin: 10px 0';} ?>" class="git_textareatest <?php if($UnserializedInputData['check'] === 'true'){echo 'required';}?> <?php echo $UnserializedInputData['class']; ?>" 
+        <textarea placeholder="<?php echo $UnserializedInputData['placeholder']; ?>" style="<?php if($FormOptions['form_labels'] !== 'true'){echo 'margin-top: 10px;margin-bottom: 10px';}else echo 'margin-bottom: 10px'; ?>" class="git_textareatest <?php if($UnserializedInputData['check'] === 'true'){echo 'required';}?> <?php echo $UnserializedInputData['class']; ?>" 
         id="git_contact_form_defined_text <?php echo $UnserializedInputData['id']; ?>" name="<?php echo $UnserializedInputData['name']; ?>"
         cols="<?php echo $UnserializedInputData['size']; ?>" rows="<?php echo $UnserializedInputData['maxlen']; ?>"></textarea>
         <i><p style="display: none;" class="git_error_textarea"><?php echo $FormOptions['user_error_validation_text']; ?></p></i>
       </div>
 <?php
       }
-      if($InputData->Input_Type === 'captcha')
-      {
+      if($FormOptions['form_captcha'] === 'true' && $InputData->Input_Type === 'captcha')
+      {        
 ?>
-      <div class="git-fields-container">  
-        <label for="captchaText"><?php echo $UnserializedInputData['name'];?></label>
-        <input type="text" class="form-control" id="captchaText" name="captchaText" placeholder="Enter Captcha string">
-        <img src="<?php echo 'http://think201.org'; ?>">                                                                                    
-        <span onClick="window.location.reload();" class="git-btn">Refresh</span>
+      <div class="git-fields-container" style="margin: 10px 0;">  
+<?php 
+          $publickey = $UnserializedInputData['publickey'];
+          $captchaval = recaptcha_get_html($publickey);
+?>
+<?php          
+          echo $captchaval;    
+?>
+        <i><p style="display: none;" class="git_error_captcha"></p></i>
       </div>
-<?php        
+        <input type="hidden" name="git_captcha_privatekey" id="git_captcha_privatekey" value="<?php echo $UnserializedInputData['privatekey']; ?>" />
+<?php
       }
     }
 ?>     
@@ -151,15 +169,29 @@ function git_form_shortcode($form_id)
   if(empty($form_id)){
     return false;
   }
+  require_once('recaptchalib.php');  
   $GetClass = new GetData();  
 
   $InputDataById = $GetClass->get_input_details_by_id($form_id);
+  $InputCaptcha = $GetClass->get_captcha_details_by_id($form_id);
   $FormDataById = $GetClass->get_form_details_by_id($form_id);  
 
   if(empty($InputDataById) && empty($FormDataById))
   {
     return false;
   }     
+  if(!empty($InputCaptcha))
+  {
+    $CaptchaData = unserialize($InputCaptcha->Input_Data);
+?>    
+        <script type="text/javascript">
+         var RecaptchaOptions = {
+            theme : <?php echo '"'.$CaptchaData['theme'].'"'; ?>,
+            lang : <?php echo '"'.$CaptchaData['language'].'"'; ?>
+         };
+        </script>
+<?php
+  }
   $FormOptions = unserialize($FormDataById->Form_Options);   
   ob_start();
 ?>    
@@ -180,8 +212,7 @@ function git_form_shortcode($form_id)
 <?php
     foreach($InputDataById as $InputData)
     {           
-      $UnserializedInputData = unserialize($InputData->Input_Data);        
-      
+      $UnserializedInputData = unserialize($InputData->Input_Data);              
       if($InputData->Input_Type === 'text-field')
       {
 ?>
@@ -193,7 +224,7 @@ function git_form_shortcode($form_id)
 <?php
 }       
 ?>        
-        <input placeholder="<?php echo $UnserializedInputData['placeholder']; ?>" style="<?php if($FormOptions['form_labels'] !== 'true'){echo 'margin: 10px 0';} ?>" type="text" class="git_textfield <?php if($UnserializedInputData['check'] === 'true'){echo 'required';}?> <?php echo $UnserializedInputData['class']; ?>" 
+        <input placeholder="<?php echo $UnserializedInputData['placeholder']; ?>" style="<?php if($FormOptions['form_labels'] !== 'true'){echo 'margin: 10px 0';}else echo 'margin-bottom: 10px'; ?>" type="text" class="git_textfield <?php if($UnserializedInputData['check'] === 'true'){echo 'required';}?> <?php echo $UnserializedInputData['class']; ?>" 
         id="git_contact_form_defined_text <?php echo $UnserializedInputData['id']; ?>" name="<?php echo $UnserializedInputData['name']; ?>"
         size="<?php echo $UnserializedInputData['size']; ?>" maxlength="<?php echo $UnserializedInputData['maxlen']; ?>">
         <i><p style="display: none;" class="git_error_text"><?php echo $FormOptions['user_error_validation_text']; ?></p></i>
@@ -212,7 +243,7 @@ function git_form_shortcode($form_id)
 <?php
 }       
 ?>        
-        <input placeholder="<?php echo $UnserializedInputData['placeholder']; ?>" type="text" style="<?php if($FormOptions['form_labels'] !== 'true'){echo 'margin: 10px 0';} ?>" class="git_phone <?php if($UnserializedInputData['check'] === 'true'){echo 'required';}?> <?php echo $UnserializedInputData['class']; ?>" 
+        <input placeholder="<?php echo $UnserializedInputData['placeholder']; ?>" type="text" style="<?php if($FormOptions['form_labels'] !== 'true'){echo 'margin: 10px 0';}else echo 'margin-bottom: 10px'; ?>" class="git_phone <?php if($UnserializedInputData['check'] === 'true'){echo 'required';}?> <?php echo $UnserializedInputData['class']; ?>" 
         id="git_contact_form_defined_text <?php echo $UnserializedInputData['id']; ?>" name="<?php echo $UnserializedInputData['name']; ?>"
         size="<?php echo $UnserializedInputData['size']; ?>" maxlength="<?php echo $UnserializedInputData['maxlen']; ?>">
         <i><p style="display: none;" class="git_error_phone"><?php echo $FormOptions['user_error_validation_text']; ?></p></i>
@@ -231,7 +262,7 @@ function git_form_shortcode($form_id)
 <?php
 }       
 ?>                
-        <input placeholder="<?php echo $UnserializedInputData['placeholder']; ?>" type="email" style="<?php if($FormOptions['form_labels'] !== 'true'){echo 'margin: 10px 0';} ?>" class="git_emailtest <?php if($UnserializedInputData['check'] === 'true'){echo 'required';}?> <?php echo $UnserializedInputData['class']; ?>" 
+        <input placeholder="<?php echo $UnserializedInputData['placeholder']; ?>" type="email" style="<?php if($FormOptions['form_labels'] !== 'true'){echo 'margin: 10px 0';}else echo 'margin-bottom: 10px'; ?>" class="git_emailtest <?php if($UnserializedInputData['check'] === 'true'){echo 'required';}?> <?php echo $UnserializedInputData['class']; ?>" 
         id="git_contact_form_defined_text <?php echo $UnserializedInputData['id']; ?>" name="<?php echo $UnserializedInputData['name']; ?>"
         size="<?php echo $UnserializedInputData['size']; ?>" maxlength="<?php echo $UnserializedInputData['maxlen']; ?>">
         <i><p style="display: none;" class="git_error_mail"><?php echo $FormOptions['user_error_email_validation_text']; ?></p></i>
@@ -250,23 +281,28 @@ function git_form_shortcode($form_id)
 <?php
 }       
 ?>                
-        <textarea placeholder="<?php echo $UnserializedInputData['placeholder']; ?>" style="<?php if($FormOptions['form_labels'] !== 'true'){echo 'margin: 10px 0';} ?>" class="git_textareatest <?php if($UnserializedInputData['check'] === 'true'){echo 'required';}?> <?php echo $UnserializedInputData['class']; ?>" 
+        <textarea placeholder="<?php echo $UnserializedInputData['placeholder']; ?>" style="<?php if($FormOptions['form_labels'] !== 'true'){echo 'margin-top: 10px;margin-bottom: 10px';}else echo 'margin-bottom: 10px'; ?>" class="git_textareatest <?php if($UnserializedInputData['check'] === 'true'){echo 'required';}?> <?php echo $UnserializedInputData['class']; ?>" 
         id="git_contact_form_defined_text <?php echo $UnserializedInputData['id']; ?>" name="<?php echo $UnserializedInputData['name']; ?>"
         cols="<?php echo $UnserializedInputData['size']; ?>" rows="<?php echo $UnserializedInputData['maxlen']; ?>"></textarea>
         <i><p style="display: none;" class="git_error_textarea"><?php echo $FormOptions['user_error_validation_text']; ?></p></i>
       </div>
 <?php
       }
-      if($InputData->Input_Type === 'captcha')
-      {
+      if($FormOptions['form_captcha'] === 'true' && $InputData->Input_Type === 'captcha')
+      {        
 ?>
-      <div class="git-fields-container">  
-        <label for="captchaText"><?php echo $UnserializedInputData['name'];?></label>
-        <input type="text" class="form-control" id="captchaText" name="captchaText" placeholder="Enter Captcha string">
-        <img src="<?php echo 'http://think201.org'; ?>">                                                                                    
-        <span onClick="window.location.reload();" class="git-btn">Refresh</span>
+      <div class="git-fields-container" style="margin: 10px 0;">  
+<?php 
+          $publickey = $UnserializedInputData['publickey'];
+          $captchaval = recaptcha_get_html($publickey);
+?>
+<?php          
+          echo $captchaval;    
+?>
+        <i><p style="display: none;" class="git_error_captcha"></p></i>
       </div>
-<?php        
+        <input type="hidden" name="git_captcha_privatekey" id="git_captcha_privatekey" value="<?php echo $UnserializedInputData['privatekey']; ?>" />
+<?php
       }
     }
 ?>     
@@ -419,14 +455,9 @@ function git_view_contact_form_submitted()
                 <td>
                   <?php echo $ContactData->User_IP; ?>
                 </td>
-                <td>
+                <td class="git-mail-data">
 <?php                
-                foreach($UnserializeContactFormData as $key => $value) 
-                {
-?>                  
-                  <h4><?php echo $value; ?></h4>
-<?php                 
-                }
+                  print_r(nl2br($UnserializeContactFormData));
 ?>                  
                 </td> 
                 <td><a class="deletedata" id="<?php echo $ContactData->ContactForm_Id; ?>" href="#">DELETE</a></td>               

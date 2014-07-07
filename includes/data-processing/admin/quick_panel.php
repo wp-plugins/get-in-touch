@@ -232,5 +232,57 @@
 		       	<button onClick="SubmitInputField('map');" class="git-btn" type="button" id="submit-map-form">Add Input Field</button>	        	 
             </form>	      	
 		</div>
+
+		<div class="captcha-container" style="display: none;">			
+    	    <form class="form-horizontal" name="content_form_captcha" id="content_form_captcha" action="#" method="post">
+	           	 <table style="width: 100%;">
+	           	 	<tr>
+	           	 		<td style="color: red;">
+	           	 			<i>
+	           	 				Disclaimer: Make sure that provided public and private key is correct.
+	           	 			</i>
+	           	 		</td>
+	           	 	</tr>
+	           	 </table>
+	           	 <table>	           	 	
+	            	<tr>
+	            		<td>Google Public Key</td>
+	            		<td>Google Private Key</td>
+	            		<td>Theme</td>   	            		         	
+	            		<td>Language</td>   
+	            	</tr>
+	            	<tr>
+	            		<td>
+	            			<input type="text" id="git_captcha_public_key" name="git_captcha_public_key" data-for="public" value="" placeholder="Enter Google Public Key">
+	            		</td>
+	            		<td>
+	            			<input type="text" id="git_captcha_private_key" name="git_captcha_private_key" data-for="private" value="" placeholder="Enter Google Private Key">
+	            		</td>
+	            		<td>
+	            			<select id="git_captcha_theme" name="git_captcha_theme" data-for="theme">
+	            				<option value="clean">Clean</option>
+	            				<option value="white">White</option>
+	            				<option value="red">Red</option>
+	            				<option value="blackglass">Black Glass</option>
+	            			</select>	            			
+	            		</td>
+	            		<td>
+	            			<select id="git_captcha_language" name="git_captcha_language" data-for="language">
+	            				<option value="en">English</option>
+	            				<option value="nl">Dutch</option>
+	            				<option value="fr">French</option>
+	            				<option value="de">German</option>
+	            				<option value="pt">Portuguese</option>
+	            				<option value="ru">Russian</option>
+	            				<option value="es">Spanish</option>
+	            				<option value="tr">Turkish</option>
+	            			</select>	
+	            		</td>            		
+	            	</tr>	            	
+	            </table>	            
+	            <input type="hidden" id="captcha_check" name="captcha_check" value="">
+		       	<button onClick="SubmitInputField('captcha');" class="git-btn" type="button" id="submit-captcha-form">Add Input Field</button>	        	 
+            </form>	      	
+		</div>
 	</div>
 </div>

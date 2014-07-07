@@ -60,6 +60,24 @@ if(isset($_POST["type"]))
 			'title' 		=> 	$title
 			);			
 	}
+	else if($_POST['type'] === 'captcha')
+	{
+		//Get the value to insert
+		$publickey 			= $_POST['publickey'];
+		$privatekey 		= $_POST['privatekey'];		
+		$theme 				= $_POST['theme'];
+		$language 			= $_POST['language'];		
+		$form_id 			= $_POST['form_id'];
+		$input_type			= $_POST['type'];
+		$inserted_Id		= $_POST['inserted_Id'];
+
+		$UnseriliazedData = array(
+			'publickey' 		=> 	$publickey,
+			'privatekey' 		=> 	$privatekey,			
+			'theme' 			=> 	$theme,
+			'language' 			=> 	$language
+			);			
+	}
 	else
 	{
 		//Get the value to insert
@@ -99,7 +117,7 @@ if(isset($_POST["type"]))
 if(isset($_POST['form_title']) && isset($_POST['form_data']) && isset($_POST['map_check']) && isset($_POST['mail_subject']) && 
 	isset($_POST['mail_sender_name']) && isset($_POST['mail_sender_email']) && isset($_POST['ini_form_mail_message']) && isset($_POST['mail_copy_to_user_check']) && 
 	isset($_POST['mail_recipient']) && isset($_POST['form_id_counter']) && isset($_POST['last_form_inserted_id']) && isset($_POST['user_form_width']) && isset($_POST['user_form_loader'])
-	&& isset($_POST['user_form_hide']) && isset($_POST['user_form_lebels']) && isset($_POST['user_form_placeholder']))
+	&& isset($_POST['user_form_hide']) && isset($_POST['user_form_lebels']) && isset($_POST['user_form_placeholder']) && isset($_POST['user_form_captcha']))
 {
 	// Post Form Data to DB	
 	$form_label 			= $_POST['form_label'];
@@ -120,8 +138,8 @@ if(isset($_POST['form_title']) && isset($_POST['form_data']) && isset($_POST['ma
 	$user_form_hide  		= $_POST['user_form_hide'];		
 	$user_form_lebels 		= $_POST['user_form_lebels'];
 	$user_form_placeholder	= $_POST['user_form_placeholder'];
+	$user_form_captcha		= $_POST['user_form_captcha'];
 	
-
 	$user_button_text  					= $_POST['user_button_text'];
 	$user_button_color  				= $_POST['user_button_color'];
 	$user_success_text  				= $_POST['user_success_text'];
@@ -135,7 +153,8 @@ if(isset($_POST['form_title']) && isset($_POST['form_data']) && isset($_POST['ma
 		 							'form_loader' 							=> $user_form_loader,
 		 							'form_hide' 							=> $user_form_hide,		 									 							
 		 							'form_labels' 							=> $user_form_lebels,
-		 							'form_placeholder' 						=> $user_form_placeholder,		 							
+		 							'form_placeholder' 						=> $user_form_placeholder,	
+		 							'form_captcha' 							=> $user_form_captcha,			 								 							
 									'button_text' 							=> $user_button_text,
 		 							'button_color' 							=> $user_button_color,
 		 							'user_success_text' 					=> $user_success_text,
@@ -158,7 +177,7 @@ if(isset($_POST['form_title']) && isset($_POST['form_data']) && isset($_POST['ma
 if(isset($_POST['up_form_title']) && isset($_POST['up_form_data']) && isset($_POST['up_mail_subject']) && isset($_POST['up_mail_sender_name']) && 
 	isset($_POST['up_mail_sender_email']) && isset($_POST['up_ini_form_mail_message']) && isset($_POST['up_mail_copy_to_user_check']) && 
 	isset($_POST['up_mail_recipient']) && isset($_POST['Form_Id_For_Updation'])&& isset($_POST['user_form_width']) && isset($_POST['user_form_loader'])
-	&& isset($_POST['user_form_hide']) && isset($_POST['user_form_lebels']) && isset($_POST['user_form_placeholder']))
+	&& isset($_POST['user_form_hide']) && isset($_POST['user_form_lebels']) && isset($_POST['user_form_placeholder']) && isset($_POST['user_form_captcha']))
 {
 	// Get the Update Data from Form to Update
 	$up_form_label 				= $_POST['up_form_label'];
@@ -177,6 +196,7 @@ if(isset($_POST['up_form_title']) && isset($_POST['up_form_data']) && isset($_PO
 	$user_form_hide  		= $_POST['user_form_hide'];		
 	$user_form_lebels 		= $_POST['user_form_lebels'];
 	$user_form_placeholder	= $_POST['user_form_placeholder'];
+	$user_form_captcha		= $_POST['user_form_captcha'];
 
 	$user_button_text  					= $_POST['user_button_text'];
 	$user_button_color  				= $_POST['user_button_color'];
@@ -192,6 +212,7 @@ if(isset($_POST['up_form_title']) && isset($_POST['up_form_data']) && isset($_PO
 		 							'form_hide' 							=> $user_form_hide,		 									 							
 		 							'form_labels' 							=> $user_form_lebels,
 		 							'form_placeholder' 						=> $user_form_placeholder,		 							
+									'form_captcha' 							=> $user_form_captcha,	
 									'button_text' 							=> $user_button_text,
 		 							'button_color' 							=> $user_button_color,
 		 							'user_success_text' 					=> $user_success_text,

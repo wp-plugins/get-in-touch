@@ -63,6 +63,28 @@ class GetData
 		return $inputdata;
 	}
 
+	//Function to get Input Data According to Form Id for Captcha
+	public function get_captcha_details_by_id($form_id)
+	{	
+		// Sanity Check
+		if(empty($form_id))
+		{
+			return false;
+		}	
+		global $wpdb;
+
+		$active = 'active';	
+		$captcha = 'captcha';	
+
+		$git_input_data = $wpdb->prefix.'git_inputdata';
+
+		$QueryforCaptcha = $wpdb->prepare( "SELECT * FROM $git_input_data WHERE Form_Id = %d AND Input_Status = %s AND Input_Type = %s", $form_id, $active, $captcha);
+		
+		$inputdata = $wpdb->get_row($QueryforCaptcha);			
+
+		return $inputdata;
+	}
+
 	public function get_map_details_by_id($form_id)
 	{
 		// Sanity Check

@@ -14,6 +14,7 @@ $(function(){
 
 	$('#git-user-container .git-fields-container p').on('click', function(){
 		$(this).fadeOut();
+		$(this).parent().siblings().removeClass('git-error');
 	});
 });
 
@@ -34,7 +35,7 @@ function initialize()
 {
 	var lang = $('#git_map_lang').val();
 	var lat = $('#git_map_lat').val();	
-	var title = $('#git_map_title').val();
+	var title = $('#git_map_title').val();	
 
   	var myLatlng = new google.maps.LatLng(lang,lat);
   	
@@ -51,7 +52,7 @@ function initialize()
   	var marker = new google.maps.Marker({
         position: myLatlng,
         map: map,
-        title: 'Get In Touch'
+        title: title
     });
  }
 
@@ -110,48 +111,65 @@ function GITSubmitContactForm()
 	var errphone = $('.git_error_phone');
 	var errmail = $('.git_error_mail');
 	var errtextarea = $('.git_error_textarea');
+	var errcaptcha  = $('.git_error_captcha');
 	var formname = $('#git-ui-contact-form');
 	var dbcheck = $('#git_db_check').val();	
+	var captcahres = $('#recaptcha_response_field').val();
+	var privatekey = $('#git_captcha_privatekey').val();
 	var j = 0;
+
+	if(captcahres === '')
+	{
+		errcaptcha.text('Please enter valid string');
+		errcaptcha.fadeIn();
+		haserror = true;
+	}
 
 	if(formname.find(textfield).hasClass('required'))
 	{
 		if(formname.find(textfield).val() === '')
-		{
+		{			
+			formname.find(textfield).addClass('git-error');
 			formname.find(errtextfield).fadeIn();
 			haserror = true;
 		}
 		else
 		{
 			formname.find(errtextfield).fadeOut();			
+			formname.find(textfield).removeClass('git-error');
 		}
 	}
 	if(formname.find(phone).hasClass('required'))
 	{
 		if(formname.find(phone).val() === '')
 		{
+			formname.find(phone).addClass('git-error');
 			formname.find(errphone).fadeIn();
 			haserror = true;
 		}
 		else
 		{
-			formname.find(errphone).fadeOut();			
+			formname.find(errphone).fadeOut();		
+			formname.find(phone).removeClass('git-error');	
 		}
 	}
 	if(formname.find(mail).hasClass('required'))
 	{
 		if(formname.find(mail).val() === '')
 		{
-			formname.find(errmail).fadeIn();
+			formname.find(mail).addClass('git-error');
+			formname.find(errmail).fadeIn();			
 			haserror = true;
 		}
 		else if(!emailreg.test(formname.find(mail).val()))
 		{
-			formname.find(errmail).fadeIn();
+			formname.find(mail).addClass('git-error');
+			formname.find(errmail).fadeIn();			
 			haserror = true;
 		}
 		else
 		{
+			formname.find(mail).removeClass('git-error');
 			formname.find(errmail).fadeOut();			
 		}
 	}
@@ -159,11 +177,13 @@ function GITSubmitContactForm()
 	{
 		if(formname.find(textarea).val() === '')
 		{
+			formname.find(textarea).addClass('git-error');
 			formname.find(errtextarea).fadeIn();
 			haserror = true;
 		}
 		else
 		{
+			formname.find(textarea).removeClass('git-error');
 			formname.find(errtextarea).fadeOut();			
 		}
 	}
@@ -187,18 +207,30 @@ function GITSubmitContactForm()
 			    	usermail:mail.val(),
 			    	dataobj :formdataobj,
 			    	form_id :formid,
-			    	db_check :dbcheck
+			    	db_check :dbcheck,
+			    	captchadata: formname.serializeArray()
 		    	},
-	        success: function(data, status) {        	                			        		        			
-	        			if(formhide === 'true')
+	        success: function(data, status) {      	        	
+	        			if(data === 'incorrect-captcha-sol')
 	        			{
-	        				$('#git-ui-contact-form').hide();
+	        				errcaptcha.text('Please enter valid string');
+	        				errcaptcha.fadeIn();
+	        				Recaptcha.reload();
+	        				return false;
 	        			}
-	        			thanktext.fadeIn('slow');	        				        			
-	        			$('#git-ui-contact-form')[0].reset();
+	        			else
+	        			{
+	        				if(formhide === 'true')
+		        			{
+		        				$('#git-ui-contact-form').hide();
+		        			}
+		        			thanktext.fadeIn('slow');	        				        			
+		        			$('#git-ui-contact-form')[0].reset();
+		        			Recaptcha.reload();
+	        			}	        				        			
 	                 },
 	        error: function(data, status){ 
-	        	
+	        	Recaptcha.reload();
 	           }	              				
 	    	});	
 	        Loader(Hide);

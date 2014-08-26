@@ -132,6 +132,7 @@ function git_form($form_id)
       {        
 ?>
       <div class="git-fields-container" style="margin: 10px 0;">  
+      <input type="hidden" value="true" id="captcha_check" name="captcha_check">
 <?php 
           $publickey = $UnserializedInputData['publickey'];
           $captchaval = recaptcha_get_html($publickey);
@@ -355,12 +356,16 @@ function git_map_shortcode($form_id)
   }
 
   $UnserializedInputMap = unserialize($InputMapById[0]->Input_Data);  
+  
     ob_start();   
 ?>
   <input type="hidden" id="git_map_check" value="true">
-  <input type="hidden" id="git_map_lang" value="<?php echo $UnserializedInputMap['lang'];?>">
-  <input type="hidden" id="git_map_lat" value="<?php echo $UnserializedInputMap['lat'];?>">  
+  <input type="hidden" id="git_map_latitude" value="<?php echo $UnserializedInputMap['latitude'];?>">
+  <input type="hidden" id="git_map_longitude" value="<?php echo $UnserializedInputMap['longitude'];?>">  
   <input type="hidden" id="git_map_title" value="<?php echo $UnserializedInputMap['title'];?>">
+  <input type="hidden" id="git_map_zoom" value="<?php echo $UnserializedInputMap['zoom'];?>">
+  <input type="hidden" id="git_map_scrollwheel" value="<?php echo $UnserializedInputMap['scrollwheel'];?>">
+  <input type="hidden" id="git_map_clickable" value="<?php echo $UnserializedInputMap['clickable'];?>">
   <div style="background-color: #FFFFFF;border: 1px solid #CCCCCC;box-shadow: 0 0 10px -8px #888888; padding: 5px; width: <?php echo $UnserializedInputMap['width'];?>px;" class="git-map-container">
     <div style="margin: 0px; padding: 0px; height: <?php echo $UnserializedInputMap['height'];?>px;" id="map_can">
     </div> 
@@ -387,9 +392,12 @@ function git_map($form_id)
   $UnserializedInputMap = unserialize($InputMapById[0]->Input_Data);      
 ?>
   <input type="hidden" id="git_map_check" value="true">
-  <input type="hidden" id="git_map_lang" value="<?php echo $UnserializedInputMap['lang'];?>">
-  <input type="hidden" id="git_map_lat" value="<?php echo $UnserializedInputMap['lat'];?>">  
+  <input type="hidden" id="git_map_latitude" value="<?php echo $UnserializedInputMap['latitude'];?>">
+  <input type="hidden" id="git_map_longitude" value="<?php echo $UnserializedInputMap['longitude'];?>">  
   <input type="hidden" id="git_map_title" value="<?php echo $UnserializedInputMap['title'];?>">
+  <input type="hidden" id="git_map_zoom" value="<?php echo $UnserializedInputMap['zoom'];?>">
+  <input type="hidden" id="git_map_scrollwheel" value="<?php echo $UnserializedInputMap['scrollwheel'];?>">
+  <input type="hidden" id="git_map_clickable" value="<?php echo $UnserializedInputMap['clickable'];?>">
   <div style="background-color: #FFFFFF;border: 1px solid #CCCCCC;box-shadow: 0 0 10px -8px #888888; padding: 5px; width: <?php echo $UnserializedInputMap['width'];?>px;" class="git-map-container">
     <div style="margin: 0px; padding: 0px; height: <?php echo $UnserializedInputMap['height'];?>px;" id="map_can">
     </div> 

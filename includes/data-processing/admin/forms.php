@@ -49,7 +49,7 @@ function git_home_function()
 									Track mails received through your form.
 								</li>
 							</ul>	
-
+							<br>
 							<a href="http://developer.think201.com" target="_blank" class="git-btn plugin_site">Visit Plugin Site</a>
 						</div>
 					</div>
@@ -167,7 +167,7 @@ function git_add_form()
 				        	    Contact Form Hide After Success				            	
 				            </div>				            
 				            <div class="git-fields-container">	
-				            	<input type="checkbox" checked id="user_form_lebels" name="user_form_lebels">
+				            	<input type="checkbox" id="user_form_lebels" name="user_form_lebels">
 				        	    Show Contact Form Labels				            	
 				            </div>
 				            <div class="git-fields-container">	
@@ -227,7 +227,7 @@ function git_add_form()
 <?php
 }
 
-function redirect($url)
+function redirectTo($url)
 {
     if (headers_sent())
     {
@@ -260,7 +260,7 @@ function git_view_forms()
 			$deleted_id = $PostClass->delete_form_from_db($id);
 			if($deleted_id === true)
 			{
-				redirect('admin.php?page=view-forms');
+				redirectTo('admin.php?page=view-forms');
 			}	
 		}
 		else if($action === 'edit' && wp_verify_nonce( $_GET['_wpnonce'], 'edit_link' ))
@@ -272,7 +272,7 @@ function git_view_forms()
 			$copy_id = $PostClass->create_copy_of_this_form($id);
 			if($copy_id === true)
 			{
-				redirect('admin.php?page=view-forms');
+				redirectTo('admin.php?page=view-forms');
 			}			
 		}
 		else 

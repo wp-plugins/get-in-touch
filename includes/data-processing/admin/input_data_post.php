@@ -43,21 +43,27 @@ if(isset($_POST["type"]))
 	if($_POST['type'] === 'map')
 	{
 		//Get the value to insert
-		$lang 			= $_POST['lang'];
-		$lat 			= $_POST['lat'];		
+		$latitude 		= $_POST['latitude'];
+		$longitude 		= $_POST['longitude'];		
 		$height 		= $_POST['height'];
 		$width 			= $_POST['width'];
 		$title 			= $_POST['title'];
+		$zoom 			= $_POST['zoom'];
+		$scrollwheel 	= $_POST['scrollwheel'];
+		$clickable 		= $_POST['clickable'];
 		$form_id 		= $_POST['form_id'];
 		$input_type		= $_POST['type'];
 		$inserted_Id	= $_POST['inserted_Id'];
 
 		$UnseriliazedData = array(
-			'lang' 			=> 	$lang,
-			'lat' 			=> 	$lat,			
+			'latitude' 		=> 	$latitude,
+			'longitude' 	=> 	$longitude,			
 			'height' 		=> 	$height,
 			'width' 		=> 	$width,
-			'title' 		=> 	$title
+			'title' 		=> 	$title,
+			'zoom' 			=> 	$zoom,
+			'scrollwheel' 	=> 	$scrollwheel,
+			'clickable' 	=> 	$clickable
 			);			
 	}
 	else if($_POST['type'] === 'captcha')

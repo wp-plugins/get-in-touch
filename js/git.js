@@ -230,7 +230,7 @@ $(function(){
 			var cols 			= $('#git_textarea_cols').data('for');
 			var rows 			= $('#git_textarea_rows').data('for');
 			var label 			= $('#git_textarea_label').data('for');
-			var placeholder		= $('#git_textarea_label').data('for');
+			var placeholder		= $('#git_textarea_placeholder').data('for');
 
 			//Calling the function to set initial value for field
 			var Value = InsertValueForEveryField(SelectedId);
@@ -254,20 +254,24 @@ $(function(){
 		if(SelectedId === 'map')
 		{						
 			// Getting to default val for every field
-			var lang 			= $('#git_map_lang').data('for');
-			var lat 			= $('#git_map_lat').data('for');			
-			var height 			= $('#git_map_height').data('for');
-			var width 			= $('#git_map_width').data('for');
-			var title 			= $('#git_map_title').data('for');
+			var latitude 			= $('#git_map_latitude').data('for');
+			var longitude 			= $('#git_map_longitude').data('for');					
+			var height 				= $('#git_map_height').data('for');
+			var width 				= $('#git_map_width').data('for');
+			var title 				= $('#git_map_title').data('for');
+			var zoom 				= $('#git_map_zoom').data('for');
+			var scrollwheel 		= $('#git_map_scrollwheel').data('for');
+			var clickable 			= $('#git_map_clickable').data('for');
 			
 			//Calling the function to set initial value for field
 			var Value = InsertValueForEveryField(SelectedId);
 			
-			$('#git_map_lang').attr('value', '12.9120');
-			$('#git_map_lat').attr('value', '77.5930');			
+			$('#git_map_latitude').attr('value', '12.9120');
+			$('#git_map_longitude').attr('value', '77.5930');			
 			$('#git_map_height').attr('value', '300');
 			$('#git_map_width').attr('value', '400');
-			$('#git_map_title').attr('value', 'Title');
+			$('#git_map_title').attr('value', 'Get In Touch');
+			$('#git_map_zoom').attr('value', '12');
 
 			QuickPanel.find('.text-field-container').hide();
 			QuickPanel.find('.email-container').hide();						
@@ -546,11 +550,14 @@ function SubmitInputField(type, action)
 		}		
 
 		// Get All Data Attribute for Text Area
-		var lang 			= $('#git_map_lang').val();
-		var lat 			= $('#git_map_lat').val();		
-		var height 			= $('#git_map_height').val();
-		var width 			= $('#git_map_width').val();
-		var title 			= $('#git_map_title').val();
+		var latitude 			= $('#git_map_latitude').val();
+		var longitude 			= $('#git_map_longitude').val();		
+		var height 				= $('#git_map_height').val();
+		var width 				= $('#git_map_width').val();
+		var title 				= $('#git_map_title').val();
+		var zoom 				= $('#git_map_zoom').val();
+		var scrollwheel 		= $('#git_map_scrollwheel').is(':checked');
+		var clickable 			= $('#git_map_clickable').is(':checked');
 
 
 		var to_update_id= $('#action_val').val();
@@ -558,12 +565,12 @@ function SubmitInputField(type, action)
 		if(action === 'update')
 		{
 			// Pass Data to Array
-			var data = new Array(lang, lat, height, width, title, to_update_id);
+			var data = new Array(latitude, longitude, height, width, title, zoom, scrollwheel, clickable, to_update_id);
 		}
 		else
 		{
 			// Pass Data to Array			
-			var data = new Array(lang, lat, height, width, title, form_id_counter);
+			var data = new Array(latitude, longitude, height, width, title, zoom, scrollwheel, clickable, form_id_counter);
 		}		
 		var RetVal = CheckPostedData(data);		
 		
@@ -892,12 +899,15 @@ function post_input_data(data, process_input_fields_url, type)
 	{
 		// Assign Data to Object
 		var InputData = {
-		    	lang 	  	: data[0],
-		    	lat    		: data[1],		    	  
+		    	latitude 	: data[0],
+		    	longitude   : data[1],		    	  
 		    	height  	: data[2],	
 		    	width  		: data[3],	
 		    	title  		: data[4],		
-		    	form_id    	: data[5],	    	    	
+		    	zoom  		: data[5],		
+		    	scrollwheel : data[6],		
+		    	clickable  	: data[7],		
+		    	form_id    	: data[8],	    	    	
 		    	type		: type,
 		    	inserted_Id	: $('#last-form-inserted-id').val()
 				    	};	

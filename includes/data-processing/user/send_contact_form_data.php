@@ -6,31 +6,35 @@
 if(isset($_POST['dataobj']) && isset($_POST['form_id']) && isset($_POST['usermail']))
 {	
 	if(isset($_POST['captchadata']))
-	{
+	{		
 		$captchadata = $_POST['captchadata'];
-		$CaptchaData = array();
-
-		foreach($captchadata as $captchadetail)
+		
+		if(!empty($captchadata))
 		{
-			if($captchadetail['name'] === 'recaptcha_challenge_field')
+			$CaptchaData = array();
+
+			foreach($captchadata as $captchadetail)
 			{
-				$CaptchaData['recaptcha_challenge_field'] = $captchadetail['value'];
+				if($captchadetail['name'] === 'recaptcha_challenge_field')
+				{
+					$CaptchaData['recaptcha_challenge_field'] = $captchadetail['value'];
+				}
+				if($captchadetail['name'] === 'recaptcha_response_field')
+				{
+					$CaptchaData['recaptcha_response_field'] = $captchadetail['value'];
+				}
+				if($captchadetail['name'] === 'git_captcha_privatekey')
+				{
+					$CaptchaData['git_captcha_privatekey'] = $captchadetail['value'];
+				}
+			}				
+			$Res = ValidateCaptcha($CaptchaData);
+			if($Res != true)
+			{			
+				return false;
+				die;
 			}
-			if($captchadetail['name'] === 'recaptcha_response_field')
-			{
-				$CaptchaData['recaptcha_response_field'] = $captchadetail['value'];
-			}
-			if($captchadetail['name'] === 'git_captcha_privatekey')
-			{
-				$CaptchaData['git_captcha_privatekey'] = $captchadetail['value'];
-			}
-		}				
-		$Res = ValidateCaptcha($CaptchaData);
-		if($Res != true)
-		{			
-			return false;
-			die;
-		}
+		}		
 	}
 
 	$Data = $_POST['dataobj'];
@@ -210,7 +214,6 @@ function SendMail($Data, $form_id, $UsermailId)
 // Insert Contact Form Data to DB
 function insert_contactform_data_to_db($Data, $form_id)
 {	
-	
 	global $wpdb;
 	$table_prefix = $wpdb->prefix;
 	$git_form_data = $table_prefix.'git_formdata';	

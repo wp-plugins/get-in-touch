@@ -153,7 +153,6 @@
 
 .git-container .box
 {
-	position: relative;
 	border: none !important;
 }
 
@@ -182,22 +181,23 @@
 .git-container .box-header p
 {
 	line-height: 0;
-	font-size: 20px;
+	font-size: 20px;	
 }
 
 .git-container .box-header.well 
 {
     background-color: #FFFFFF;    
     margin: 15px;
-    padding: 5px 15px;
+    padding: 3px 15px;
 }
 
 .git-container .box-header a
 {	
-	color: #bc7878 !important;
-	text-transform: uppercase;
-	outline: none;
-	text-decoration: underline;
+	color: #222222 !important;
+    outline: medium none;
+    padding: 10px 20px;
+    text-decoration: none;
+    text-transform: uppercase;
 }
 
 .git-container .admin-form-input
@@ -310,15 +310,14 @@
 
 .git-container #quick-panel button
 {
-	margin: 10px auto 0 !important;
+	margin: 10px auto !important;
 	display: block !important;
 }
 
 .git-container #quick-panel input
 {
 	height: 40px;
-    margin: 5px 30px;
-    width: 220px;
+    margin: 5px 30px;    
 }
 
 .git-container .wp-color-result
@@ -366,6 +365,13 @@
 	right: 5px;	
 	font-size: 18px;	
 	font-weight: 600;
+	transition-duration: 500ms;
+}
+
+.git-container #close-quick-panel:hover
+{
+	color: #ff0010;
+	transition-duration: 500ms;
 }
 
 .git-container .btn-style
@@ -638,7 +644,7 @@
 
 .git-container .plugin_section .plugin_site
 {
-	border-radius: 0 !important;
+	display: inline-block;
 }
 
 .git-container .extra_section .about_think201
@@ -650,8 +656,13 @@
 
 .git-container .plugin_section p 
 {
-    font-size: 13px;
+    font-size: 14px;
     margin-bottom: 20px;
+}
+
+.git-container .plugin_section h4
+{
+	font-size: 20px;
 }
 
 .git-container .extra_section .about_developer
@@ -665,15 +676,26 @@
 .git-container .git-btn
 {
     background-color: #454545;
-    border-radius: 0;
-    color: #FFFFFF;    
-    margin: 0px;
-    display: inline-block;
-    height: auto; 
+    border-color: #454545;
+    border-radius: 5px;
+    color: #ffffff;
+    cursor: pointer;
+    display: block;
+    font-weight: 600;
+    height: auto;
+    margin: 0;
     padding: 10px;
     text-decoration: none;
     width: auto;
-    cursor: pointer;
+    opacity: 1;
+    border: 1px solid #454545;
+    transition-duration: 500ms;
+}
+
+.git-container .git-btn:hover
+{
+	opacity: 0.5;
+    transition-duration: 500ms;
 }
 
 .git-container .extra_section .about_developer h5
@@ -687,7 +709,7 @@
 {
 	color: #444444;
 	outline: none;
-	font-size: 14px;
+	font-size: 20px;
 }
 
 .git-container .about_developer a
@@ -775,7 +797,7 @@
     position: absolute;
     text-align: center;
     text-transform: uppercase;
-    top: 0;
+    top: 99px;
     width: 50%;
     border-radius: 20px;
 }

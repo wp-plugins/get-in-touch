@@ -6,10 +6,10 @@
     	    <form name="content_form_text_fields" id="content_form_text_fields" action="#" method="post">					    	    	 
 	            <table>
 	            	<tr>
-	            		<td>Name</td>
-	            		<td>Id</td>
-	            		<td>Class</td>
-	            		<td>Size</td>	            		
+	            		<td><strong>Name</strong></td>
+	            		<td><strong>Id</strong></td>
+	            		<td><strong>Class</strong></td>
+	            		<td><strong>Size</strong></td>	            		
 	            	</tr>
 	            	<tr>
 	            		<td>
@@ -26,10 +26,10 @@
 	            		</td>	            		
 	            	</tr>
 	            	<tr>
-	            		<td>Maxlength</td>
-	            		<td>Label</td>
-	            		<td>Placeholder</td>
-	            		<td>Is Required Field</td>	            		
+	            		<td><strong>Maxlength</strong></td>
+	            		<td><strong>Label</strong></td>
+	            		<td><strong>Placeholder</strong></td>
+	            		<td><strong>Is Required Field</strong></td>	            		
 	            	</tr>
 	            	<tr>
 	            		<td>
@@ -55,10 +55,10 @@
     	    <form class="form-horizontal" name="content_form_email" id="content_form_email" action="#" method="post">
 	            <table>
 	            	<tr>
-	            		<td>Name</td>
-	            		<td>Id</td>
-	            		<td>Class</td>
-	            		<td>Size</td>	            		
+	            		<td><strong>Name</strong></td>
+	            		<td><strong>Id</strong></td>
+	            		<td><strong>Class</strong></td>
+	            		<td><strong>Size</strong></td>	       		
 	            	</tr>
 	            	<tr>
 	            		<td>
@@ -75,10 +75,10 @@
 	            		</td>	            		
 	            	</tr>
 	            	<tr>
-	            		<td>Maxlength</td>
-	            		<td>Label</td>
-	            		<td>Placeholder</td>
-	            		<td>Is Required Field</td>	            		
+	            		<td><strong>Maxlength</strong></td>
+	            		<td><strong>Label</strong></td>
+	            		<td><strong>Placeholder</strong></td>
+	            		<td><strong>Is Required Field</strong></td>	               		
 	            	</tr>
 	            	<tr>
 	            		<td>
@@ -104,10 +104,10 @@
     	    <form class="form-horizontal" name="content_form_phone" id="content_form_phone" action="#" method="post">					    	    	 
 	            <table>
 	            	<tr>
-	            		<td>Name</td>
-	            		<td>Id</td>
-	            		<td>Class</td>
-	            		<td>Size</td>	            		
+	            		<td><strong>Name</strong></td>
+	            		<td><strong>Id</strong></td>
+	            		<td><strong>Class</strong></td>
+	            		<td><strong>Size</strong></td>	            		
 	            	</tr>
 	            	<tr>
 	            		<td>
@@ -124,10 +124,10 @@
 	            		</td>	            		
 	            	</tr>
 	            	<tr>
-	            		<td>Maxlength</td>
-	            		<td>Label</td>
-	            		<td>Placeholder</td>
-	            		<td>Is Required Field</td>	            		
+	            		<td><strong>Maxlength</strong></td>
+	            		<td><strong>Label</strong></td>
+	            		<td><strong>Placeholder</strong></td>
+	            		<td><strong>Is Required Field</strong></td>	              		
 	            	</tr>
 	            	<tr>
 	            		<td>
@@ -152,10 +152,10 @@
     	    <form class="form-horizontal" name="content_form_textarea" id="content_form_textarea" action="#" method="post">					    	    	 
 	            <table>
 	            	<tr>
-	            		<td>Name</td>
-	            		<td>Id</td>
-	            		<td>Class</td>
-	            		<td>Cols</td>	            		
+	            		<td><strong>Name</strong></td>
+	            		<td><strong>Id</strong></td>
+	            		<td><strong>Class</strong></td>
+	            		<td><strong>Cols</strong></td>	            		
 	            	</tr>
 	            	<tr>
 	            		<td>
@@ -172,10 +172,10 @@
 	            		</td>	            		
 	            	</tr>
 	            	<tr>
-	            		<td>Rows</td>
-	            		<td>Label</td>
-	            		<td>Placeholder</td>
-	            		<td>Is Required Field</td>	            		
+	            		<td><strong>Rows</strong></td>
+	            		<td><strong>Label</strong></td>
+	            		<td><strong>Placeholder</strong></td>
+	            		<td><strong>Is Required Field</strong></td>	            		
 	            	</tr>
 	            	<tr>
 	            		<td>
@@ -200,18 +200,18 @@
     	    <form class="form-horizontal" name="content_form_map" id="content_form_map" action="#" method="post">
 	           	 <table>
 	            	<tr>
-	            		<td>Lang</td>
-	            		<td>Lat</td>
-	            		<td>Height: (Pixel)</td>   	            		         	
-	            		<td>Width: (Pixel)</td>   
+	            		<td><strong>Latitude</strong></td>
+	            		<td><strong>Longitude</strong></td>
+	            		<td><strong>Height: (Pixel)</strong></td>   	            		         	
+	            		<td><strong>Width: (Pixel)</strong></td>   
 	            	</tr>
 	            	<tr>
 	            		<td>
-	            			<input type="text" id="git_map_lang" name="git_map_lang" data-for="lang" value="" placeholder="Enter Langitude">
+	            			<input type="text" id="git_map_latitude" name="git_map_latitude" data-for="latitude" value="" placeholder="Enter Latitude">
 	            		</td>
 	            		<td>
-	            			<input type="text" id="git_map_lat" name="git_map_lat" data-for="lat" value="" placeholder="Enter Latitude">
-	            		</td>
+	            			<input type="text" id="git_map_longitude" name="git_map_longitude" data-for="longitude" value="" placeholder="Enter Longitude">
+	            		</td>	            		
 	            		<td>
 	            			<input type="text" id="git_map_height" name="git_map_height" data-for="height" value="" placeholder="Enter Height for Map">
 	            		</td>
@@ -220,12 +220,24 @@
 	            		</td>            		
 	            	</tr>
 	            	<tr>
-	            		<td>Title</td>	            		            	
+	            		<td><strong>Title</strong></td>	            		            	
+	            		<td><strong>Zoom Level</strong></td>	 
+	            		<td><strong>Scrollwheel</strong></td>
+	            		<td><strong>Clickable</strong></td>
 	            	</tr>
 	            	<tr>	            		
 	            		<td>
 	            			<input type="text" id="git_map_title" name="git_map_title" data-for="title" value="" placeholder="Enter Title for Map">
 	            		</td>	            		
+	            		<td>
+	            			<input type="text" id="git_map_zoom" name="git_map_zoom" data-for="zoom" value="" placeholder="Enter Zoom Level for Map">
+	            		</td>	
+	            		<td>
+	            			<input type="checkbox" checked id="git_map_scrollwheel" name="git_map_scrollwheel">		        	    
+	            		</td>            		
+	            		<td>
+	            			<input type="checkbox" checked id="git_map_clickable" name="git_map_clickable">		        	    
+	            		</td>
 	            	</tr>
 	            </table>	            
 	            <input type="hidden" id="map_check" name="map_check" value="">
@@ -246,10 +258,10 @@
 	           	 </table>
 	           	 <table>	           	 	
 	            	<tr>
-	            		<td>Google Public Key</td>
-	            		<td>Google Private Key</td>
-	            		<td>Theme</td>   	            		         	
-	            		<td>Language</td>   
+	            		<td><strong>Google Public Key</strong></td>
+	            		<td><strong>Google Private Key</strong></td>
+	            		<td><strong>Skin<strong/></td>   	            		         	
+	            		<td><strong>Language</strong></td>   
 	            	</tr>
 	            	<tr>
 	            		<td>

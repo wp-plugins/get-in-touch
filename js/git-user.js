@@ -16,6 +16,7 @@ $(function() {
 		$(this).fadeOut();
 		$(this).parent().siblings().removeClass('git-error');
 	});
+
 });
 
 // Function to show and hide Loader

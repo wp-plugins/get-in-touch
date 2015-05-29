@@ -15,7 +15,7 @@ function git_home_function()
 						<img src="<?php echo plugins_url('get-in-touch/img/get-in-touch.jpg'); ?>" alt="Get In Touch" class="git-banner">
 					
 						<div class="dashboard-title">				
-							<h4><a href="<?php echo admin_url(); ?>admin.php?page=add-form" class="plugin_name">Get In Touch</a></h4>			
+							<h4><a href="<?php echo admin_url(); ?>admin.php?page=create-form" class="plugin_name">Get In Touch</a></h4>			
 							<div class="social-holder">
 								<a href="http://www.think201.com/contact-us" target="_blank" class="social">Say <i>Hello!</i></a>
 								<a href="http://www.twitter.com/think201" target="_blank"><span class="twitter"></span></a>				
@@ -50,7 +50,7 @@ function git_home_function()
 								</li>
 							</ul>	
 							<br>
-							<a href="http://developer.think201.com" target="_blank" class="git-btn plugin_site">Visit Plugin Site</a>
+							<a href="http://labs.think201.com/plugins/get-in-touch/" target="_blank" class="git-btn plugin_site">Visit Plugin Site</a>
 						</div>
 					</div>
 					<div class="git-5">
@@ -60,11 +60,11 @@ function git_home_function()
 							<p>Bangalore based Website Designing &amp; Development company which masters in creating magnificent products &amp; incredibly stunning websites.</p>
 						</div>				
 						<div class="about_developer">
-							<h5><a href="http://developer.think201.com/" target="_blank">Think201 Developer Network</a></h5>
+							<h5><a href="http://labs.think201.com/" target="_blank">Think201 Labs</a></h5>
 							<p>
 							Think201 Developer Network is an initiative from Think201 to give back to developer community re-usable code in terms of utility functions. Our main focus is in web domain using technologies PHP, MySQL, WordPress and would slowly expand our contributions in other technologies. 
 							We are also open to accept utility request and serve the community by developing them after reviewing their usability globally. </p>
-							<p>Help us grow and contribute. Leave your requests <a class="" target="_blank" href="http://developer.think201.com/request-for-utility">here</a> and share the word with others.
+							<p>Help us grow and contribute. Leave your requests <a class="" target="_blank" href="http://www.think201.com/contact-us">here</a> and share the word with others.
 							</p>
 						</div>
 					</div>

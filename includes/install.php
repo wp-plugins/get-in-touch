@@ -78,8 +78,12 @@
 		require_once GITPLUGIN_DIR .'/includes/data-processing/admin/input_data_get.php';	
 		require_once GITPLUGIN_DIR .'/includes/data-processing/admin/forms.php';		
 		require_once GITPLUGIN_DIR .'/includes/data-processing/user/forms.php';
-		require_once GITPLUGIN_DIR .'/includes/data-processing/user/phpmailer.php';
-		require_once GITPLUGIN_DIR .'/includes/data-processing/user/phpmailerautoload.php';
+		if(!class_exists('phpmailer'))
+		{
+			require_once GITPLUGIN_DIR .'/includes/data-processing/user/phpmailer.php';
+			require_once GITPLUGIN_DIR .'/includes/data-processing/user/phpmailerautoload.php';;
+		}
+
 		require_once GITPLUGIN_DIR .'/includes/data-processing/user/send_contact_form_data.php';			
 	}
 

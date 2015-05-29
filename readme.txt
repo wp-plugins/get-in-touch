@@ -1,11 +1,11 @@
 === Get In Touch ===
 Contributors: think201, vivekpandey
 Tags: get in touch, wordpress plugin, contact form, responsive, map, inquiry form, google map integration, touch, get, form, inquiry, map, google map, customized, free, no limit, input field, plugin, wp, captcha, language options in captcha, recaptcha, google captcha, zoom in map, customized map
-Requires at least: 3.5.2
+Requires at least: 4.0
 Donate link: http://www.think201.com/
-Tested up to: 3.9.1
-Stable tag: 1.0.5
-Version: 1.0.5
+Tested up to: 4.2.2
+Stable tag: 1.0.6
+Version: 1.0.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -119,6 +119,8 @@ Following is a brief description on how to get the best out of Get In Touch plug
 
 = 1.0.5 =
 
+= 1.0.6 =
+
 * Initial version of Get In Touch Plugin check-in.
 
 == Change log ==
@@ -151,5 +153,10 @@ Following is a brief description on how to get the best out of Get In Touch plug
 = 1.0.5 =
 - Set zoom level for google map.
 - You may enable or disable zooming effect of maps when clicked.
+- UI enhancements.
+- Few minor bugs fixed.
+
+= 1.0.6 =
+- Core feature enhanced.
 - UI enhancements.
 - Few minor bugs fixed.
